@@ -1,0 +1,36 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/circuit-v1-openapi-original.json
+docs: https://developer.dispatch.spoke.com/api/v1
+summary:
+  types:
+  - http
+  http_schemes:
+  - basic
+  - bearer
+  api_key_delivery: >-
+    A single API key generated in Spoke Dispatch settings > Integrations > API.
+    The same key is presented either via HTTP Basic (key as username, empty
+    password, base64-encoded) or as a Bearer token in the Authorization header.
+  notes:
+  - HTTPS is required; plain HTTP requests are rejected.
+  - Every request with a body must send Content-Type application/json.
+schemes:
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: >-
+    Primary scheme. Use the API key as the username with an empty password,
+    base64-encoded, e.g. `curl https://api.spoke.com/public/v1/plans -u yourApiKey:`.
+  sources:
+  - openapi/circuit-v0.2b-openapi-original.json
+  - openapi/circuit-v1-openapi-original.json
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: >-
+    Alternative scheme documented in the API docs (not declared in the OpenAPI
+    securitySchemes). Pass the API key with no encoding as
+    `Authorization: Bearer yourApiKey`.
+  sources:
+  - https://developer.dispatch.spoke.com/api/v1
