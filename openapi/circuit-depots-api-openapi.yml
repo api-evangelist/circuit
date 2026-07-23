@@ -1,0 +1,2002 @@
+openapi: 3.1.0
+info:
+  title: Spoke Depots API
+  description: "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n"
+  version: v0.2b
+servers:
+- url: https://api.spoke.com/public/v0.2b
+security:
+- BasicAuth: []
+tags:
+- name: Depots
+  description: 'Endpoints to operate on [Depots](/docs/models/depot) resources.
+
+
+    This resource is currently read-only on the API.
+
+    '
+paths:
+  /depots:
+    get:
+      operationId: listDepots
+      summary: List Depots
+      tags:
+      - Depots
+      parameters:
+      - schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+        in: query
+        name: pageToken
+        required: false
+        description: The page token to continue from.
+      - schema:
+          default: 20
+          type: number
+          minimum: 1
+          maximum: 20
+        in: query
+        name: maxPageSize
+        required: false
+        description: The maximum number of depots to return.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  depots:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/depotSchema'
+                    description: The depots.
+                  nextPageToken:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The next page token.
+                required:
+                - depots
+                - nextPageToken
+                definitions:
+                  depotSchema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                        description: The depot id, in the format `depots/<id>`
+                      name:
+                        type: string
+                        description: The name of the depot.
+                    required:
+                    - id
+                    - name
+                    additionalProperties: false
+                    description: A depot.
+                description: Success
+        '400':
+          description: Query parameters are invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Query parameters are invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+    post:
+      operationId: createDepot
+      summary: Create a depot
+      tags:
+      - Depots
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 2048
+                routeOverrides:
+                  description: Defines some default parameters for routes originating from this depot
+                  type: object
+                  properties:
+                    startAddress:
+                      type: object
+                      properties:
+                        addressName:
+                          description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
+                        addressLineOne:
+                          description: The first line of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
+                        addressLineTwo:
+                          description: The second line of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
+                        city:
+                          description: The city of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        state:
+                          description: The state of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        zip:
+                          description: The zip code of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        country:
+                          description: The country of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        latitude:
+                          description: The latitude of the address in decimal degrees.
+                          anyOf:
+                          - type: number
+                            minimum: -90
+                            maximum: 90
+                          - type: 'null'
+                        longitude:
+                          description: The longitude of the address in decimal degrees.
+                          anyOf:
+                          - type: number
+                            minimum: -180
+                            maximum: 180
+                          - type: 'null'
+                      additionalProperties: false
+                    startTime:
+                      description: Route start time
+                      type: object
+                      properties:
+                        hour:
+                          description: Hour of the day
+                          type: integer
+                          minimum: -9007199254740991
+                          maximum: 9007199254740991
+                        minute:
+                          description: Minute of the hour
+                          type: integer
+                          minimum: -9007199254740991
+                          maximum: 9007199254740991
+                      required:
+                      - hour
+                      - minute
+                      additionalProperties: false
+                    endAddress:
+                      anyOf:
+                      - type: object
+                        properties:
+                          addressName:
+                            description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          addressLineOne:
+                            description: The first line of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          addressLineTwo:
+                            description: The second line of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          city:
+                            description: The city of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          state:
+                            description: The state of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          zip:
+                            description: The zip code of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          country:
+                            description: The country of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          latitude:
+                            description: The latitude of the address in decimal degrees.
+                            anyOf:
+                            - type: number
+                              minimum: -90
+                              maximum: 90
+                            - type: 'null'
+                          longitude:
+                            description: The longitude of the address in decimal degrees.
+                            anyOf:
+                            - type: number
+                              minimum: -180
+                              maximum: 180
+                            - type: 'null'
+                        additionalProperties: false
+                      - type: 'null'
+                    endTime:
+                      anyOf:
+                      - description: Time of day in hours and minutes. Uses a 24 hour clock.
+                        type: object
+                        properties:
+                          hour:
+                            description: Hour of the day
+                            type: integer
+                            minimum: -9007199254740991
+                            maximum: 9007199254740991
+                          minute:
+                            description: Minute of the hour
+                            type: integer
+                            minimum: -9007199254740991
+                            maximum: 9007199254740991
+                        required:
+                        - hour
+                        - minute
+                        additionalProperties: false
+                      - type: 'null'
+                    defaultTimeAtStop:
+                      anyOf:
+                      - description: Estimated time at the stop
+                        type: number
+                      - type: 'null'
+                    maxStops:
+                      anyOf:
+                      - description: Maximum number of stops per driver
+                        type: number
+                      - type: 'null'
+                    vehicleType:
+                      anyOf:
+                      - description: Default vehicle type
+                        type: string
+                        enum:
+                        - bike
+                        - scooter
+                        - car
+                        - small_truck
+                        - truck
+                        - electric_cargo_bike
+                      - type: 'null'
+                    roadSide:
+                      anyOf:
+                      - description: Attempt to visit stops on this side of the road
+                        type: string
+                        enum:
+                        - any
+                        - left_only
+                        - right_only
+                      - type: 'null'
+                    roundTrip:
+                      anyOf:
+                      - description: Return to the startAddress at the end of the route
+                        type: boolean
+                      - type: 'null'
+                  required:
+                  - startAddress
+                  - startTime
+              required:
+              - name
+              - routeOverrides
+              additionalProperties: false
+        required: true
+      responses:
+        '200':
+          description: The requested depot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/depotSchema_2'
+                description: The requested depot
+        '400':
+          description: The request was invalid
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  description: The request has errors. Either syntactic or semantic
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  - param
+                  description: A provided route override parameter was invalid.
+                  title: Route override was invalid
+                description: The request was invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+  /depots/{depotId}:
+    get:
+      operationId: getDepot
+      summary: Retrieve a depot
+      tags:
+      - Depots
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: depotId
+        required: true
+        description: The depot id
+      responses:
+        '200':
+          description: The requested depot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/depotSchema'
+                description: The requested depot
+        '400':
+          description: ID format is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: ID format is invalid
+                title: The request is invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '404':
+          description: The provided depot id does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                    - Depot not found
+                required:
+                - message
+                description: The provided depot id does not exist
+                title: Depot not found
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+    delete:
+      operationId: deleteDepot
+      summary: Remove a depot
+      tags:
+      - Depots
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: depotId
+        required: true
+        description: The depot id
+      responses:
+        '204':
+          description: Depot removed successfully
+        '400':
+          description: The request was invalid
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  description: The request has errors. Either syntactic or semantic
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      enum:
+                      - Depot cannot be deleted
+                  required:
+                  - message
+                  description: The depot cannot be deleted because because a pre-condition was not met
+                  title: Depot cannot be deleted
+                description: The request was invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+    patch:
+      operationId: updateDepot
+      summary: Update a depot
+      tags:
+      - Depots
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: The request body for updating a depot. All the values present in the request will update the depot value; if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated.
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 2048
+                routeOverrides:
+                  type: object
+                  properties:
+                    startAddress:
+                      type: object
+                      properties:
+                        addressName:
+                          description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
+                        addressLineOne:
+                          description: The first line of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
+                        addressLineTwo:
+                          description: The second line of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
+                        city:
+                          description: The city of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        state:
+                          description: The state of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        zip:
+                          description: The zip code of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        country:
+                          description: The country of the address.
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 100
+                          - type: 'null'
+                        latitude:
+                          description: The latitude of the address in decimal degrees.
+                          anyOf:
+                          - type: number
+                            minimum: -90
+                            maximum: 90
+                          - type: 'null'
+                        longitude:
+                          description: The longitude of the address in decimal degrees.
+                          anyOf:
+                          - type: number
+                            minimum: -180
+                            maximum: 180
+                          - type: 'null'
+                      additionalProperties: false
+                    startTime:
+                      description: Route start time
+                      type: object
+                      properties:
+                        hour:
+                          description: Hour of the day
+                          type: integer
+                          minimum: -9007199254740991
+                          maximum: 9007199254740991
+                        minute:
+                          description: Minute of the hour
+                          type: integer
+                          minimum: -9007199254740991
+                          maximum: 9007199254740991
+                      required:
+                      - hour
+                      - minute
+                      additionalProperties: false
+                    endAddress:
+                      anyOf:
+                      - type: object
+                        properties:
+                          addressName:
+                            description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          addressLineOne:
+                            description: The first line of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          addressLineTwo:
+                            description: The second line of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          city:
+                            description: The city of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          state:
+                            description: The state of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          zip:
+                            description: The zip code of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          country:
+                            description: The country of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          latitude:
+                            description: The latitude of the address in decimal degrees.
+                            anyOf:
+                            - type: number
+                              minimum: -90
+                              maximum: 90
+                            - type: 'null'
+                          longitude:
+                            description: The longitude of the address in decimal degrees.
+                            anyOf:
+                            - type: number
+                              minimum: -180
+                              maximum: 180
+                            - type: 'null'
+                        additionalProperties: false
+                      - type: 'null'
+                    endTime:
+                      anyOf:
+                      - description: Time of day in hours and minutes. Uses a 24 hour clock.
+                        type: object
+                        properties:
+                          hour:
+                            description: Hour of the day
+                            type: integer
+                            minimum: -9007199254740991
+                            maximum: 9007199254740991
+                          minute:
+                            description: Minute of the hour
+                            type: integer
+                            minimum: -9007199254740991
+                            maximum: 9007199254740991
+                        required:
+                        - hour
+                        - minute
+                        additionalProperties: false
+                      - type: 'null'
+                    defaultTimeAtStop:
+                      anyOf:
+                      - description: Estimated time at the stop
+                        type: number
+                      - type: 'null'
+                    maxStops:
+                      anyOf:
+                      - description: Maximum number of stops per driver
+                        type: number
+                      - type: 'null'
+                    vehicleType:
+                      anyOf:
+                      - description: Default vehicle type
+                        type: string
+                        enum:
+                        - bike
+                        - scooter
+                        - car
+                        - small_truck
+                        - truck
+                        - electric_cargo_bike
+                      - type: 'null'
+                    roadSide:
+                      anyOf:
+                      - description: Attempt to visit stops on this side of the road
+                        type: string
+                        enum:
+                        - any
+                        - left_only
+                        - right_only
+                      - type: 'null'
+                    roundTrip:
+                      anyOf:
+                      - description: Return to the startAddress at the end of the route
+                        type: boolean
+                      - type: 'null'
+              additionalProperties: false
+        description: The request body for updating a depot. All the values present in the request will update the depot value; if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated.
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: depotId
+        required: true
+        description: The depot id
+      responses:
+        '200':
+          description: The updated depot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/depotSchema_2'
+                description: The updated depot
+        '400':
+          description: The request was invalid
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  description: The request has errors. Either syntactic or semantic
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  - param
+                  description: A provided route override parameter was invalid.
+                  title: Route override was invalid
+                description: The request was invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '404':
+          description: The provided depot id does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                    - Depot not found
+                required:
+                - message
+                description: The provided depot id does not exist
+                title: Depot not found
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+  /depots:import:
+    post:
+      operationId: importDepots
+      summary: Batch import depots
+      tags:
+      - Depots
+      description: Batch import depots. The request body must contain an array of depots to import.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: An array of depots to import in batch. Supports a maximum of 100 depots per request.
+              minItems: 1
+              maxItems: 100
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    minLength: 1
+                    maxLength: 2048
+                  routeOverrides:
+                    description: Defines some default parameters for routes originating from this depot
+                    type: object
+                    properties:
+                      startAddress:
+                        type: object
+                        properties:
+                          addressName:
+                            description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          addressLineOne:
+                            description: The first line of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          addressLineTwo:
+                            description: The second line of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 255
+                            - type: 'null'
+                          city:
+                            description: The city of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          state:
+                            description: The state of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          zip:
+                            description: The zip code of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          country:
+                            description: The country of the address.
+                            anyOf:
+                            - type: string
+                              minLength: 1
+                              maxLength: 100
+                            - type: 'null'
+                          latitude:
+                            description: The latitude of the address in decimal degrees.
+                            anyOf:
+                            - type: number
+                              minimum: -90
+                              maximum: 90
+                            - type: 'null'
+                          longitude:
+                            description: The longitude of the address in decimal degrees.
+                            anyOf:
+                            - type: number
+                              minimum: -180
+                              maximum: 180
+                            - type: 'null'
+                        additionalProperties: false
+                      startTime:
+                        description: Route start time
+                        type: object
+                        properties:
+                          hour:
+                            description: Hour of the day
+                            type: integer
+                            minimum: -9007199254740991
+                            maximum: 9007199254740991
+                          minute:
+                            description: Minute of the hour
+                            type: integer
+                            minimum: -9007199254740991
+                            maximum: 9007199254740991
+                        required:
+                        - hour
+                        - minute
+                        additionalProperties: false
+                      endAddress:
+                        anyOf:
+                        - type: object
+                          properties:
+                            addressName:
+                              description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineOne:
+                              description: The first line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineTwo:
+                              description: The second line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            city:
+                              description: The city of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            state:
+                              description: The state of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            zip:
+                              description: The zip code of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            country:
+                              description: The country of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            latitude:
+                              description: The latitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -90
+                                maximum: 90
+                              - type: 'null'
+                            longitude:
+                              description: The longitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -180
+                                maximum: 180
+                              - type: 'null'
+                          additionalProperties: false
+                        - type: 'null'
+                      endTime:
+                        anyOf:
+                        - description: Time of day in hours and minutes. Uses a 24 hour clock.
+                          type: object
+                          properties:
+                            hour:
+                              description: Hour of the day
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                            minute:
+                              description: Minute of the hour
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                          required:
+                          - hour
+                          - minute
+                          additionalProperties: false
+                        - type: 'null'
+                      defaultTimeAtStop:
+                        anyOf:
+                        - description: Estimated time at the stop
+                          type: number
+                        - type: 'null'
+                      maxStops:
+                        anyOf:
+                        - description: Maximum number of stops per driver
+                          type: number
+                        - type: 'null'
+                      vehicleType:
+                        anyOf:
+                        - description: Default vehicle type
+                          type: string
+                          enum:
+                          - bike
+                          - scooter
+                          - car
+                          - small_truck
+                          - truck
+                          - electric_cargo_bike
+                        - type: 'null'
+                      roadSide:
+                        anyOf:
+                        - description: Attempt to visit stops on this side of the road
+                          type: string
+                          enum:
+                          - any
+                          - left_only
+                          - right_only
+                        - type: 'null'
+                      roundTrip:
+                        anyOf:
+                        - description: Return to the startAddress at the end of the route
+                          type: boolean
+                        - type: 'null'
+                    required:
+                    - startAddress
+                    - startTime
+                required:
+                - name
+                - routeOverrides
+                additionalProperties: false
+        description: An array of depots to import in batch. Supports a maximum of 100 depots per request.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: array
+                    items:
+                      type: string
+                      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                      description: The id of the depot, in the format `depots/<id>`.
+                    description: The ids of the successfully imported depots
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        error:
+                          type: object
+                          properties:
+                            message:
+                              type: string
+                              description: The error that occurred during import
+                          required:
+                          - message
+                        depot:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                              minLength: 1
+                              maxLength: 2048
+                            routeOverrides:
+                              type: object
+                              properties:
+                                startAddress:
+                                  type: object
+                                  properties:
+                                    addressName:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 255
+                                      - type: 'null'
+                                      description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                                    addressLineOne:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 255
+                                      - type: 'null'
+                                      description: The first line of the address.
+                                    addressLineTwo:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 255
+                                      - type: 'null'
+                                      description: The second line of the address.
+                                    city:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 100
+                                      - type: 'null'
+                                      description: The city of the address.
+                                    state:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 100
+                                      - type: 'null'
+                                      description: The state of the address.
+                                    zip:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 100
+                                      - type: 'null'
+                                      description: The zip code of the address.
+                                    country:
+                                      anyOf:
+                                      - type: string
+                                        minLength: 1
+                                        maxLength: 100
+                                      - type: 'null'
+                                      description: The country of the address.
+                                    latitude:
+                                      anyOf:
+                                      - type: number
+                                        minimum: -90
+                                        maximum: 90
+                                      - type: 'null'
+                                      description: The latitude of the address in decimal degrees.
+                                    longitude:
+                                      anyOf:
+                                      - type: number
+                                        minimum: -180
+                                        maximum: 180
+                                      - type: 'null'
+                                      description: The longitude of the address in decimal degrees.
+                                  additionalProperties: false
+                                startTime:
+                                  type: object
+                                  properties:
+                                    hour:
+                                      type: integer
+                                      minimum: -9007199254740991
+                                      maximum: 9007199254740991
+                                      description: Hour of the day
+                                    minute:
+                                      type: integer
+                                      minimum: -9007199254740991
+                                      maximum: 9007199254740991
+                                      description: Minute of the hour
+                                  required:
+                                  - hour
+                                  - minute
+                                  additionalProperties: false
+                                  description: Route start time
+                                endAddress:
+                                  anyOf:
+                                  - type: object
+                                    properties:
+                                      addressName:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 255
+                                        - type: 'null'
+                                        description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                                      addressLineOne:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 255
+                                        - type: 'null'
+                                        description: The first line of the address.
+                                      addressLineTwo:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 255
+                                        - type: 'null'
+                                        description: The second line of the address.
+                                      city:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 100
+                                        - type: 'null'
+                                        description: The city of the address.
+                                      state:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 100
+                                        - type: 'null'
+                                        description: The state of the address.
+                                      zip:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 100
+                                        - type: 'null'
+                                        description: The zip code of the address.
+                                      country:
+                                        anyOf:
+                                        - type: string
+                                          minLength: 1
+                                          maxLength: 100
+                                        - type: 'null'
+                                        description: The country of the address.
+                                      latitude:
+                                        anyOf:
+                                        - type: number
+                                          minimum: -90
+                                          maximum: 90
+                                        - type: 'null'
+                                        description: The latitude of the address in decimal degrees.
+                                      longitude:
+                                        anyOf:
+                                        - type: number
+                                          minimum: -180
+                                          maximum: 180
+                                        - type: 'null'
+                                        description: The longitude of the address in decimal degrees.
+                                    additionalProperties: false
+                                  - type: 'null'
+                                endTime:
+                                  anyOf:
+                                  - type: object
+                                    properties:
+                                      hour:
+                                        type: integer
+                                        minimum: -9007199254740991
+                                        maximum: 9007199254740991
+                                        description: Hour of the day
+                                      minute:
+                                        type: integer
+                                        minimum: -9007199254740991
+                                        maximum: 9007199254740991
+                                        description: Minute of the hour
+                                    required:
+                                    - hour
+                                    - minute
+                                    additionalProperties: false
+                                  - type: 'null'
+                                  description: Route end time
+                                defaultTimeAtStop:
+                                  anyOf:
+                                  - type: number
+                                    description: Estimated time at the stop
+                                  - type: 'null'
+                                maxStops:
+                                  anyOf:
+                                  - type: number
+                                    description: Maximum number of stops per driver
+                                  - type: 'null'
+                                vehicleType:
+                                  anyOf:
+                                  - type: string
+                                    enum:
+                                    - bike
+                                    - scooter
+                                    - car
+                                    - small_truck
+                                    - truck
+                                    - electric_cargo_bike
+                                    description: Default vehicle type
+                                  - type: 'null'
+                                roadSide:
+                                  anyOf:
+                                  - type: string
+                                    enum:
+                                    - any
+                                    - left_only
+                                    - right_only
+                                    description: Attempt to visit stops on this side of the road
+                                  - type: 'null'
+                                roundTrip:
+                                  anyOf:
+                                  - type: boolean
+                                    description: Return to the startAddress at the end of the route
+                                  - type: 'null'
+                              required:
+                              - startAddress
+                              - startTime
+                          required:
+                          - name
+                          - routeOverrides
+                          additionalProperties: false
+                          description: The depot that failed to import
+                      required:
+                      - error
+                      - depot
+                    description: The failed depots
+                required:
+                - success
+                - failed
+                description: Success
+        '400':
+          description: The request has errors. Either syntactic or semantic
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The request has errors. Either syntactic or semantic
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+  /depots/{depotId}:setMain:
+    post:
+      operationId: setMainDepot
+      summary: Set the main depot for the team
+      tags:
+      - Depots
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: depotId
+        required: true
+        description: The depot id
+      responses:
+        '204':
+          description: Depot set as main successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '404':
+          description: The provided depot id does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                    - Depot not found
+                required:
+                - message
+                description: The provided depot id does not exist
+                title: Depot not found
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+components:
+  schemas:
+    depotSchema:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/depotIdSchema'
+          description: The depot id, in the format `depots/<id>`
+        name:
+          type: string
+          description: The name of the depot.
+      required:
+      - id
+      - name
+      additionalProperties: false
+      description: A depot.
+    depotIdSchema:
+      type: string
+      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+    depotSchema_2:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/depotIdSchema'
+          description: The depot id, in the format `depots/<id>`
+        name:
+          type: string
+          description: The name of the depot.
+        routeOverrides:
+          anyOf:
+          - type: object
+            properties:
+              startTime:
+                type: object
+                properties:
+                  hour:
+                    type: integer
+                    minimum: -9007199254740991
+                    maximum: 9007199254740991
+                    description: Hour of the day
+                  minute:
+                    type: integer
+                    minimum: -9007199254740991
+                    maximum: 9007199254740991
+                    description: Minute of the hour
+                required:
+                - hour
+                - minute
+                additionalProperties: false
+                description: Default route start time.
+              startAddress:
+                type: object
+                properties:
+                  address:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The full address.
+                  addressLineOne:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The first line of the address.
+                  addressLineTwo:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The second line of the address.
+                  latitude:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                    description: Latitude coordinate of the depot in decimal degrees.
+                  longitude:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                    description: Longitude coordinate of the depot in decimal degrees.
+                  placeId:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: A Google PlaceID identifying the location of the depot.
+                  countryCode:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The country code of the address.
+                required:
+                - address
+                - addressLineOne
+                - addressLineTwo
+                - latitude
+                - longitude
+                - placeId
+                - countryCode
+                description: The default start address for routes originating from this depot.
+              defaultTimeAtStop:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: Estimated time at stop in seconds.
+              endAddress:
+                anyOf:
+                - type: object
+                  properties:
+                    address:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                      description: The full address.
+                    addressLineOne:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                      description: The first line of the address.
+                    addressLineTwo:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                      description: The second line of the address.
+                    latitude:
+                      anyOf:
+                      - type: number
+                      - type: 'null'
+                      description: Latitude coordinate of the depot in decimal degrees.
+                    longitude:
+                      anyOf:
+                      - type: number
+                      - type: 'null'
+                      description: Longitude coordinate of the depot in decimal degrees.
+                    placeId:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                      description: A Google PlaceID identifying the location of the depot.
+                    countryCode:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                      description: The country code of the address.
+                  required:
+                  - address
+                  - addressLineOne
+                  - addressLineTwo
+                  - latitude
+                  - longitude
+                  - placeId
+                  - countryCode
+                  description: The default end address for routes originating from this depot (if empty, assume a round-trip).
+                - type: 'null'
+              endTime:
+                anyOf:
+                - type: object
+                  properties:
+                    hour:
+                      type: integer
+                      minimum: -9007199254740991
+                      maximum: 9007199254740991
+                      description: Hour of the day
+                    minute:
+                      type: integer
+                      minimum: -9007199254740991
+                      maximum: 9007199254740991
+                      description: Minute of the hour
+                  required:
+                  - hour
+                  - minute
+                  additionalProperties: false
+                  description: Default route end time.
+                - type: 'null'
+              maxStops:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: Max stops assigned to each driver
+              roadSide:
+                anyOf:
+                - type: string
+                  enum:
+                  - any
+                  - left_only
+                  - right_only
+                - type: 'null'
+                description: The side of the road drivers should stop at.
+              vehicleType:
+                anyOf:
+                - type: string
+                  enum:
+                  - bike
+                  - scooter
+                  - car
+                  - small_truck
+                  - truck
+                  - electric_cargo_bike
+                - type: 'null'
+                description: Default vehicle type for new routes from this depot.
+              roundTrip:
+                anyOf:
+                - type: boolean
+                - type: 'null'
+                description: Return to start address at end of route
+            required:
+            - startTime
+            - startAddress
+          - type: 'null'
+      required:
+      - id
+      - name
+      - routeOverrides
+      additionalProperties: false
+      description: A depot.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use the API key as the username and leave the password empty.

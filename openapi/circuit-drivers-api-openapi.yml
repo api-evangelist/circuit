@@ -1,0 +1,2322 @@
+openapi: 3.1.0
+info:
+  title: Spoke Depots Drivers API
+  description: "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n"
+  version: v0.2b
+servers:
+- url: https://api.spoke.com/public/v0.2b
+security:
+- BasicAuth: []
+tags:
+- name: Drivers
+  description: 'Endpoints to operate on [Drivers](/docs/models/driver) resources.
+
+    '
+paths:
+  /drivers:
+    get:
+      operationId: listDrivers
+      summary: List Drivers
+      tags:
+      - Drivers
+      parameters:
+      - schema:
+          default: 50
+          type: number
+          minimum: 1
+          maximum: 50
+        in: query
+        name: maxPageSize
+        required: false
+        description: The maximum number of drivers to return.
+      - schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+        in: query
+        name: pageToken
+        required: false
+        description: The page token to continue from.
+      - schema:
+          type: object
+          properties:
+            active:
+              description: Filter by the active status of the driver. Inactive drivers will not be assigned to any routes.
+              type: string
+              enum:
+              - 'true'
+              - 'false'
+          additionalProperties: false
+        in: query
+        name: filter
+        required: false
+        description: 'The filter to apply to the list of drivers. The filter param is passed like this: `?filter[active]=true` or like this: `?filter.active=true`'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  drivers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/driverSchema'
+                    description: The drivers.
+                  nextPageToken:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The next page token.
+                required:
+                - drivers
+                - nextPageToken
+                definitions:
+                  driverSchema:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+                        description: The driver id, in the format `drivers/<id>`
+                      name:
+                        anyOf:
+                        - type: string
+                        - type: 'null'
+                        description: The name of the driver.
+                      email:
+                        anyOf:
+                        - type: string
+                        - type: 'null'
+                        description: The email of the driver.
+                      phone:
+                        anyOf:
+                        - type: string
+                        - type: 'null'
+                        description: The phone number of the driver.
+                      displayName:
+                        anyOf:
+                        - type: string
+                        - type: 'null'
+                        description: The display name of the driver.
+                      active:
+                        type: boolean
+                        description: Whether the driver membership is active or paused. Paused drivers will not be assigned to any routes.
+                      depots:
+                        type: array
+                        items:
+                          type: string
+                          pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                        description: Depots associated with the driver.
+                      routeOverrides:
+                        type: object
+                        properties:
+                          startTime:
+                            anyOf:
+                            - type: object
+                              properties:
+                                hour:
+                                  type: integer
+                                  minimum: -9007199254740991
+                                  maximum: 9007199254740991
+                                  description: Hour of the day
+                                minute:
+                                  type: integer
+                                  minimum: -9007199254740991
+                                  maximum: 9007199254740991
+                                  description: Minute of the hour
+                              required:
+                              - hour
+                              - minute
+                              additionalProperties: false
+                              description: Time of day in hours and minutes. Uses a 24 hour clock.
+                            - type: 'null'
+                            description: Driver's start time.
+                          endTime:
+                            anyOf:
+                            - type: object
+                              properties:
+                                hour:
+                                  type: integer
+                                  minimum: -9007199254740991
+                                  maximum: 9007199254740991
+                                  description: Hour of the day
+                                minute:
+                                  type: integer
+                                  minimum: -9007199254740991
+                                  maximum: 9007199254740991
+                                  description: Minute of the hour
+                              required:
+                              - hour
+                              - minute
+                              additionalProperties: false
+                              description: Time of day in hours and minutes. Uses a 24 hour clock.
+                            - type: 'null'
+                            description: Driver's end time.
+                          startAddress:
+                            anyOf:
+                            - type: object
+                              properties:
+                                address:
+                                  type: string
+                                  description: The address of the stop.
+                                addressLineOne:
+                                  type: string
+                                  description: The first line of the address.
+                                addressLineTwo:
+                                  type: string
+                                  description: The second line of the address.
+                                latitude:
+                                  anyOf:
+                                  - type: number
+                                    minimum: -90
+                                    maximum: 90
+                                  - type: 'null'
+                                  description: The latitude of the address in decimal degrees.
+                                longitude:
+                                  anyOf:
+                                  - type: number
+                                    minimum: -180
+                                    maximum: 180
+                                  - type: 'null'
+                                  description: The longitude of the address in decimal degrees.
+                                placeId:
+                                  anyOf:
+                                  - type: string
+                                  - type: 'null'
+                                  description: The identifier of the place corresponding to this stop on Google Places
+                                placeTypes:
+                                  type: array
+                                  items:
+                                    type: string
+                                  description: Array of strings that is provided by the Google AutoCompleteAPI
+                              required:
+                              - address
+                              - addressLineOne
+                              - addressLineTwo
+                              - latitude
+                              - longitude
+                              - placeId
+                              - placeTypes
+                              additionalProperties: false
+                              description: The address of the stop.
+                            - type: 'null'
+                            description: Driver's start location.
+                          endAddress:
+                            anyOf:
+                            - type: object
+                              properties:
+                                address:
+                                  type: string
+                                  description: The address of the stop.
+                                addressLineOne:
+                                  type: string
+                                  description: The first line of the address.
+                                addressLineTwo:
+                                  type: string
+                                  description: The second line of the address.
+                                latitude:
+                                  anyOf:
+                                  - type: number
+                                    minimum: -90
+                                    maximum: 90
+                                  - type: 'null'
+                                  description: The latitude of the address in decimal degrees.
+                                longitude:
+                                  anyOf:
+                                  - type: number
+                                    minimum: -180
+                                    maximum: 180
+                                  - type: 'null'
+                                  description: The longitude of the address in decimal degrees.
+                                placeId:
+                                  anyOf:
+                                  - type: string
+                                  - type: 'null'
+                                  description: The identifier of the place corresponding to this stop on Google Places
+                                placeTypes:
+                                  type: array
+                                  items:
+                                    type: string
+                                  description: Array of strings that is provided by the Google AutoCompleteAPI
+                              required:
+                              - address
+                              - addressLineOne
+                              - addressLineTwo
+                              - latitude
+                              - longitude
+                              - placeId
+                              - placeTypes
+                              additionalProperties: false
+                              description: The address of the stop.
+                            - type: 'null'
+                            description: Driver's end location.
+                          maxStops:
+                            anyOf:
+                            - type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                            - type: 'null'
+                            description: Maximum number of Stops the Driver can take in a route.
+                          drivingSpeed:
+                            type: string
+                            enum:
+                            - slower
+                            - average
+                            - faster
+                            description: The relative driving speed of the driver compared to others.
+                          deliverySpeed:
+                            type: string
+                            enum:
+                            - slower
+                            - average
+                            - faster
+                            description: The relative delivery speed of the driver compared to others.
+                          vehicleType:
+                            anyOf:
+                            - type: string
+                              enum:
+                              - bike
+                              - scooter
+                              - car
+                              - small_truck
+                              - truck
+                              - electric_cargo_bike
+                            - type: 'null'
+                            description: The vehicle type the driver will be using for deliveries.
+                        required:
+                        - startTime
+                        - endTime
+                        - startAddress
+                        - endAddress
+                        - maxStops
+                        - drivingSpeed
+                        - deliverySpeed
+                        - vehicleType
+                        description: Settings to override default route settings.
+                    required:
+                    - id
+                    - name
+                    - email
+                    - phone
+                    - displayName
+                    - active
+                    - depots
+                    - routeOverrides
+                    additionalProperties: false
+                    description: A driver.
+                description: Success
+        '400':
+          description: Query parameters are invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Query parameters are invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+    post:
+      operationId: createDriver
+      summary: Create a new driver
+      tags:
+      - Drivers
+      description: Create a driver with the given data in your team. Prefer using the [batch import endpoint](#operation/importDrivers) for creating multiple drivers at once as it is more efficient, faster.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: The driver's full name
+                  anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 255
+                  - type: 'null'
+                displayName:
+                  description: The name displayed for the driver in the UI
+                  anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 255
+                  - type: 'null'
+                email:
+                  description: Driver's email
+                  anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 255
+                    format: email
+                    pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+                  - type: 'null'
+                phone:
+                  description: Driver's phone number
+                  anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 255
+                  - type: 'null'
+                depots:
+                  description: The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot.
+                  anyOf:
+                  - minItems: 1
+                    maxItems: 50
+                    type: array
+                    items:
+                      description: The depot ID, in the format `depots/<id>`
+                      type: string
+                      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                  - type: 'null'
+                routeOverrides:
+                  description: Overrides for the driver route behavior.
+                  anyOf:
+                  - type: object
+                    properties:
+                      startAddress:
+                        description: Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                        anyOf:
+                        - type: object
+                          properties:
+                            addressName:
+                              description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineOne:
+                              description: The first line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineTwo:
+                              description: The second line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            city:
+                              description: The city of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            state:
+                              description: The state of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            zip:
+                              description: The zip code of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            country:
+                              description: The country of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            latitude:
+                              description: The latitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -90
+                                maximum: 90
+                              - type: 'null'
+                            longitude:
+                              description: The longitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -180
+                                maximum: 180
+                              - type: 'null'
+                          additionalProperties: false
+                        - type: 'null'
+                      endAddress:
+                        description: Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                        anyOf:
+                        - type: object
+                          properties:
+                            addressName:
+                              description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineOne:
+                              description: The first line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineTwo:
+                              description: The second line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            city:
+                              description: The city of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            state:
+                              description: The state of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            zip:
+                              description: The zip code of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            country:
+                              description: The country of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            latitude:
+                              description: The latitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -90
+                                maximum: 90
+                              - type: 'null'
+                            longitude:
+                              description: The longitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -180
+                                maximum: 180
+                              - type: 'null'
+                          additionalProperties: false
+                        - type: 'null'
+                      startTime:
+                        description: The start time for the driver's work day.
+                        anyOf:
+                        - description: Time of day in hours and minutes. Use a 24 hour clock.
+                          type: object
+                          properties:
+                            hour:
+                              description: Hour of the day
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                            minute:
+                              description: Minute of the hour
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                          required:
+                          - hour
+                          - minute
+                          additionalProperties: false
+                        - type: 'null'
+                      endTime:
+                        description: The end time for the driver's work day.
+                        anyOf:
+                        - description: Time of day in hours and minutes. Use a 24 hour clock.
+                          type: object
+                          properties:
+                            hour:
+                              description: Hour of the day
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                            minute:
+                              description: Minute of the hour
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                          required:
+                          - hour
+                          - minute
+                          additionalProperties: false
+                        - type: 'null'
+                      maxStops:
+                        description: The maximum number of stops that can be allocated to this driver.
+                        anyOf:
+                        - type: integer
+                          minimum: 0
+                          maximum: 9007199254740991
+                        - type: 'null'
+                      drivingSpeed:
+                        anyOf:
+                        - default: average
+                          description: How fast this driver drives compared to the Team's average
+                          type: string
+                          enum:
+                          - slower
+                          - average
+                          - faster
+                        - type: 'null'
+                      deliverySpeed:
+                        description: How fast this driver delivers compared to the Team's average
+                        anyOf:
+                        - default: average
+                          type: string
+                          enum:
+                          - slower
+                          - average
+                          - faster
+                        - type: 'null'
+                      vehicleType:
+                        description: The type of vehicle used by this driver
+                        anyOf:
+                        - type: string
+                          enum:
+                          - bike
+                          - scooter
+                          - car
+                          - small_truck
+                          - truck
+                          - electric_cargo_bike
+                        - type: 'null'
+                  - type: 'null'
+              additionalProperties: false
+      responses:
+        '200':
+          description: The created driver
+          content:
+            application/json:
+              schema:
+                description: The created driver
+                $ref: '#/components/schemas/driverSchema'
+        '400':
+          description: Failed to validate the request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Failed to validate the request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '422':
+          description: Failed to create driver.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - An error occured when creating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.
+                    - type: string
+                required:
+                - message
+                description: Failed to create driver.
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+  /drivers/{driverId}:
+    get:
+      operationId: getDriver
+      summary: Retrieve a driver
+      tags:
+      - Drivers
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: driverId
+        required: true
+        description: The driver id
+      responses:
+        '200':
+          description: The requested driver
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/driverSchema'
+                description: The requested driver
+        '400':
+          description: ID format is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: ID format is invalid
+                title: The request is invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '404':
+          description: The provided driver id does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - Driver not found
+                    - type: string
+                required:
+                - message
+                description: The provided driver id does not exist
+                title: Driver not found
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+    delete:
+      operationId: deleteDriver
+      summary: Remove a driver
+      tags:
+      - Drivers
+      description: Removes a driver from your team. If the driver also has dashboard access, the driver will only have their "driver" role revoked; thus not being listed among the team drivers, but will keep their dashboard access.
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: driverId
+        required: true
+        description: The driver id
+      responses:
+        '204':
+          description: Driver removed successfully
+        '400':
+          description: ID format is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: ID format is invalid
+                title: The request is invalid
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '404':
+          description: The provided driver id does not exist
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - Driver not found
+                    - type: string
+                required:
+                - message
+                description: The provided driver id does not exist
+                title: Driver not found
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+    patch:
+      operationId: updateDriver
+      summary: Update a driver
+      tags:
+      - Drivers
+      description: Updates a driver from your team. The member must have the "driver" role.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: The request body for updating a driver.
+              type: object
+              properties:
+                name:
+                  description: The driver's full name
+                  anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 255
+                  - type: 'null'
+                displayName:
+                  description: The name displayed for the driver in the UI
+                  anyOf:
+                  - type: string
+                    minLength: 1
+                    maxLength: 255
+                  - type: 'null'
+                depots:
+                  description: The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot.
+                  anyOf:
+                  - minItems: 1
+                    maxItems: 50
+                    type: array
+                    items:
+                      description: The depot ID, in the format `depots/<id>`
+                      type: string
+                      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                  - type: 'null'
+                routeOverrides:
+                  description: Overrides for the driver route behavior.
+                  anyOf:
+                  - type: object
+                    properties:
+                      startAddress:
+                        description: Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                        anyOf:
+                        - type: object
+                          properties:
+                            addressName:
+                              description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineOne:
+                              description: The first line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineTwo:
+                              description: The second line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            city:
+                              description: The city of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            state:
+                              description: The state of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            zip:
+                              description: The zip code of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            country:
+                              description: The country of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            latitude:
+                              description: The latitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -90
+                                maximum: 90
+                              - type: 'null'
+                            longitude:
+                              description: The longitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -180
+                                maximum: 180
+                              - type: 'null'
+                          additionalProperties: false
+                        - type: 'null'
+                      endAddress:
+                        description: Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                        anyOf:
+                        - type: object
+                          properties:
+                            addressName:
+                              description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineOne:
+                              description: The first line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            addressLineTwo:
+                              description: The second line of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                            city:
+                              description: The city of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            state:
+                              description: The state of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            zip:
+                              description: The zip code of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            country:
+                              description: The country of the address.
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 100
+                              - type: 'null'
+                            latitude:
+                              description: The latitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -90
+                                maximum: 90
+                              - type: 'null'
+                            longitude:
+                              description: The longitude of the address in decimal degrees.
+                              anyOf:
+                              - type: number
+                                minimum: -180
+                                maximum: 180
+                              - type: 'null'
+                          additionalProperties: false
+                        - type: 'null'
+                      startTime:
+                        description: The start time for the driver's work day.
+                        anyOf:
+                        - description: Time of day in hours and minutes. Use a 24 hour clock.
+                          type: object
+                          properties:
+                            hour:
+                              description: Hour of the day
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                            minute:
+                              description: Minute of the hour
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                          required:
+                          - hour
+                          - minute
+                          additionalProperties: false
+                        - type: 'null'
+                      endTime:
+                        description: The end time for the driver's work day.
+                        anyOf:
+                        - description: Time of day in hours and minutes. Use a 24 hour clock.
+                          type: object
+                          properties:
+                            hour:
+                              description: Hour of the day
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                            minute:
+                              description: Minute of the hour
+                              type: integer
+                              minimum: -9007199254740991
+                              maximum: 9007199254740991
+                          required:
+                          - hour
+                          - minute
+                          additionalProperties: false
+                        - type: 'null'
+                      maxStops:
+                        description: The maximum number of stops that can be allocated to this driver.
+                        anyOf:
+                        - type: integer
+                          minimum: 0
+                          maximum: 9007199254740991
+                        - type: 'null'
+                      drivingSpeed:
+                        anyOf:
+                        - default: average
+                          description: How fast this driver drives compared to the Team's average
+                          type: string
+                          enum:
+                          - slower
+                          - average
+                          - faster
+                        - type: 'null'
+                      deliverySpeed:
+                        description: How fast this driver delivers compared to the Team's average
+                        anyOf:
+                        - default: average
+                          type: string
+                          enum:
+                          - slower
+                          - average
+                          - faster
+                        - type: 'null'
+                      vehicleType:
+                        description: The type of vehicle used by this driver
+                        anyOf:
+                        - type: string
+                          enum:
+                          - bike
+                          - scooter
+                          - car
+                          - small_truck
+                          - truck
+                          - electric_cargo_bike
+                        - type: 'null'
+                  - type: 'null'
+              additionalProperties: false
+        description: The request body for updating a driver.
+      parameters:
+      - schema:
+          type: string
+          pattern: ^[a-zA-Z0-9---_]{1,50}$
+        in: path
+        name: driverId
+        required: true
+        description: The driver id
+      responses:
+        '200':
+          description: The updated driver
+          content:
+            application/json:
+              schema:
+                description: The updated driver
+                $ref: '#/components/schemas/driverSchema'
+        '400':
+          description: Failed to validate the request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Failed to validate the request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '422':
+          description: Failed to update driver
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - An error occured when updating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.
+                    - type: string
+                required:
+                - message
+                description: Failed to update driver
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+  /drivers:import:
+    post:
+      operationId: importDrivers
+      summary: Batch import drivers
+      tags:
+      - Drivers
+      description: Creates multiple drivers in your team. The request body must contain an array of drivers to import.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: An array of driver descriptions to be created in batch.
+              minItems: 1
+              maxItems: 50
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    description: The driver's full name
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 255
+                    - type: 'null'
+                  displayName:
+                    description: The name displayed for the driver in the UI
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 255
+                    - type: 'null'
+                  email:
+                    description: Driver's email
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 255
+                      format: email
+                      pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+                    - type: 'null'
+                  phone:
+                    description: Driver's phone number
+                    anyOf:
+                    - type: string
+                      minLength: 1
+                      maxLength: 255
+                    - type: 'null'
+                  depots:
+                    description: The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot.
+                    anyOf:
+                    - minItems: 1
+                      maxItems: 50
+                      type: array
+                      items:
+                        description: The depot ID, in the format `depots/<id>`
+                        type: string
+                        pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                    - type: 'null'
+                  routeOverrides:
+                    description: Overrides for the driver route behavior.
+                    anyOf:
+                    - type: object
+                      properties:
+                        startAddress:
+                          description: Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                          anyOf:
+                          - type: object
+                            properties:
+                              addressName:
+                                description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 255
+                                - type: 'null'
+                              addressLineOne:
+                                description: The first line of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 255
+                                - type: 'null'
+                              addressLineTwo:
+                                description: The second line of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 255
+                                - type: 'null'
+                              city:
+                                description: The city of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              state:
+                                description: The state of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              zip:
+                                description: The zip code of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              country:
+                                description: The country of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              latitude:
+                                description: The latitude of the address in decimal degrees.
+                                anyOf:
+                                - type: number
+                                  minimum: -90
+                                  maximum: 90
+                                - type: 'null'
+                              longitude:
+                                description: The longitude of the address in decimal degrees.
+                                anyOf:
+                                - type: number
+                                  minimum: -180
+                                  maximum: 180
+                                - type: 'null'
+                            additionalProperties: false
+                          - type: 'null'
+                        endAddress:
+                          description: Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                          anyOf:
+                          - type: object
+                            properties:
+                              addressName:
+                                description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 255
+                                - type: 'null'
+                              addressLineOne:
+                                description: The first line of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 255
+                                - type: 'null'
+                              addressLineTwo:
+                                description: The second line of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 255
+                                - type: 'null'
+                              city:
+                                description: The city of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              state:
+                                description: The state of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              zip:
+                                description: The zip code of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              country:
+                                description: The country of the address.
+                                anyOf:
+                                - type: string
+                                  minLength: 1
+                                  maxLength: 100
+                                - type: 'null'
+                              latitude:
+                                description: The latitude of the address in decimal degrees.
+                                anyOf:
+                                - type: number
+                                  minimum: -90
+                                  maximum: 90
+                                - type: 'null'
+                              longitude:
+                                description: The longitude of the address in decimal degrees.
+                                anyOf:
+                                - type: number
+                                  minimum: -180
+                                  maximum: 180
+                                - type: 'null'
+                            additionalProperties: false
+                          - type: 'null'
+                        startTime:
+                          description: The start time for the driver's work day.
+                          anyOf:
+                          - description: Time of day in hours and minutes. Use a 24 hour clock.
+                            type: object
+                            properties:
+                              hour:
+                                description: Hour of the day
+                                type: integer
+                                minimum: -9007199254740991
+                                maximum: 9007199254740991
+                              minute:
+                                description: Minute of the hour
+                                type: integer
+                                minimum: -9007199254740991
+                                maximum: 9007199254740991
+                            required:
+                            - hour
+                            - minute
+                            additionalProperties: false
+                          - type: 'null'
+                        endTime:
+                          description: The end time for the driver's work day.
+                          anyOf:
+                          - description: Time of day in hours and minutes. Use a 24 hour clock.
+                            type: object
+                            properties:
+                              hour:
+                                description: Hour of the day
+                                type: integer
+                                minimum: -9007199254740991
+                                maximum: 9007199254740991
+                              minute:
+                                description: Minute of the hour
+                                type: integer
+                                minimum: -9007199254740991
+                                maximum: 9007199254740991
+                            required:
+                            - hour
+                            - minute
+                            additionalProperties: false
+                          - type: 'null'
+                        maxStops:
+                          description: The maximum number of stops that can be allocated to this driver.
+                          anyOf:
+                          - type: integer
+                            minimum: 0
+                            maximum: 9007199254740991
+                          - type: 'null'
+                        drivingSpeed:
+                          anyOf:
+                          - default: average
+                            description: How fast this driver drives compared to the Team's average
+                            type: string
+                            enum:
+                            - slower
+                            - average
+                            - faster
+                          - type: 'null'
+                        deliverySpeed:
+                          description: How fast this driver delivers compared to the Team's average
+                          anyOf:
+                          - default: average
+                            type: string
+                            enum:
+                            - slower
+                            - average
+                            - faster
+                          - type: 'null'
+                        vehicleType:
+                          description: The type of vehicle used by this driver
+                          anyOf:
+                          - type: string
+                            enum:
+                            - bike
+                            - scooter
+                            - car
+                            - small_truck
+                            - truck
+                            - electric_cargo_bike
+                          - type: 'null'
+                    - type: 'null'
+                additionalProperties: false
+        description: An array of driver descriptions to be created in batch.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: array
+                    items:
+                      type: string
+                      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+                      description: The id of the driver, in the format `drivers/<id>`.
+                    description: The ids of the successfully imported drivers
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        error:
+                          type: object
+                          properties:
+                            message:
+                              type: string
+                              description: The error that occurred during import
+                          required:
+                          - message
+                        driver:
+                          type: object
+                          properties:
+                            name:
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                              description: The driver's full name
+                            displayName:
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                              description: The name displayed for the driver in the UI
+                            email:
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                                format: email
+                                pattern: ^(?!\.)(?!.*\.\.)([A-Za-z0-9_'+\-\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+                              - type: 'null'
+                              description: Driver's email
+                            phone:
+                              anyOf:
+                              - type: string
+                                minLength: 1
+                                maxLength: 255
+                              - type: 'null'
+                              description: Driver's phone number
+                            depots:
+                              anyOf:
+                              - minItems: 1
+                                maxItems: 50
+                                type: array
+                                items:
+                                  type: string
+                                  pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+                                  description: The depot ID, in the format `depots/<id>`
+                              - type: 'null'
+                              description: The depot IDs associated with the driver in the format `depots/<id>`, duplicates will be ignored. If set to null or not provided, the team's Main depot will be set as driver depot.
+                            routeOverrides:
+                              anyOf:
+                              - type: object
+                                properties:
+                                  startAddress:
+                                    anyOf:
+                                    - type: object
+                                      properties:
+                                        addressName:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 255
+                                          - type: 'null'
+                                          description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                                        addressLineOne:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 255
+                                          - type: 'null'
+                                          description: The first line of the address.
+                                        addressLineTwo:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 255
+                                          - type: 'null'
+                                          description: The second line of the address.
+                                        city:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The city of the address.
+                                        state:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The state of the address.
+                                        zip:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The zip code of the address.
+                                        country:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The country of the address.
+                                        latitude:
+                                          anyOf:
+                                          - type: number
+                                            minimum: -90
+                                            maximum: 90
+                                          - type: 'null'
+                                          description: The latitude of the address in decimal degrees.
+                                        longitude:
+                                          anyOf:
+                                          - type: number
+                                            minimum: -180
+                                            maximum: 180
+                                          - type: 'null'
+                                          description: The longitude of the address in decimal degrees.
+                                      additionalProperties: false
+                                    - type: 'null'
+                                    description: Address of a start location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                                  endAddress:
+                                    anyOf:
+                                    - type: object
+                                      properties:
+                                        addressName:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 255
+                                          - type: 'null'
+                                          description: The name of the address. This will not be used for geocoding, and is only for the final address display purposes.
+                                        addressLineOne:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 255
+                                          - type: 'null'
+                                          description: The first line of the address.
+                                        addressLineTwo:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 255
+                                          - type: 'null'
+                                          description: The second line of the address.
+                                        city:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The city of the address.
+                                        state:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The state of the address.
+                                        zip:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The zip code of the address.
+                                        country:
+                                          anyOf:
+                                          - type: string
+                                            minLength: 1
+                                            maxLength: 100
+                                          - type: 'null'
+                                          description: The country of the address.
+                                        latitude:
+                                          anyOf:
+                                          - type: number
+                                            minimum: -90
+                                            maximum: 90
+                                          - type: 'null'
+                                          description: The latitude of the address in decimal degrees.
+                                        longitude:
+                                          anyOf:
+                                          - type: number
+                                            minimum: -180
+                                            maximum: 180
+                                          - type: 'null'
+                                          description: The longitude of the address in decimal degrees.
+                                      additionalProperties: false
+                                    - type: 'null'
+                                    description: Address of an end location for every route assigned to this driver. If the latitude and longitude fields are set they will override any of the others. The addressName field is not used for geocoding and is only for display purposes.
+                                  startTime:
+                                    anyOf:
+                                    - type: object
+                                      properties:
+                                        hour:
+                                          type: integer
+                                          minimum: -9007199254740991
+                                          maximum: 9007199254740991
+                                          description: Hour of the day
+                                        minute:
+                                          type: integer
+                                          minimum: -9007199254740991
+                                          maximum: 9007199254740991
+                                          description: Minute of the hour
+                                      required:
+                                      - hour
+                                      - minute
+                                      additionalProperties: false
+                                      description: Time of day in hours and minutes. Use a 24 hour clock.
+                                    - type: 'null'
+                                    description: The start time for the driver's work day.
+                                  endTime:
+                                    anyOf:
+                                    - type: object
+                                      properties:
+                                        hour:
+                                          type: integer
+                                          minimum: -9007199254740991
+                                          maximum: 9007199254740991
+                                          description: Hour of the day
+                                        minute:
+                                          type: integer
+                                          minimum: -9007199254740991
+                                          maximum: 9007199254740991
+                                          description: Minute of the hour
+                                      required:
+                                      - hour
+                                      - minute
+                                      additionalProperties: false
+                                      description: Time of day in hours and minutes. Use a 24 hour clock.
+                                    - type: 'null'
+                                    description: The end time for the driver's work day.
+                                  maxStops:
+                                    anyOf:
+                                    - type: integer
+                                      minimum: 0
+                                      maximum: 9007199254740991
+                                    - type: 'null'
+                                    description: The maximum number of stops that can be allocated to this driver.
+                                  drivingSpeed:
+                                    anyOf:
+                                    - default: average
+                                      type: string
+                                      enum:
+                                      - slower
+                                      - average
+                                      - faster
+                                      description: How fast this driver drives compared to the Team's average
+                                    - type: 'null'
+                                  deliverySpeed:
+                                    anyOf:
+                                    - default: average
+                                      type: string
+                                      enum:
+                                      - slower
+                                      - average
+                                      - faster
+                                    - type: 'null'
+                                    description: How fast this driver delivers compared to the Team's average
+                                  vehicleType:
+                                    anyOf:
+                                    - type: string
+                                      enum:
+                                      - bike
+                                      - scooter
+                                      - car
+                                      - small_truck
+                                      - truck
+                                      - electric_cargo_bike
+                                    - type: 'null'
+                                    description: The type of vehicle used by this driver
+                              - type: 'null'
+                          description: The request body for creating a driver. Even though `email` and `phone` are optional, you must provide at least one of
+                      required:
+                      - error
+                      - driver
+                    description: The failed drivers
+                required:
+                - success
+                - failed
+                description: Success
+        '400':
+          description: Failed to validate the request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Failed to validate the request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: Unauthorized
+        '422':
+          description: Failed to import drivers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - An error occured when importing drivers, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.
+                    - type: string
+                required:
+                - message
+                description: Failed to import drivers.
+        '500':
+          description: An internal server error occurred
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: An internal server error occurred
+        default:
+          description: The default error model
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: The error message.
+                  code:
+                    type: string
+                    description: The error code.
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                  url:
+                    type: string
+                    description: The URL with more information about the error.
+                required:
+                - message
+                description: The default error model
+components:
+  schemas:
+    depotIdSchema:
+      type: string
+      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+    driverSchema:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/driverIdSchema'
+          description: The driver id, in the format `drivers/<id>`
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The name of the driver.
+        email:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The email of the driver.
+        phone:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The phone number of the driver.
+        displayName:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The display name of the driver.
+        active:
+          type: boolean
+          description: Whether the driver membership is active or paused. Paused drivers will not be assigned to any routes.
+        depots:
+          type: array
+          items:
+            $ref: '#/components/schemas/depotIdSchema'
+          description: Depots associated with the driver.
+        routeOverrides:
+          type: object
+          properties:
+            startTime:
+              anyOf:
+              - $ref: '#/components/schemas/timeOfDaySchema'
+              - type: 'null'
+              description: Driver's start time.
+            endTime:
+              anyOf:
+              - $ref: '#/components/schemas/timeOfDaySchema'
+              - type: 'null'
+              description: Driver's end time.
+            startAddress:
+              anyOf:
+              - type: object
+                properties:
+                  address:
+                    type: string
+                    description: The address of the stop.
+                  addressLineOne:
+                    type: string
+                    description: The first line of the address.
+                  addressLineTwo:
+                    type: string
+                    description: The second line of the address.
+                  latitude:
+                    anyOf:
+                    - type: number
+                      minimum: -90
+                      maximum: 90
+                    - type: 'null'
+                    description: The latitude of the address in decimal degrees.
+                  longitude:
+                    anyOf:
+                    - type: number
+                      minimum: -180
+                      maximum: 180
+                    - type: 'null'
+                    description: The longitude of the address in decimal degrees.
+                  placeId:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The identifier of the place corresponding to this stop on Google Places
+                  placeTypes:
+                    type: array
+                    items:
+                      type: string
+                    description: Array of strings that is provided by the Google AutoCompleteAPI
+                required:
+                - address
+                - addressLineOne
+                - addressLineTwo
+                - latitude
+                - longitude
+                - placeId
+                - placeTypes
+                additionalProperties: false
+                description: The address of the stop.
+              - type: 'null'
+              description: Driver's start location.
+            endAddress:
+              anyOf:
+              - type: object
+                properties:
+                  address:
+                    type: string
+                    description: The address of the stop.
+                  addressLineOne:
+                    type: string
+                    description: The first line of the address.
+                  addressLineTwo:
+                    type: string
+                    description: The second line of the address.
+                  latitude:
+                    anyOf:
+                    - type: number
+                      minimum: -90
+                      maximum: 90
+                    - type: 'null'
+                    description: The latitude of the address in decimal degrees.
+                  longitude:
+                    anyOf:
+                    - type: number
+                      minimum: -180
+                      maximum: 180
+                    - type: 'null'
+                    description: The longitude of the address in decimal degrees.
+                  placeId:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The identifier of the place corresponding to this stop on Google Places
+                  placeTypes:
+                    type: array
+                    items:
+                      type: string
+                    description: Array of strings that is provided by the Google AutoCompleteAPI
+                required:
+                - address
+                - addressLineOne
+                - addressLineTwo
+                - latitude
+                - longitude
+                - placeId
+                - placeTypes
+                additionalProperties: false
+                description: The address of the stop.
+              - type: 'null'
+              description: Driver's end location.
+            maxStops:
+              anyOf:
+              - type: integer
+                minimum: -9007199254740991
+                maximum: 9007199254740991
+              - type: 'null'
+              description: Maximum number of Stops the Driver can take in a route.
+            drivingSpeed:
+              type: string
+              enum:
+              - slower
+              - average
+              - faster
+              description: The relative driving speed of the driver compared to others.
+            deliverySpeed:
+              type: string
+              enum:
+              - slower
+              - average
+              - faster
+              description: The relative delivery speed of the driver compared to others.
+            vehicleType:
+              anyOf:
+              - type: string
+                enum:
+                - bike
+                - scooter
+                - car
+                - small_truck
+                - truck
+                - electric_cargo_bike
+              - type: 'null'
+              description: The vehicle type the driver will be using for deliveries.
+          required:
+          - startTime
+          - endTime
+          - startAddress
+          - endAddress
+          - maxStops
+          - drivingSpeed
+          - deliverySpeed
+          - vehicleType
+          description: Settings to override default route settings.
+      required:
+      - id
+      - name
+      - email
+      - phone
+      - displayName
+      - active
+      - depots
+      - routeOverrides
+      additionalProperties: false
+      description: A driver.
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: Use the API key as the username and leave the password empty.
