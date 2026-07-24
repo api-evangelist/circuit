@@ -1,0 +1,167 @@
+generated: '2026-07-18'
+method: derived
+status: candidate
+note: No official Spoke MCP server is published. This is a candidate tool list derived one-to-one from
+  the Spoke Public API v1 operations.
+server:
+  name: circuit-spoke
+  transport: http
+  auth: api-key (HTTP Basic or Bearer)
+  base_url: https://api.spoke.com/public/v1
+tools:
+- name: createPlan
+  description: Create a new plan
+  source_operation: openapi/circuit-v1-openapi-original.json#createPlan
+- name: listPlans
+  description: List plans
+  source_operation: openapi/circuit-v1-openapi-original.json#listPlans
+- name: updatePlan
+  description: Update an existing plan
+  source_operation: openapi/circuit-v1-openapi-original.json#updatePlan
+- name: getPlan
+  description: Retrieve a plan
+  source_operation: openapi/circuit-v1-openapi-original.json#getPlan
+- name: deletePlan
+  description: Delete a plan
+  source_operation: openapi/circuit-v1-openapi-original.json#deletePlan
+- name: optimizePlan
+  description: Optimize a plan
+  source_operation: openapi/circuit-v1-openapi-original.json#optimizePlan
+- name: distributePlan
+  description: Distribute a plan
+  source_operation: openapi/circuit-v1-openapi-original.json#distributePlan
+- name: reoptimizePlan
+  description: Re-optimize a plan
+  source_operation: openapi/circuit-v1-openapi-original.json#reoptimizePlan
+- name: redistributePlan
+  description: Re-distribute a plan
+  source_operation: openapi/circuit-v1-openapi-original.json#redistributePlan
+- name: savePlan
+  description: Save the plan changes
+  source_operation: openapi/circuit-v1-openapi-original.json#savePlan
+- name: createStop
+  description: Create a new stop
+  source_operation: openapi/circuit-v1-openapi-original.json#createStop
+- name: listPlanStops
+  description: List plan stops
+  source_operation: openapi/circuit-v1-openapi-original.json#listPlanStops
+- name: importStops
+  description: Batch import stops
+  source_operation: openapi/circuit-v1-openapi-original.json#importStops
+- name: updateStop
+  description: Update an existing stop
+  source_operation: openapi/circuit-v1-openapi-original.json#updateStop
+- name: getStop
+  description: Retrieve a stop
+  source_operation: openapi/circuit-v1-openapi-original.json#getStop
+- name: deleteStop
+  description: Delete a stop
+  source_operation: openapi/circuit-v1-openapi-original.json#deleteStop
+- name: createLiveStop
+  description: Create a new stop
+  source_operation: openapi/circuit-v1-openapi-original.json#createLiveStop
+- name: updateLiveStop
+  description: Update an existing stop
+  source_operation: openapi/circuit-v1-openapi-original.json#updateLiveStop
+- name: importLiveStops
+  description: Batch import stops
+  source_operation: openapi/circuit-v1-openapi-original.json#importLiveStops
+- name: deleteLiveStop
+  description: Delete a stop
+  source_operation: openapi/circuit-v1-openapi-original.json#deleteLiveStop
+- name: listDrivers
+  description: List Drivers
+  source_operation: openapi/circuit-v1-openapi-original.json#listDrivers
+- name: createDriver
+  description: Create a new driver
+  source_operation: openapi/circuit-v1-openapi-original.json#createDriver
+- name: getDriver
+  description: Retrieve a driver
+  source_operation: openapi/circuit-v1-openapi-original.json#getDriver
+- name: deleteDriver
+  description: Remove a driver
+  source_operation: openapi/circuit-v1-openapi-original.json#deleteDriver
+- name: updateDriver
+  description: Update a driver
+  source_operation: openapi/circuit-v1-openapi-original.json#updateDriver
+- name: importDrivers
+  description: Batch import drivers
+  source_operation: openapi/circuit-v1-openapi-original.json#importDrivers
+- name: createDepot
+  description: Create a depot
+  source_operation: openapi/circuit-v1-openapi-original.json#createDepot
+- name: listDepots
+  description: List Depots
+  source_operation: openapi/circuit-v1-openapi-original.json#listDepots
+- name: getDepot
+  description: Retrieve a depot
+  source_operation: openapi/circuit-v1-openapi-original.json#getDepot
+- name: deleteDepot
+  description: Remove a depot
+  source_operation: openapi/circuit-v1-openapi-original.json#deleteDepot
+- name: updateDepot
+  description: Update a depot
+  source_operation: openapi/circuit-v1-openapi-original.json#updateDepot
+- name: importDepots
+  description: Batch import depots
+  source_operation: openapi/circuit-v1-openapi-original.json#importDepots
+- name: setMainDepot
+  description: Set the main depot for the team
+  source_operation: openapi/circuit-v1-openapi-original.json#setMainDepot
+- name: getRoute
+  description: Retrieve a route
+  source_operation: openapi/circuit-v1-openapi-original.json#getRoute
+- name: listRoutes
+  description: List Routes
+  source_operation: openapi/circuit-v1-openapi-original.json#listRoutes
+- name: listRouteStops
+  description: List route stops
+  source_operation: openapi/circuit-v1-openapi-original.json#listRouteStops
+- name: cancelOperation
+  description: Cancel an operation
+  source_operation: openapi/circuit-v1-openapi-original.json#cancelOperation
+- name: getOperation
+  description: Retrieve an operation
+  source_operation: openapi/circuit-v1-openapi-original.json#getOperation
+- name: listOperations
+  description: List operations
+  source_operation: openapi/circuit-v1-openapi-original.json#listOperations
+- name: getUnassignedStop
+  description: Retrieve an unassigned stop
+  source_operation: openapi/circuit-v1-openapi-original.json#getUnassignedStop
+- name: deleteUnassignedStop
+  description: Delete an unassigned stop
+  source_operation: openapi/circuit-v1-openapi-original.json#deleteUnassignedStop
+- name: updateUnassignedStop
+  description: Update an existing unassigned stop
+  source_operation: openapi/circuit-v1-openapi-original.json#updateUnassignedStop
+- name: listUnassignedStops
+  description: List unassigned stops
+  source_operation: openapi/circuit-v1-openapi-original.json#listUnassignedStops
+- name: createUnassignedStop
+  description: Create a new unassigned stop
+  source_operation: openapi/circuit-v1-openapi-original.json#createUnassignedStop
+- name: importUnassignedStops
+  description: Batch import unassigned stops
+  source_operation: openapi/circuit-v1-openapi-original.json#importUnassignedStops
+- name: listCustomStopProperties
+  description: List custom stop properties
+  source_operation: openapi/circuit-v1-openapi-original.json#listCustomStopProperties
+- name: getCustomStopProperty
+  description: Retrieve a custom stop property
+  source_operation: openapi/circuit-v1-openapi-original.json#getCustomStopProperty
+- name: createMember
+  description: Create a new member
+  source_operation: openapi/circuit-v1-openapi-original.json#createMember
+- name: updateMember
+  description: Update a member
+  source_operation: openapi/circuit-v1-openapi-original.json#updateMember
+- name: deleteMember
+  description: Remove a member
+  source_operation: openapi/circuit-v1-openapi-original.json#deleteMember
+- name: importMembers
+  description: Import multiple members
+  source_operation: openapi/circuit-v1-openapi-original.json#importMembers
+- name: searchStops
+  description: Stop Search
+  source_operation: openapi/circuit-v1-openapi-original.json#searchStops

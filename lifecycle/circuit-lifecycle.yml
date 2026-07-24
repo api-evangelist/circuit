@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.dispatch.spoke.com/
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://api.spoke.com/public/v1
+  released_versions: [v1, v0.2b, v0.1b]
+  docs: https://developer.dispatch.spoke.com/api/v1
+deprecation:
+  policy_url: https://developer.dispatch.spoke.com/api/v1
+  migration_guide: https://developer.dispatch.spoke.com/api/v1
+  legacy_versions: [v0.2b, v0.1b]
+  note: >-
+    v0.2b and v0.1b are legacy. The v1 spec ships a "v1 Migration Guide" listing
+    the breaking changes from v0.2b (stop.driver -> stop.allowedDrivers, eta and
+    timeAtStopInfo restructured, circuitClientId -> clientId, drivers returned as
+    DriverIds rather than embedded objects). No dated Sunset header policy (RFC 8594)
+    is published.
+  sunset_header: false
+status_page:
+  url: https://status.spoke.com/
+  components: [Public API, Web and Mobile Apps, Driver App, Client Portal, Delivery Tracker]
+host_migration:
+  note: >-
+    The API host moved from api.getcircuit.com to api.spoke.com with the Spoke
+    rebrand; only api.spoke.com should be used for v1.
+sla:
+  url: null
+  note: No public SLA/uptime commitment document found; status page reports uptime.
+deprecated_operations: []

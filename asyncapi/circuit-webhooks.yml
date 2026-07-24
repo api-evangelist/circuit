@@ -1,0 +1,44 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.dispatch.spoke.com/docs/v1/webhooks/webhook-api-intro
+spec_type: Webhooks
+note: >-
+  Spoke publishes a Webhook API (documented alongside the Public API) rather than
+  a standalone AsyncAPI document. This catalog captures the documented webhook
+  surface. Event payloads mirror the resource models. Exact event-name suffixes
+  are not reproduced verbatim to avoid fabrication; each resource below publishes
+  a documented event schema.
+enabling:
+  docs: https://developer.dispatch.spoke.com/docs/v1/webhooks/enabling
+  how: Configured in Spoke Dispatch settings; delivered as HTTP POST to a subscriber endpoint.
+security:
+  signature_header: spoke-signature
+  docs: https://developer.dispatch.spoke.com/docs/v1/webhooks/getting-started/securing-the-endpoint
+  note: >-
+    As of v1, webhook requests contain only the spoke-signature header; verify it
+    to authenticate that the request originated from Spoke.
+consuming:
+  docs: https://developer.dispatch.spoke.com/docs/v1/webhooks/getting-started/consuming-the-webhook-notifications
+  best_practices: https://developer.dispatch.spoke.com/docs/v1/webhooks/getting-started/best-practices
+event_resources:
+- resource: plan
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/plan
+- resource: stop
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/stop
+- resource: unassignedStop
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/unassignedStop
+- resource: driver
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/driver
+- resource: depot
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/depot
+- resource: route
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/route
+- resource: member
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/member
+- resource: operation
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/operation
+- resource: customStopProperty
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/customStopProperty
+- resource: test
+  schema: https://developer.dispatch.spoke.com/docs/v1/webhooks/event-schemas/test
+  note: A test event for validating a webhook subscription.

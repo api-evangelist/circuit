@@ -1,0 +1,62 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.dispatch.spoke.com/api/v1
+docs: https://developer.dispatch.spoke.com/api/v1
+summary: >-
+  Cross-cutting request/response semantics for the Spoke Public API v1, captured
+  from the API documentation and the OpenAPI 3.1 spec.
+authentication:
+  style: api-key
+  transport: HTTP Basic (key as username, empty password) or Bearer token
+  see: authentication/circuit-authentication.yml
+transport:
+  https_required: true
+  note: Plain HTTP requests are rejected; HTTPS is mandatory.
+content_type:
+  request: application/json
+  response: application/json
+  note: 'Every request with a body must send `Content-Type: application/json` or it is rejected.'
+resource_ids:
+  format: collectionName/resourceId
+  nested_format: plans/{planId}/stops/{stopId}
+  note: The serialized id can be appended directly to the base URL to fetch a resource.
+pagination:
+  style: token
+  request_param: pageToken
+  page_size_param: maxPageSize
+  response_field: nextPageToken
+  note: >-
+    Presence of nextPageToken indicates more data. Resend it as pageToken along
+    with ALL original query parameters to fetch the next page.
+partial_updates:
+  method: PATCH
+  scalars: Only the fields provided in the body are updated; others are left unchanged.
+  arrays: >-
+    Arrays are replaced wholesale — the API does not support partial updates on
+    arrays. Send the full desired array.
+filtering:
+  applies_to: list endpoints and the stop search endpoint (searchStops)
+  dsl: SQL-inspired filtering DSL with typed values and comparison + boolean operators
+  operators: ['=', '!=', '~=', '>', '>=', '<', '<=', 'and', 'or']
+  keyword_search: full-text fuzzy keyword search via the `keyword` parameter (searchStops)
+  data_freshness: The search index lags the realtime API; use the RESTful GET resource for immediate reads.
+idempotency:
+  supported: false
+  note: >-
+    The API documents no idempotency key. Optimistic concurrency is instead
+    surfaced via 409 plan_concurrent_modification / 412 precondition responses;
+    clients should retry with fresh state.
+rate_limiting:
+  signal: HTTP 429
+  headers: none documented
+  see: rate-limits/circuit-rate-limits.yml
+  guidance: Use exponential backoff with jitter on 429; sustained bursts are throttled.
+errors:
+  see: errors/circuit-error-codes.yml
+  envelope: '{ message, code, param, url }'
+lifecycle:
+  see: lifecycle/circuit-lifecycle.yml
+  versioning: uri-path (/public/v1)
+webhooks:
+  see: asyncapi/circuit-webhooks.yml
+  signature_header: spoke-signature

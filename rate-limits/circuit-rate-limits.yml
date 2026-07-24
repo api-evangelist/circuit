@@ -1,0 +1,39 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.dispatch.spoke.com/api/v1
+docs: https://developer.dispatch.spoke.com/api/v1
+signal:
+  status_code: 429
+  headers: none documented
+  note: Each endpoint has its own limit and Spoke may change limits at any time.
+guidance: >-
+  On 429, wait before retrying and use exponential backoff plus random jitter to
+  avoid thundering-herd retries. Sustained high-frequency traffic near the limit
+  is throttled even within a burst allowance.
+limits:
+- scope: write endpoints (POST create, PATCH update, DELETE)
+  limit_count: 5
+  window: per second
+- scope: driver creation (createDriver)
+  limit_count: 1
+  window: per second
+  note: Use Batch Import Drivers to add many drivers.
+- scope: read endpoints (GET, including list)
+  limit_count: 10
+  window: per second
+- scope: batch import — stops and unassigned stops (importStops, importUnassignedStops)
+  limit_count: 100
+  window: per 10 minutes
+  max_rate: 30 per minute
+  throughput: up to 1,000 stops per minute
+- scope: batch import — drivers (importDrivers)
+  limit_count: 2
+  window: per minute
+  throughput: up to 100 drivers per minute
+- scope: plan optimization / re-optimization (optimizePlan, reoptimizePlan)
+  limit_count: 100
+  window: per 10 minutes
+  max_rate: 30 per minute
+  note: Lower limit due to the long-running nature of optimization.
+custom_limits: >-
+  Teams can contact Spoke to request higher limits for specific use cases.

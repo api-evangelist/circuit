@@ -1,7 +1,17 @@
 aid: circuit
 name: Circuit
-description: Circuit is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Circuit (operating publicly as Spoke; legal entity Circuit Routing Limited)
+  builds last-mile delivery route-optimization software. Its products are Route
+  Planner, a free driver app for uploading stops, optimizing multi-stop routes
+  and navigating; Dispatch, a multi-driver delivery-management platform with
+  route planning, live tracking and proof of delivery for courier operations;
+  and Connect, a marketplace that lets retailers discover local couriers and
+  track deliveries. The Spoke Public API (formerly the Circuit for Teams API)
+  is an HTTP/JSON API that lets teams manage plans, stops, unassigned stops,
+  drivers, depots, routes, members and long-running operations programmatically,
+  optimize and distribute plans across drivers, run full-text stop search with a
+  filtering DSL, and subscribe to webhook events for delivery workflows.
 url: https://raw.githubusercontent.com/api-evangelist/circuit/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +19,274 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-rebrand: getcircuit.com now redirects to spoke.com; public brand is Spoke, legal entity Circuit Routing Limited
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://spoke.com/favicon.ico
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Delivery
+- Logistics
+- Last Mile
+- Route Optimization
+- Dispatch
+- Courier
+- Fleet
+- Proof of Delivery
+- Field Service
+apis:
+- aid: circuit:circuit-depots-api
+  name: Circuit Depots API
+  description: >-
+    Endpoints to operate on [Depots](/docs/models/depot) resources.
+
+
+    This resource is currently read-only on the API.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Depots
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-depots-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-drivers-api
+  name: Circuit Drivers API
+  description: Endpoints to operate on [Drivers](/docs/models/driver) resources.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Drivers
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-drivers-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-live-plans-api
+  name: Circuit Live Plans API
+  description: >-
+    Endpoints to operate on [Plans](/docs/models/plan) resources when it's pending re-optimization and
+    re-distribution.
+
+
+    You must use these endpoints to apply the changes when any [Live Stops](#tag/Live-Stops) request returns
+    `pending = true`.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Live Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-live-plans-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-live-stops-api
+  name: Circuit Live Stops API
+  description: >-
+    Endpoints to operate on [Stop](/docs/models/stop) resources when the plan is already optimized and
+    therefore not writable.
+
+
+    All the endpoints return the field `pending`. This field indicates whether the
+
+    change has been applied to the plan or if it's pending a new optimization and distribution. On `pending
+    = true`,
+
+    you must use the [re-optimize](#tag/Live-Plans/operation/reoptimizePlan) and [re-distribute](#tag/Live-Plans/operation/redistributePlan)
+
+    endpoints to apply the changes to the plan.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Live Stops
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-live-stops-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-members-api
+  name: Circuit Members API
+  description: Endpoints to operate on Members resources.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Members
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-members-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-operations-api
+  name: Circuit Operations API
+  description: Endpoints to operate on [Operations](/docs/models/operation) resources.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-operations-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-plans-api
+  name: Circuit Plans API
+  description: Endpoints to operate on [Plans](/docs/models/plan) resources.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-plans-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-routes-api
+  name: Circuit Routes API
+  description: >-
+    Endpoints to operate on [Routes](/docs/models/route) resources.
+
+
+    This resource is currently read-only on the API.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-routes-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-stops-api
+  name: Circuit Stops API
+  description: >-
+    Endpoints to operate on [Stop](/docs/models/stop) resources.
+
+
+    For any [Plans](/docs/models/plan) created before 2023-04-01 the stop
+
+    collections and all related operations will not be available.
+
+
+    For any operations here you will need a Plan ID beforehand. You can retrieve an
+
+    existing Plan by [listing your Plans](#tag/Plans/operation/listPlans) or you can
+
+    [create a new one](#tag/Plans/operation/createPlan).
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Stops
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-stops-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-team-api
+  name: Circuit Team API
+  description: Endpoints to retrieve [Custom Stop Properties](/docs/models/customStopProperty).
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Team
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-team-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
+- aid: circuit:circuit-unassigned-stops-api
+  name: Circuit Unassigned Stops API
+  description: Endpoints to operate on [Unassigned Stop](/docs/models/unassignedStop) resources.
+  humanURL: https://developer.dispatch.spoke.com/
+  baseURL: https://api.spoke.com/public/v1
+  tags:
+  - Unassigned Stops
+  properties:
+  - type: OpenAPI
+    url: openapi/circuit-unassigned-stops-api-openapi.yml
+  - type: APIReference
+    url: https://developer.dispatch.spoke.com/api/v1
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/circuit-domain-security.yml
+- type: Authentication
+  url: authentication/circuit-authentication.yml
 - type: Website
-  url: https://getcircuit.com/
+  url: https://spoke.com/
+- type: DeveloperPortal
+  url: https://developer.dispatch.spoke.com/
+- type: Documentation
+  url: https://developer.dispatch.spoke.com/
+- type: APIReference
+  url: https://developer.dispatch.spoke.com/api/v1
+- type: GettingStarted
+  url: https://developer.dispatch.spoke.com/docs/v1/api-examples
+- type: Examples
+  url: https://developer.dispatch.spoke.com/docs/v1/api-examples
+- type: Support
+  url: https://help.spoke.com/
+- type: Pricing
+  url: https://help.spoke.com/en/collections/385323-spoke-help-products-pricing
+- type: TermsOfService
+  url: https://spoke.com/terms
+- type: PrivacyPolicy
+  url: https://spoke.com/privacy
+- type: StatusPage
+  url: https://status.spoke.com/
+- type: Deprecation
+  url: lifecycle/circuit-lifecycle.yml
+- type: OpenAPI
+  url: openapi/circuit-v1-openapi-original.json
+- type: Webhooks
+  url: asyncapi/circuit-webhooks.yml
+- type: ErrorCatalog
+  url: errors/circuit-error-codes.yml
+- type: Conventions
+  url: conventions/circuit-conventions.yml
+- type: RateLimits
+  url: rate-limits/circuit-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/circuit-lifecycle.yml
+- type: DataModel
+  url: data-model/circuit-data-model.yml
+- type: MCPServer
+  url: mcp/circuit-mcp.yml
+- type: LLMsTxt
+  url: llms/circuit-llms.txt
+- type: Conformance
+  url: conformance/circuit-conformance.yml
+- type: ChangeLog
+  url: changelog/circuit-changelog.yml
+- type: Overlay
+  url: overlays/circuit-v1-overlay.yaml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LinkedIn
+  url: https://www.linkedin.com/company/spoke-delivery/
+- type: Twitter
+  url: https://x.com/SpokeDelivery
+- type: YouTube
+  url: https://www.youtube.com/@Spokeapp
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

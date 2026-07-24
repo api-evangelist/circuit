@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: searched
+source: https://developer.dispatch.spoke.com/api/v1
+docs: https://developer.dispatch.spoke.com/api/v1
+scheme: uri-path versions (v0.1b -> v0.2b -> v1)
+current_version: v1
+note: >-
+  Spoke does not publish a dated changelog feed; the versioned API and the
+  in-spec "v1 Migration Guide" are the source of truth for changes. Entries below
+  summarize documented version changes.
+entries:
+- version: v1
+  breaking: true
+  highlights:
+  - Only api.spoke.com is used for v1 (host rebrand from getcircuit.com).
+  - Webhook requests now carry only the spoke-signature header.
+  - stop.driver replaced by stop.allowedDrivers (array of DriverIds).
+  - stop.eta and stop.timeAtStopInfo restructured to objects with a status field.
+  - stop.circuitClientId renamed to stop.clientId.
+  - Plan responses return DriverIds instead of embedded Driver objects; drivers must be fetched separately.
+  - Drivers whose depot does not match the plan's depot are no longer allowed.
+  - New stop search endpoint (searchStops) with full-text keyword search and a filtering DSL.
+- version: v0.2b
+  breaking: false
+  highlights:
+  - Legacy version, superseded by v1; still available at api.spoke.com/public/v0.2b.
+- version: v0.1b
+  breaking: false
+  highlights:
+  - Earliest documented version; legacy.

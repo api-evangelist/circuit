@@ -1,0 +1,16 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/circuit-v1-openapi-original.json
+skills:
+- file: circuit-plan-optimize-distribute.md
+  name: Build, optimize and distribute a delivery plan
+  api: openapi/circuit-v1-openapi-original.json
+  operations: [createPlan, importStops, createStop, optimizePlan, distributePlan, getOperation, listPlanStops]
+- file: circuit-manage-drivers-depots.md
+  name: Set up depots and drivers
+  api: openapi/circuit-v1-openapi-original.json
+  operations: [createDepot, setMainDepot, listDepots, createDriver, importDrivers, listDrivers, updateDriver]
+- file: circuit-search-stops.md
+  name: Search stops with the filtering DSL
+  api: openapi/circuit-v1-openapi-original.json
+  operations: [searchStops, getStop, listCustomStopProperties]

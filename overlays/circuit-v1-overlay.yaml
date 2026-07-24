@@ -1,0 +1,29 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Spoke Public API v1
+  version: 1.0.0
+extends: openapi/circuit-v1-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: circuit
+    x-apievangelist-brand: Spoke (Circuit Routing Limited)
+    x-apievangelist-category: last-mile-delivery-route-optimization
+    x-apievangelist-artifacts:
+      authentication: authentication/circuit-authentication.yml
+      conventions: conventions/circuit-conventions.yml
+      rate_limits: rate-limits/circuit-rate-limits.yml
+      errors: errors/circuit-error-codes.yml
+      lifecycle: lifecycle/circuit-lifecycle.yml
+      data_model: data-model/circuit-data-model.yml
+      webhooks: asyncapi/circuit-webhooks.yml
+- target: $.info
+  update:
+    x-apievangelist-auth-note: >-
+      API key delivered via HTTP Basic (key as username, empty password) or as a
+      Bearer token. Docs document Bearer; the OpenAPI declares only BasicAuth.
+- target: $.info
+  update:
+    x-apievangelist-pagination: token (pageToken / maxPageSize / nextPageToken)
+    x-apievangelist-idempotency: not supported
+    x-apievangelist-rate-limit-signal: HTTP 429 with exponential backoff guidance

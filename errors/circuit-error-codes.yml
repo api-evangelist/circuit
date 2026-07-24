@@ -1,0 +1,137 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/circuit-v1-openapi-original.json
+docs: https://developer.dispatch.spoke.com/api/v1
+format: coded-json
+envelope:
+  description: Errors are returned as a JSON object. Validation-style errors also carry a machine-readable
+    code.
+  fields:
+    message: Human-readable error message (always present).
+    code: Machine-readable error code (present on domain/validation errors).
+    param: The request parameter that caused the error, when applicable.
+    url: A URL with more information about the error, when applicable.
+http_statuses:
+- status: 400
+  meaning: Bad request — the request is invalid or a domain precondition failed (e.g. driver not active).
+- status: 401
+  meaning: Unauthorized — missing or invalid API key.
+- status: 403
+  meaning: Forbidden — the feature is not in the team's subscription or data-access restrictions apply.
+- status: 404
+  meaning: Not found — the resource or its parent does not exist.
+- status: 409
+  meaning: Conflict — the resource is in a state that does not allow the operation (e.g. plan already
+    optimized).
+- status: 410
+  meaning: Gone — the target (e.g. plan) is no longer available for the operation.
+- status: 412
+  meaning: Precondition failed — an ETag/precondition or writability check failed.
+- status: 422
+  meaning: Unprocessable entity — the payload is well-formed but semantically invalid.
+- status: 500
+  meaning: Internal server error.
+codes:
+- code: depot_missing_start_address
+  status: 409
+  title: Plan's depot missing start address
+  message: Please set a start location for the plan's depot.
+- code: depot_not_found
+  status: 409
+  title: Depot not found
+  message: Depot not found
+- code: driver_not_active
+  status: 400
+  title: Driver is not active
+  message: Driver is not active
+- code: feature_not_in_subscription
+  status: 403
+  title: Feature not in subscription
+  message: null
+- code: no_drivers_available
+  status: 409
+  title: Plan has no drivers
+  message: Plan has no drivers. Either the plan's depot has no drivers, if the optimization is for minimizing
+    drivers, or the plan has no assigned drivers.
+- code: no_end_time_and_max_stops_per_driver
+  status: 409
+  title: Plan's depot has no end time and max stops per driver
+  message: Please set an end time or max stops per driver for the plan's depot when optimizing to minimize
+    drivers.
+- code: operating_area_missing_coordinates
+  status: 400
+  title: Operating area cannot be evaluated without coordinates
+  message: null
+- code: operating_area_violation
+  status: 400
+  title: Service does not operate in the stop’s area
+  message: null
+- code: operation_already_done
+  status: 409
+  title: Operation already done
+  message: The operation cannot be canceled because it is already done.
+- code: operation_not_found
+  status: 404
+  title: Operation not found
+  message: The operation was not found.
+- code: plan_already_distributed
+  status: 409
+  title: Plan already distributed
+  message: Plan already distributed
+- code: plan_already_optimized
+  status: 409
+  title: Plan already optimized
+  message: Plan already optimized
+- code: plan_concurrent_modification
+  status: 409
+  title: Plan modified whilst processing request
+  message: Plan was modified by a concurrent request. Please retry your request.
+- code: plan_inaccessible
+  status: 403
+  title: Plan inaccessible
+  message: Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports
+    a longer delivery history period to access it.
+- code: plan_not_optimized
+  status: 409
+  title: Plan not optimized
+  message: Plan not optimized
+- code: plan_not_writable
+  status: 409
+  title: Plan is not writable
+  message: Plan is not writable
+- code: plan_optimization_in_progress
+  status: 409
+  title: Plan optimization in progress
+  message: Plan optimization in progress
+- code: plan_optimization_not_supported
+  status: 409
+  title: Plan optimization type is not supported
+  message: Only `reorder_changed_stops` optimization type is supported when the plan is already distributed.
+- code: route_inaccessible
+  status: 403
+  title: Route inaccessible
+  message: Route is no longer accessible due to data access restrictions.
+- code: service_activity_not_supported
+  status: 400
+  title: Service offering does not support the activity
+  message: null
+- code: service_not_available_at_depot
+  status: 400
+  title: Service is not available at the stop’s depot
+  message: null
+- code: service_offering_not_found
+  status: 404
+  title: Service offering not found
+  message: null
+- code: sla_start_not_clearable
+  status: 400
+  title: SLA start time is not clearable on an assigned service
+  message: Cannot clear slaStartsAt on a stop with an assigned service.
+- code: stop_not_editable
+  status: 422
+  title: Stop not editable
+  message: null
+- code: vehicle_capacity_disabled
+  status: 403
+  title: Vehicle capacity disabled
+  message: null

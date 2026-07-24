@@ -1,0 +1,32 @@
+# Circuit / Spoke
+
+> Circuit (public brand Spoke; legal entity Circuit Routing Limited) builds last-mile delivery route-optimization software: Route Planner (driver app), Dispatch (multi-driver dispatch platform with proof of delivery), and Connect (courier marketplace). The Spoke Public API (formerly the Circuit for Teams API) is an OpenAPI 3.1 HTTP/JSON API for managing plans, stops, drivers, depots, routes, members and operations, optimizing and distributing routes, searching stops, and receiving webhook events.
+
+## APIs
+- [Spoke Public API v1](https://developer.dispatch.spoke.com/api/v1): Current version. Base URL https://api.spoke.com/public/v1. API-key auth via HTTP Basic or Bearer.
+- [Spoke Public API v0.2b](https://developer.dispatch.spoke.com/api/v0.2b): Legacy version.
+
+## Specs
+- [OpenAPI v1](openapi/circuit-v1-openapi-original.json): 51 operations across Plans, Stops, Unassigned Stops, Live Plans/Stops, Drivers, Depots, Routes, Operations, Team, Members.
+- [OpenAPI v0.2b](openapi/circuit-v0.2b-openapi-original.json): Legacy spec.
+
+## Docs
+- [Developer portal](https://developer.dispatch.spoke.com/)
+- [API reference (v1)](https://developer.dispatch.spoke.com/api/v1)
+- [Usage examples](https://developer.dispatch.spoke.com/docs/v1/api-examples)
+- [Models](https://developer.dispatch.spoke.com/docs/category/models)
+- [Webhook API](https://developer.dispatch.spoke.com/docs/v1/webhooks/webhook-api-intro)
+- [Help center](https://help.spoke.com/)
+- [Status page](https://status.spoke.com/)
+- [Terms of service](https://spoke.com/terms)
+- [Privacy policy](https://spoke.com/privacy)
+
+## Artifacts
+- [Authentication](authentication/circuit-authentication.yml): API key via HTTP Basic or Bearer.
+- [Conventions](conventions/circuit-conventions.yml): token pagination, id format collectionName/resourceId, PATCH array-replace, filtering DSL.
+- [Rate limits](rate-limits/circuit-rate-limits.yml): per-endpoint limits, 429 signal.
+- [Error codes](errors/circuit-error-codes.yml): coded JSON envelope (message/code/param/url), 25 documented codes.
+- [Lifecycle](lifecycle/circuit-lifecycle.yml): v1 current; v0.2b/v0.1b legacy; status page.
+- [Data model](data-model/circuit-data-model.yml): plans, stops, drivers, depots, routes, members, operations.
+- [Webhooks](asyncapi/circuit-webhooks.yml): spoke-signature header; event schemas per resource.
+- [MCP candidate tools](mcp/circuit-mcp.yml): tool list derived from v1 operations.

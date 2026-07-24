@@ -1,0 +1,34 @@
+{
+  "provider": "circuit",
+  "sources": [
+    "circuit-depots-api-openapi.yml",
+    "circuit-drivers-api-openapi.yml",
+    "circuit-live-plans-api-openapi.yml",
+    "circuit-live-stops-api-openapi.yml",
+    "circuit-members-api-openapi.yml",
+    "circuit-operations-api-openapi.yml",
+    "circuit-plans-api-openapi.yml",
+    "circuit-routes-api-openapi.yml",
+    "circuit-stops-api-openapi.yml",
+    "circuit-team-api-openapi.yml",
+    "circuit-unassigned-stops-api-openapi.yml"
+  ],
+  "outputs": [
+    "circuit-depots-api-openapi.yml",
+    "circuit-drivers-api-openapi.yml",
+    "circuit-live-plans-api-openapi.yml",
+    "circuit-live-stops-api-openapi.yml",
+    "circuit-members-api-openapi.yml",
+    "circuit-operations-api-openapi.yml",
+    "circuit-plans-api-openapi.yml",
+    "circuit-routes-api-openapi.yml",
+    "circuit-stops-api-openapi.yml",
+    "circuit-team-api-openapi.yml",
+    "circuit-unassigned-stops-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
