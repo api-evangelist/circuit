@@ -254,7 +254,7 @@ common:
 - type: Deprecation
   url: lifecycle/circuit-lifecycle.yml
 - type: OpenAPI
-  url: openapi/circuit-v1-openapi-original.json
+  url: openapi/_original/circuit-v1-openapi-original.json
 - type: Webhooks
   url: asyncapi/circuit-webhooks.yml
 - type: ErrorCatalog
