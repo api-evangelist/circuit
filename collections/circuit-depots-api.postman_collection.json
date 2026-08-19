@@ -1,0 +1,2276 @@
+{
+  "item": [
+    {
+      "id": "48b694aa-7fcd-4159-82a4-71f9d325e669",
+      "name": "Depots",
+      "description": {
+        "content": "Endpoints to operate on [Depots](/docs/models/depot) resources.\n\nThis resource is currently read-only on the API.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2e48ae6-61b6-46c4-88e8-b8df8644a001",
+          "name": "List Depots",
+          "request": {
+            "name": "List Depots",
+            "description": {},
+            "url": {
+              "path": [
+                "depots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The page token to continue from."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxPageSize",
+                  "value": "20",
+                  "description": "The maximum number of depots to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a375562a-9797-48fb-8c0f-cde2c18d88ae",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"depots\": [\n    {\n      \"id\": \"depots/UO5DN\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"depots/D6mvatiWcpTGDkJtQz2HH\",\n      \"name\": \"string\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3871cb2-a6de-4193-893b-fac0fef9fbbb",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49e0baf3-2e1a-4a3a-b2d7-01aaf6da346e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d834faf3-72e6-48f8-987c-dced49bb08d5",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad50b7a7-8ff8-4d0b-8ecb-30e3412c982c",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52c25e5d-9967-4df6-8098-e270da89f88f",
+          "name": "Create a depot",
+          "request": {
+            "name": "Create a depot",
+            "description": {},
+            "url": {
+              "path": [
+                "depots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b43f4a5d-8b56-45ca-8cc9-26d8c98ff633",
+              "name": "The requested depot",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"depots/X\",\n  \"name\": \"string\",\n  \"routeOverrides\": {\n    \"startTime\": {\n      \"hour\": 5727865181653033,\n      \"minute\": -1362008033931282\n    },\n    \"startAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 5132.302510170955,\n      \"longitude\": 9349.084443378288,\n      \"placeId\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    \"defaultTimeAtStop\": 2935.182743824123,\n    \"endAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 6150.600976243018,\n      \"longitude\": 1337.3965920028363,\n      \"placeId\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    \"endTime\": {\n      \"hour\": 1112811709304741,\n      \"minute\": -5645711071808508\n    },\n    \"maxStops\": 8015.407730846239,\n    \"roadSide\": \"left_only\",\n    \"vehicleType\": \"car\",\n    \"roundTrip\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8441226b-da61-4147-9708-657351456c07",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57ef2fcd-887b-4ac9-ab11-8560cff64c22",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c71ccf2c-448d-4d87-8a84-6b9a7d159fbc",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b615972-5313-4d43-9238-5b65fb30e66d",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "908ac124-3883-4703-8ac3-3b53aefad586",
+          "name": "Retrieve a depot",
+          "request": {
+            "name": "Retrieve a depot",
+            "description": {},
+            "url": {
+              "path": [
+                "depots",
+                ":depotId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "depotId",
+                  "description": "(Required) The depot id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2b590b4-3721-4ea4-99b4-6e5304356054",
+              "name": "The requested depot",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"depots/efd7_G8zAVzpVgvVFL_BF0lOPaZayGrLEQMAQm7pd\",\n  \"name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "044c3f2a-af06-44a8-bbad-0cc109b1f764",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23a0090a-ac95-4a9c-b4eb-3595d715b29e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8d6b485-c89e-4fd7-a98b-2d436f841440",
+              "name": "The provided depot id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Depot not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ae678c0-83c9-426d-b372-370991a3ab52",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9757d06e-7b42-4905-bee7-c7a8bf876397",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23a09ee8-b45a-466a-8032-33c3a2f236f4",
+          "name": "Remove a depot",
+          "request": {
+            "name": "Remove a depot",
+            "description": {},
+            "url": {
+              "path": [
+                "depots",
+                ":depotId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "depotId",
+                  "description": "(Required) The depot id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b023208d-4fcb-4366-81fd-f6efb3fc0821",
+              "name": "Depot removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0df27b4-7be8-4e65-a6a4-a035d61f15f0",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4959ed75-33ea-474e-81c4-a792e318cf6b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "228cf9d3-1e4a-40a3-8adc-45da35b0c9e6",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "560ada17-2f68-42dc-ae2a-2a3549ad7636",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0ea1d9c-e169-47b0-b625-068bf44cc84d",
+          "name": "Update a depot",
+          "request": {
+            "name": "Update a depot",
+            "description": {},
+            "url": {
+              "path": [
+                "depots",
+                ":depotId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "depotId",
+                  "description": "(Required) The depot id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d1768c6-df50-4f08-9fdd-a4734bab1365",
+              "name": "The updated depot",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"depots/taYh-RHHK\",\n  \"name\": \"string\",\n  \"routeOverrides\": {\n    \"startTime\": {\n      \"hour\": -6347478997882826,\n      \"minute\": 5682661658931295\n    },\n    \"startAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 8015.342955409373,\n      \"longitude\": 3360.9662921699137,\n      \"placeId\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    \"defaultTimeAtStop\": 2102.595931709398,\n    \"endAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 5909.485801834054,\n      \"longitude\": 3222.9987698994787,\n      \"placeId\": \"string\",\n      \"countryCode\": \"string\"\n    },\n    \"endTime\": {\n      \"hour\": -3143324385997154,\n      \"minute\": 467639835912237\n    },\n    \"maxStops\": 7435.852693196274,\n    \"roadSide\": \"right_only\",\n    \"vehicleType\": \"truck\",\n    \"roundTrip\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "296ef996-b5fa-42c6-a73e-d26fe9d8eef0",
+              "name": "The request was invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "987bd7f8-5d8d-45c0-8ffe-3576c17b2a83",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2327cb0a-85e9-4c47-adc5-b0cbcadae2cd",
+              "name": "The provided depot id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Depot not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e6453e4-3594-4636-96af-335e0f9d13e6",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96996f33-690c-43f8-b657-68336b666a19",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    ":depotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "depotId",
+                      "description": "(Required) The depot id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"defaultTimeAtStop\": \"<number>\",\n    \"maxStops\": \"<number>\",\n    \"vehicleType\": \"<string>\",\n    \"roadSide\": \"<string>\",\n    \"roundTrip\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d83c2e65-2785-48a8-99bd-10a3e839f8e5",
+          "name": "Batch import depots",
+          "request": {
+            "name": "Batch import depots",
+            "description": {
+              "content": "Batch import depots. The request body must contain an array of depots to import.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "depots:import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"defaultTimeAtStop\": \"<number>\",\n      \"maxStops\": \"<number>\",\n      \"vehicleType\": \"<string>\",\n      \"roadSide\": \"<string>\",\n      \"roundTrip\": \"<boolean>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "160e0842-e394-41ed-9f1c-037c81f41311",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"defaultTimeAtStop\": \"<number>\",\n      \"maxStops\": \"<number>\",\n      \"vehicleType\": \"<string>\",\n      \"roadSide\": \"<string>\",\n      \"roundTrip\": \"<boolean>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": [\n    \"depots/kNI0Q2Z8fk4NND\",\n    \"depots/6Binh-OhBqCWf4i-pypyYmiHyhJisjcE3yHfKR1Hii_uRBTRnk\"\n  ],\n  \"failed\": [\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"depot\": {\n        \"name\": \"string\",\n        \"routeOverrides\": {\n          \"startAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": 29.997503493162355,\n            \"longitude\": -127.94615718249162\n          },\n          \"startTime\": {\n            \"hour\": -8356880853741305,\n            \"minute\": 6736686164197637\n          },\n          \"endAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": -42.3697433731088,\n            \"longitude\": 88.60076327169293\n          },\n          \"endTime\": {\n            \"hour\": -7040896378515851,\n            \"minute\": 3137935286561819\n          },\n          \"defaultTimeAtStop\": 9176.90754879203,\n          \"maxStops\": 3244.2194112324296,\n          \"vehicleType\": \"small_truck\",\n          \"roadSide\": \"any\",\n          \"roundTrip\": false\n        }\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"depot\": {\n        \"name\": \"string\",\n        \"routeOverrides\": {\n          \"startAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": 16.906498485662937,\n            \"longitude\": -119.04434719292783\n          },\n          \"startTime\": {\n            \"hour\": -7538461883422043,\n            \"minute\": -6126879284224184\n          },\n          \"endAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": -7.007442785256998,\n            \"longitude\": -151.38495113798243\n          },\n          \"endTime\": {\n            \"hour\": 4758064324273741,\n            \"minute\": -7214722709610547\n          },\n          \"defaultTimeAtStop\": 168.4139047228661,\n          \"maxStops\": 9287.702525122804,\n          \"vehicleType\": \"car\",\n          \"roadSide\": \"any\",\n          \"roundTrip\": true\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b0859d9-215a-4eda-8236-1aa69e2528f7",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"defaultTimeAtStop\": \"<number>\",\n      \"maxStops\": \"<number>\",\n      \"vehicleType\": \"<string>\",\n      \"roadSide\": \"<string>\",\n      \"roundTrip\": \"<boolean>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f55b20e9-c316-4d90-8c17-658d0403ad2f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"defaultTimeAtStop\": \"<number>\",\n      \"maxStops\": \"<number>\",\n      \"vehicleType\": \"<string>\",\n      \"roadSide\": \"<string>\",\n      \"roundTrip\": \"<boolean>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "728d5ff4-0865-4dee-bd2f-48df6673e575",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"defaultTimeAtStop\": \"<number>\",\n      \"maxStops\": \"<number>\",\n      \"vehicleType\": \"<string>\",\n      \"roadSide\": \"<string>\",\n      \"roundTrip\": \"<boolean>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b508662-77a5-4b4b-b037-a84db6805afc",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"defaultTimeAtStop\": \"<number>\",\n      \"maxStops\": \"<number>\",\n      \"vehicleType\": \"<string>\",\n      \"roadSide\": \"<string>\",\n      \"roundTrip\": \"<boolean>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dd2aa97-e00c-4d0f-8257-b7c084ca7eae",
+          "name": "Set the main depot for the team",
+          "request": {
+            "name": "Set the main depot for the team",
+            "description": {},
+            "url": {
+              "path": [
+                "depots",
+                "{{depotId}}:setMain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05cf8968-a091-461c-a779-d0a0b5566c51",
+              "name": "Depot set as main successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    "{{depotId}}:setMain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7725f26-e984-4992-8835-304104b80aa8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    "{{depotId}}:setMain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1d2e31a-31f5-45c4-95a3-fe5993fcfca1",
+              "name": "The provided depot id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    "{{depotId}}:setMain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Depot not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46681f9d-3179-4558-8faa-b73d9cd73661",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    "{{depotId}}:setMain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be4934b9-1127-4c0c-aa1e-9258c40f9cdd",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "depots",
+                    "{{depotId}}:setMain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The depot id",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "depotId"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5db39e57-5f2c-4cee-bb7d-0fffc22a891d",
+    "name": "Spoke Depots API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

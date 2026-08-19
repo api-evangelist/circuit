@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Routes API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route id"
+              }
+            ]
+          },
+          "docs": "Retrieve a route"
+        },
+        {
+          "info": {
+            "name": "List Routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/routes",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token to continue from."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of routes to return."
+              }
+            ]
+          },
+          "docs": "List Routes"
+        },
+        {
+          "info": {
+            "name": "List route stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/routes/:routeId/stops",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token, if any."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The max page size."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo`"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route id"
+              }
+            ]
+          },
+          "docs": "List route stops"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Stops API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stops",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token, if any."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The max page size."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo`"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "List stops"
+        },
+        {
+          "info": {
+            "name": "Create a new stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new stop with the given data. Prefer using the [batch import endpoint](#tag/Stops/operation/importStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results. If the plan is not writable, this will fail, prefer using the [Live Create Stop API](#tag/Live-Stops/operation/createLiveStop) instead."
+        },
+        {
+          "info": {
+            "name": "Batch import stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops:import",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch import stops. The request body must contain an array of stops to import. If the plan is not writable, the request will fail, prefer using the [Import Live Stops API](#tag/Live-Stops/operation/importLiveStops) instead."
+        },
+        {
+          "info": {
+            "name": "Retrieve a stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops/:stopId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              },
+              {
+                "name": "stopId",
+                "value": "",
+                "type": "path",
+                "description": "The stop id"
+              }
+            ]
+          },
+          "docs": "Retrieve a stop"
+        },
+        {
+          "info": {
+            "name": "Update an existing stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops/:stopId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              },
+              {
+                "name": "stopId",
+                "value": "",
+                "type": "path",
+                "description": "The stop id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Does not support updating a stop's location, nor the `circuitClientId`. To do so, delete the stop and create a new one. If the plan is not writable, the request will fail, prefer using the [Update Live Stops API](#tag/Live-Stops/operation/updateLiveStop) instead."
+        },
+        {
+          "info": {
+            "name": "Delete a stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops/:stopId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              },
+              {
+                "name": "stopId",
+                "value": "",
+                "type": "path",
+                "description": "The stop id"
+              }
+            ]
+          },
+          "docs": "Delete a stop. This action cannot be undone and will delete all the data associated with the stop. If the plan is not writable, this will fail, prefer using the [Live Delete Stop API](#tag/Live-Stops/operation/deleteLiveStop) instead."
+        },
+        {
+          "info": {
+            "name": "Stop Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/stops:search",
+            "params": [
+              {
+                "name": "keyword",
+                "value": "",
+                "type": "query",
+                "description": "Keywords to include in the search. These will be applied to all applicable text fields using a fuzzy matching."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply. This is used to include/exclude stops form the search."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The max page size."
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "The sort field."
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "The sort direction."
+              }
+            ]
+          },
+          "docs": "See the [Stops Search docs](/api/v1#section/Using-the-API/Stop-Search-API) for more information on formatting the filter string.\n  The following fields are filterable:\n  - `planId` - The ID of the plan stop is linked to in PlanId format (e.g. `plans/{planId}`)\n  - `routeId` - The ID of the route stop is linked to in RouteId format (e.g. `routes/{routeId}`)\n  - `type` - The type of the stop (e.g. `start`, `stop`, `end`)\n  - `activity` - The activity performed at the stop (`delivery` or `pickup`)\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

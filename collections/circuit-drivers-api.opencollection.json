@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Drivers API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Drivers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Drivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/drivers",
+            "params": [
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of drivers to return."
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token to continue from."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of drivers. The filter param is passed like this: `?filter[active]=true` or like this: `?filter.active=true`"
+              }
+            ]
+          },
+          "docs": "List Drivers"
+        },
+        {
+          "info": {
+            "name": "Create a new driver",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/drivers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a driver with the given data in your team. Prefer using the [batch import endpoint](#operation/importDrivers) for creating multiple drivers at once as it is more efficient, faster."
+        },
+        {
+          "info": {
+            "name": "Retrieve a driver",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/drivers/:driverId",
+            "params": [
+              {
+                "name": "driverId",
+                "value": "",
+                "type": "path",
+                "description": "The driver id"
+              }
+            ]
+          },
+          "docs": "Retrieve a driver"
+        },
+        {
+          "info": {
+            "name": "Update a driver",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spoke.com/public/v0.2b/drivers/:driverId",
+            "params": [
+              {
+                "name": "driverId",
+                "value": "",
+                "type": "path",
+                "description": "The driver id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a driver from your team. The member must have the \"driver\" role."
+        },
+        {
+          "info": {
+            "name": "Remove a driver",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spoke.com/public/v0.2b/drivers/:driverId",
+            "params": [
+              {
+                "name": "driverId",
+                "value": "",
+                "type": "path",
+                "description": "The driver id"
+              }
+            ]
+          },
+          "docs": "Removes a driver from your team. If the driver also has dashboard access, the driver will only have their \"driver\" role revoked; thus not being listed among the team drivers, but will keep their dashboard access."
+        },
+        {
+          "info": {
+            "name": "Batch import drivers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/drivers:import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates multiple drivers in your team. The request body must contain an array of drivers to import."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

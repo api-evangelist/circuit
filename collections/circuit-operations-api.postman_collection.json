@@ -1,0 +1,953 @@
+{
+  "item": [
+    {
+      "id": "2f2124d1-6b25-43b3-8f40-a732bd78edce",
+      "name": "Operations",
+      "description": {
+        "content": "Endpoints to operate on [Operations](/docs/models/operation) resources.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c06747d-8fea-4e80-b3ec-78ec947fd89a",
+          "name": "Cancel an operation",
+          "request": {
+            "name": "Cancel an operation",
+            "description": {
+              "content": "Cancel an operation that is not yet done.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "operations",
+                "{{operationId}}:cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "605265c0-1fac-42a0-86c0-1ab0f408bf39",
+              "name": "The operation was canceled successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    "{{operationId}}:cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"operations/estKVeboPPDMS9hLyHsxOynN1oRBza0gjztLRgE3VdldQh8\",\n  \"type\": \"plan_optimization\",\n  \"done\": true,\n  \"metadata\": {\n    \"canceled\": true,\n    \"startedAt\": 8927.902943207782,\n    \"finishedAt\": 4326.357503738657,\n    \"startedBy\": \"dispatcher\",\n    \"targetPlanId\": \"plans/mdc75o\"\n  },\n  \"result\": {\n    \"numOptimizedStops\": 3009.2415749767133,\n    \"skippedStops\": [\n      {\n        \"id\": \"plans/jRQmWP-lfAv8WqxGabOA7218B82xJKg3i/stops/vc8I6wVDGnYSz\",\n        \"reason\": \"impossible_time_window\"\n      },\n      {\n        \"id\": \"plans/nEjMQbQWaRmrcF4U/stops/V8jSO1cgDtnVlaeKKspbrtzvRY4y2\",\n        \"reason\": \"impossible_time_window\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99d12d0b-a8d0-452f-a862-eb6dc7d7306b",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    "{{operationId}}:cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0f20542-a960-4ebe-a209-60985e1c0223",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    "{{operationId}}:cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "575ad176-2e4b-46ba-8f83-46e3b578accd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    "{{operationId}}:cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The operation was not found.\",\n  \"code\": \"operation_not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "664db4a3-2e95-448c-ba66-0f333b03f695",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    "{{operationId}}:cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The operation cannot be canceled because it is already done.\",\n  \"code\": \"operation_already_done\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "327d8cbc-5038-4f7b-9749-bc1b595d79cd",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    "{{operationId}}:cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc42f8f7-f46a-4dfb-8c68-6aaad8eab15f",
+          "name": "Retrieve an operation",
+          "request": {
+            "name": "Retrieve an operation",
+            "description": {},
+            "url": {
+              "path": [
+                "operations",
+                ":operationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "operationId",
+                  "description": "(Required) The ID of the operation to cancel."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1bb99ab9-8af4-47f2-b445-2088e46cb7ce",
+              "name": "The requested operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    ":operationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) The ID of the operation to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"operations/OewEaKFaKZnl83hKC0BgSunuEJBqh\",\n  \"type\": \"plan_optimization\",\n  \"done\": true,\n  \"metadata\": {\n    \"canceled\": false,\n    \"startedAt\": 6163.5213807941645,\n    \"finishedAt\": 7113.485330225335,\n    \"startedBy\": \"dispatcher\",\n    \"targetPlanId\": \"plans/FWTp4HRk0vh_cuz8j520UdQ2uEQXG0hZcB\"\n  },\n  \"result\": {\n    \"numOptimizedStops\": 3649.147325997072,\n    \"skippedStops\": [\n      {\n        \"id\": \"plans/PGzbKcNxwN/stops/tYpJwt17WTixJG4\",\n        \"reason\": \"impossible_time_window\"\n      },\n      {\n        \"id\": \"plans/doRLVpnxRk9aHn4YuTgbjgV-8nuBQ-orA/stops/yKxHjkHlF2CMrgmdJAXbNmjmE\",\n        \"reason\": \"impossible_time_window\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "909dd6a0-e103-48a3-b274-300c665f036b",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    ":operationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) The ID of the operation to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3371c323-169b-4a43-90a0-72fae09d1c77",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    ":operationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) The ID of the operation to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05c347ee-2969-4229-a4c4-04407d92f23a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    ":operationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) The ID of the operation to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The operation was not found.\",\n  \"code\": \"operation_not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1998b03d-632a-4c83-88e1-65527000259f",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations",
+                    ":operationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operationId",
+                      "description": "(Required) The ID of the operation to cancel."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "250098ec-8f48-425f-8260-61ec332504df",
+          "name": "List operations",
+          "request": {
+            "name": "List operations",
+            "description": {},
+            "url": {
+              "path": [
+                "operations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The page token to continue from."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxPageSize",
+                  "value": "20",
+                  "description": "The maximum number of operations to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "done",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of operations."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of operations."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fcd23821-85c4-4e55-bec3-964cf8c528e7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "done",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operations\": [\n    {\n      \"id\": \"operations/Xh_kRU0vPVscGC7yUR7QVybAHdF4y_adB\",\n      \"type\": \"plan_optimization\",\n      \"done\": true,\n      \"metadata\": {\n        \"canceled\": false,\n        \"startedAt\": 1440.5417907760177,\n        \"finishedAt\": 52.583759930141525,\n        \"startedBy\": \"dispatcher\",\n        \"targetPlanId\": \"plans/E33\"\n      },\n      \"result\": {\n        \"numOptimizedStops\": 6299.81233456712,\n        \"skippedStops\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reason\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reason\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"operations/8EUdCV4PEJNuI-Lr47IoW3GnKOJE9buW_2q\",\n      \"type\": \"plan_optimization\",\n      \"done\": false,\n      \"metadata\": {\n        \"canceled\": true,\n        \"startedAt\": 5371.193568464035,\n        \"finishedAt\": 42.31966540157117,\n        \"startedBy\": \"dispatcher\",\n        \"targetPlanId\": \"plans/hLFKa75XaU_kTrvVkgcBv7_FlGM\"\n      },\n      \"result\": {\n        \"numOptimizedStops\": 4789.805284525547,\n        \"skippedStops\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reason\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"reason\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e64abde9-a93b-4d26-8f4f-45ca36b4ab84",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "done",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25258dce-738d-43cb-81b1-c73cc9edcef4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "done",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f58d573-a511-4961-9a2b-2035955f464f",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "done",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The ID of the operation to cancel.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "operationId"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d10dff8b-a231-47b8-862a-7fc91bfb8682",
+    "name": "Spoke Depots Operations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

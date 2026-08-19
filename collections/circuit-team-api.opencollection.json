@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Team API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List custom stop properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/team/customStopProperties"
+          },
+          "docs": "Returns a list of custom stop properties definitions."
+        },
+        {
+          "info": {
+            "name": "Retrieve a custom stop property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/team/customStopProperties/:customStopPropertyId",
+            "params": [
+              {
+                "name": "customStopPropertyId",
+                "value": "",
+                "type": "path",
+                "description": "The custom stop property id"
+              }
+            ]
+          },
+          "docs": "Returns a custom stop property definition."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

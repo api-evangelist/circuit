@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Depots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Depots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/depots",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token to continue from."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of depots to return."
+              }
+            ]
+          },
+          "docs": "List Depots"
+        },
+        {
+          "info": {
+            "name": "Create a depot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/depots",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a depot"
+        },
+        {
+          "info": {
+            "name": "Retrieve a depot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/depots/:depotId",
+            "params": [
+              {
+                "name": "depotId",
+                "value": "",
+                "type": "path",
+                "description": "The depot id"
+              }
+            ]
+          },
+          "docs": "Retrieve a depot"
+        },
+        {
+          "info": {
+            "name": "Update a depot",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spoke.com/public/v0.2b/depots/:depotId",
+            "params": [
+              {
+                "name": "depotId",
+                "value": "",
+                "type": "path",
+                "description": "The depot id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a depot"
+        },
+        {
+          "info": {
+            "name": "Remove a depot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spoke.com/public/v0.2b/depots/:depotId",
+            "params": [
+              {
+                "name": "depotId",
+                "value": "",
+                "type": "path",
+                "description": "The depot id"
+              }
+            ]
+          },
+          "docs": "Remove a depot"
+        },
+        {
+          "info": {
+            "name": "Batch import depots",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/depots:import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch import depots. The request body must contain an array of depots to import."
+        },
+        {
+          "info": {
+            "name": "Set the main depot for the team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/depots/:depotId:setMain",
+            "params": [
+              {
+                "name": "depotId",
+                "value": "",
+                "type": "path",
+                "description": "The depot id"
+              }
+            ]
+          },
+          "docs": "Set the main depot for the team"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Operations API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel an operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/operations/:operationId:cancel",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the operation to cancel."
+              }
+            ]
+          },
+          "docs": "Cancel an operation that is not yet done."
+        },
+        {
+          "info": {
+            "name": "Retrieve an operation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/operations/:operationId",
+            "params": [
+              {
+                "name": "operationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the operation to cancel."
+              }
+            ]
+          },
+          "docs": "Retrieve an operation"
+        },
+        {
+          "info": {
+            "name": "List operations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/operations",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token to continue from."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of operations to return per page."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of operations."
+              }
+            ]
+          },
+          "docs": "List operations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,761 @@
+{
+  "item": [
+    {
+      "id": "ce04c24b-a85f-4bac-bdec-c83a8a625ea5",
+      "name": "Team",
+      "description": {
+        "content": "Endpoints to retrieve [Custom Stop Properties](/docs/models/customStopProperty).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "475c30f4-70d0-457a-b504-0cdd301de336",
+          "name": "List custom stop properties",
+          "request": {
+            "name": "List custom stop properties",
+            "description": {
+              "content": "Returns a list of custom stop properties definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                "customStopProperties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45513a45-122d-49da-8220-5e4e3643b042",
+              "name": "The set of custom stop properties.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customStopProperties\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"visibleToDrivers\": false,\n      \"visibleToRecipients\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"visibleToDrivers\": true,\n      \"visibleToRecipients\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d8419c8-ad5c-47df-ab44-554d63d3fe06",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7eeaffbd-1991-440f-8c27-1eea8362dff6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa88d756-0eda-4746-aa13-050d707c101b",
+              "name": "Feature not included in your team subscription",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"feature_not_in_subscription\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a0b0020-c7e1-46a3-9d63-3276926095f5",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "741cd513-644e-43db-b98a-9cbb438af3b8",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85a69239-e272-4848-9ce1-8684127f49a6",
+          "name": "Retrieve a custom stop property",
+          "request": {
+            "name": "Retrieve a custom stop property",
+            "description": {
+              "content": "Returns a custom stop property definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "team",
+                "customStopProperties",
+                ":customStopPropertyId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "customStopPropertyId",
+                  "description": "(Required) The custom stop property id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc8f6e2a-1e62-4c55-872d-c41b6e7593dc",
+              "name": "The definition of a custom stop property.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"visibleToDrivers\": false,\n  \"visibleToRecipients\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "102bae78-0659-4ef8-8541-67f419d4e267",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b18de5b3-6535-43f3-ab91-5b2d7488d78d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8486756f-36db-4168-a324-74284c8009c1",
+              "name": "Feature not included in your team subscription",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"feature_not_in_subscription\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e58b3338-8bf5-4fd8-96f6-ec981666c870",
+              "name": "The provided custom stop property id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Custom stop property not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c86a77c6-945e-45b0-a961-5ac70b444462",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbd22878-e26e-4b0b-a19b-dad21fd45b93",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "team",
+                    "customStopProperties",
+                    ":customStopPropertyId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "customStopPropertyId",
+                      "description": "(Required) The custom stop property id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a148b8fd-7723-4481-bb5e-812460983b1c",
+    "name": "Spoke Depots Team API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

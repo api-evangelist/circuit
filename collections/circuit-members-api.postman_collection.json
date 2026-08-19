@@ -1,0 +1,1787 @@
+{
+  "item": [
+    {
+      "id": "6a2fdaf0-9775-4371-917a-f52824dd8e92",
+      "name": "Members",
+      "description": {
+        "content": "Endpoints to operate on Members resources.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ebd556e3-af5b-42de-866c-84c36da5f694",
+          "name": "Create a new member",
+          "request": {
+            "name": "Create a new member",
+            "description": {
+              "content": "Create a member with the given data in your team. Prefer using the [batch import endpoint](#operation/importMembers) for creating multiple members at once as it is more efficient.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5db5c591-86db-4627-86bf-2c879c8ebfe5",
+              "name": "The created member",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"members/pi9YbLyiYiNcnW\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone\": \"string\",\n  \"linkedDriverId\": \"drivers/lqfpSUytYX\",\n  \"displayName\": \"string\",\n  \"active\": true,\n  \"depots\": [\n    \"depots/XEKqQzaLXypGUhF1qNoFB-SDG6uO\",\n    \"depots/zx79G1z8a1M4vF4kNWUyLlqgLocvSRshf5pCj\"\n  ],\n  \"roles\": [\n    \"driver\",\n    \"driver\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "336a3002-fcef-4db7-a394-6c715965d13a",
+              "name": "Failed to validate the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "531316fd-5c5d-4e4d-b8ac-29a36bf03439",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "235c988c-aaed-44b7-b1e9-4a534803398f",
+              "name": "The linked driver could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Driver not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4a148a3-b84e-428a-aa24-5f1571208d1e",
+              "name": "Conflict when creating member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The member could not be created because of a conflict, such as a member already existing with the same email.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "270cf641-44c1-4280-9937-2101a7be348e",
+              "name": "Failed to create member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occured when creating the member, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42aada9e-44a3-42ef-a3ed-927165ebe06b",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0390a46-6a0e-45db-b0e0-2ad0cdb47d88",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role\": \"<string>\",\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"linkedDriverId\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd741058-b266-4d9c-aca6-ce37e0da9d9e",
+          "name": "Update a member",
+          "request": {
+            "name": "Update a member",
+            "description": {
+              "content": "Updates a member from your team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members",
+                ":memberId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberId",
+                  "description": "(Required) The member id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3ce4f9f-7413-4017-9bdc-d51fffbb780b",
+              "name": "The updated member",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"members/9TsC2AYIvMkR5\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone\": \"string\",\n  \"linkedDriverId\": \"drivers/dRdOXtWtVoGgBN9K3aIy_PjBdtyiZFva_fVeyDq2z\",\n  \"displayName\": \"string\",\n  \"active\": false,\n  \"depots\": [\n    \"depots/LMrtvcvd3HksieCCU9GQzK\",\n    \"depots/Kag6RsL6C0dCaZmewskLN1UsE18-aIwMsGBdRHXWllGBEnMKt\"\n  ],\n  \"roles\": [\n    \"depot-manager\",\n    \"dispatcher\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd849c01-09c6-4623-b36c-294f0093fb79",
+              "name": "Failed to validate the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb7da194-0170-4300-bbd0-484e36b2b904",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a19029d-c83d-4a80-8617-4d258bc8d269",
+              "name": "The provided member id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Member not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e4d03d5-8739-4c0d-9e81-50d1e03d5a1d",
+              "name": "Failed to update member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occured when updating the member, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fc558c7-6b2e-4b63-9a1f-063f3d55a7c8",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e5015ee-e720-4561-8cc5-2b1514323817",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"role\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b84ec0eb-a4cf-435b-bd57-5911f516f0b7",
+          "name": "Remove a member",
+          "request": {
+            "name": "Remove a member",
+            "description": {
+              "content": "Removes a member from your team. If the member also has driver access, the member will only have their operational role(s) revoked; thus not being listed among the team members, but will keep their driver access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members",
+                ":memberId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "memberId",
+                  "description": "(Required) The member id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "85f3855b-8eee-4e90-9362-e4b0788cb53f",
+              "name": "Member removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51b0095a-0b51-4eef-b13f-0a313c12573d",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5426bd4-52ff-466a-aea7-ab5db91d0711",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15ea0c54-ffee-47c4-8386-69446338516f",
+              "name": "The provided member id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Member not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53c7fa5d-bc6a-4591-b0a1-2edf431a356c",
+              "name": "Failed to delete member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "458eb2ff-7bda-4b9e-a393-02f91fd19ae3",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af5c80c3-0943-43c3-9029-1cc5e5c3e587",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members",
+                    ":memberId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "memberId",
+                      "description": "(Required) The member id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06252347-b6a0-4a37-bdbc-3a7a81697c95",
+          "name": "Import multiple members",
+          "request": {
+            "name": "Import multiple members",
+            "description": {
+              "content": "Import multiple members at once.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "members:import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75d2604e-32b3-4063-987e-d886e08d913b",
+              "name": "The imported members",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": [\n    \"members/GYqUChK1Q7-iLM69xEwUuKyhE_snggNZQ\",\n    \"members/gqZgtl2rcIkSiSu8T5szaZVoVyXfuWw4mi\"\n  ],\n  \"failed\": [\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"member\": {\n        \"role\": \"admin\",\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"email\": \"s19@NfYtITGd.BPz97KU.qAA0eu.6OKtKmM.phIsSTPpMxD.B.1uysGAfUf.zIUuk5ZK.yQnPiaeQ\",\n        \"linkedDriverId\": \"drivers/MwCP1yeSw5SeeJRZaGdC\",\n        \"depots\": [\n          \"depots/x2xb_EJdnFCMaC1HK\"\n        ]\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"member\": {\n        \"role\": \"depot-manager\",\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"email\": \"BsCF2V@fos.7YqPC-.D2L.omAXch\",\n        \"linkedDriverId\": \"drivers/QvIuugbK0_2bVIsIYcKyFT_aFs8h_xXsPbMTYxYk\",\n        \"depots\": [\n          \"depots/2P3vfgv8vwRvt3p4YmptuG1hoAdK\"\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f69ef4d7-0ca8-4e87-911c-20470280882a",
+              "name": "Failed to validate the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3b850a4-c56a-4147-a38b-d5ad7ad8f1c9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fb0a935-aa9a-4504-a823-4944a6f73a57",
+              "name": "Conflict when creating member.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"The member could not be created because of a conflict, such as a member already existing with the same email.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9651a195-e6bf-465c-a49c-0bf6593502fc",
+              "name": "Failed to import members.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occured when importing members, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "031a7fdd-f81c-489a-a28e-83b1e93ab481",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17ccf4d3-e8ad-49fd-8db7-8f25923ce918",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "members:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"role\": \"<string>\",\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"linkedDriverId\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3649d0f7-2458-4553-a69c-50526d046775",
+    "name": "Spoke Depots Members API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

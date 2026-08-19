@@ -1,0 +1,3479 @@
+{
+  "item": [
+    {
+      "id": "4bcbc0bd-bc16-4150-8efb-e25b2febfeef",
+      "name": "Plans",
+      "description": {
+        "content": "Endpoints to operate on [Plans](/docs/models/plan) resources.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ee6a0b8c-787c-4619-86de-44fa44d250fa",
+          "name": "Create a new plan",
+          "request": {
+            "name": "Create a new plan",
+            "description": {},
+            "url": {
+              "path": [
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e03e9c3b-e1be-4348-8889-fed9cb7ae38c",
+              "name": "The created plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"plans/Kf\",\n  \"title\": \"string\",\n  \"starts\": {\n    \"day\": 11,\n    \"month\": 7,\n    \"year\": 7552509962138981\n  },\n  \"depot\": \"depots/7rpm3Tq8V8R3rqJjohTtJBKcLBWddRdV7TWMg7jV2KaZrWbK\",\n  \"distributed\": true,\n  \"writable\": true,\n  \"optimization\": \"optimized\",\n  \"drivers\": [\n    {\n      \"id\": \"drivers/EKd6G85Ipboc1AvULG25poPk26_ldKth04II0\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": false,\n      \"depots\": [\n        \"depots/1mEpvW1zrWW4rFOEY7cck_mEUv5n1y\",\n        \"depots/AaUrOO3xH-\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": -2940351722235080,\n          \"minute\": -4789612960735124\n        },\n        \"endTime\": {\n          \"hour\": 2086121631540597,\n          \"minute\": -1422811563161662\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -12.262004094215726,\n          \"longitude\": -91.49830406494641,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -47.373211458967354,\n          \"longitude\": -66.90984588323134,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": -5206206627641264,\n        \"drivingSpeed\": \"slower\",\n        \"deliverySpeed\": \"faster\",\n        \"vehicleType\": \"scooter\"\n      }\n    },\n    {\n      \"id\": \"drivers/dQlFqQRyn8r4IHi\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": false,\n      \"depots\": [\n        \"depots/_ecBE7N1t6pf-msuZt9DYqrn96j6zqJAfL-3ehs8TcmQdL1\",\n        \"depots/vtbypJn3N-xxJWHmpHbS5HSW\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": 7413159433999455,\n          \"minute\": 4866952746391483\n        },\n        \"endTime\": {\n          \"hour\": -4401073806838296,\n          \"minute\": 6004200857745087\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -84.19591227075291,\n          \"longitude\": 55.669612372339515,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 82.26024130672553,\n          \"longitude\": -115.99389066235528,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": 3277162762830519,\n        \"drivingSpeed\": \"average\",\n        \"deliverySpeed\": \"average\",\n        \"vehicleType\": \"bike\"\n      }\n    }\n  ],\n  \"routes\": [\n    \"routes/b_tJAvMW_foia3boHN-17ByA\",\n    \"routes/1sQ0giqI27A4OIKaiyoc4Ed11Vu4th0LG1wFrSGnr\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25aaed49-d416-45b1-b0d2-03ae53cf1f34",
+              "name": "The request is invalid, or a driver is not active.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8e980e4-e0b5-4370-ae43-4da58e544a7e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc0221c-19b7-450d-8549-a31fdfd50286",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8b49b6b-5ac2-4fb1-b54d-69d88b267ef8",
+              "name": "The depot or driver could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Depot not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf7df74f-e912-48ef-901b-a03aa3c01442",
+              "name": "Depot not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Depot not found\",\n  \"code\": \"depot_not_found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03708cca-9433-4bbe-a0c4-3b5cb056da3a",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8aa6ab95-61dc-4253-bf72-777e61529cc9",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97fef6ca-7b79-4b61-a64b-83b27fbc98df",
+          "name": "List plans",
+          "request": {
+            "name": "List plans",
+            "description": {},
+            "url": {
+              "path": [
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The page token, if any."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxPageSize",
+                  "value": "10",
+                  "description": "The max page size."
+                },
+                {
+                  "disabled": false,
+                  "key": "title",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of plans. The filter params are passed like this: `?filter[title]=foo` or like this: `?filter.title=foo`"
+                },
+                {
+                  "disabled": false,
+                  "key": "startsGte",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of plans. The filter params are passed like this: `?filter[title]=foo` or like this: `?filter.title=foo`"
+                },
+                {
+                  "disabled": false,
+                  "key": "startsLte",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of plans. The filter params are passed like this: `?filter[title]=foo` or like this: `?filter.title=foo`"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5d3b2d9-0fbf-4c01-a643-edfb1911392b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"plans\": [\n    {\n      \"id\": \"plans/1aCWt_JoOgp7KPcec\",\n      \"title\": \"string\",\n      \"starts\": {\n        \"day\": 20,\n        \"month\": 6,\n        \"year\": -8799217714642785\n      },\n      \"depot\": \"depots/6sfhbAY8URI0Ilb\",\n      \"distributed\": false,\n      \"writable\": false,\n      \"optimization\": \"editing\",\n      \"drivers\": [\n        {\n          \"id\": \"drivers/1ns1BYyh-EGZ5Ub2fJhBMZIxmW_BljuTF02IxpATapx\",\n          \"name\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"displayName\": \"string\",\n          \"active\": false,\n          \"depots\": [\n            \"depots/3UlgK9V04f3EchXV7\",\n            \"depots/yUetwbnUuY4g\"\n          ],\n          \"routeOverrides\": {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"endAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxStops\": 3350923373710505,\n            \"drivingSpeed\": \"slower\",\n            \"deliverySpeed\": \"faster\",\n            \"vehicleType\": \"scooter\"\n          }\n        },\n        {\n          \"id\": \"drivers/V5gGHaoH\",\n          \"name\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"displayName\": \"string\",\n          \"active\": false,\n          \"depots\": [\n            \"depots/J3eRGF\",\n            \"depots/SS16rZoghTK397vGmvftwQrBDE\"\n          ],\n          \"routeOverrides\": {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"endAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxStops\": 2162654380195037,\n            \"drivingSpeed\": \"average\",\n            \"deliverySpeed\": \"slower\",\n            \"vehicleType\": \"bike\"\n          }\n        }\n      ],\n      \"routes\": [\n        \"routes/rS48jcaaxfwTxEZbjEcWgXSM_O3rqU3ZNC0BLww\",\n        \"routes/CfD\"\n      ]\n    },\n    {\n      \"id\": \"plans/DEIis4uecpBM5lJnCm92IV4hdiB\",\n      \"title\": \"string\",\n      \"starts\": {\n        \"day\": 16,\n        \"month\": 8,\n        \"year\": -1574312408183500\n      },\n      \"depot\": \"depots/e\",\n      \"distributed\": false,\n      \"writable\": false,\n      \"optimization\": \"optimizing\",\n      \"drivers\": [\n        {\n          \"id\": \"drivers/ifBjiaLYlugj5AtvErSJQ-Yv\",\n          \"name\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"displayName\": \"string\",\n          \"active\": false,\n          \"depots\": [\n            \"depots/b1aU4AzQQpXspXZRft2vQGZkFRoJkayaUeUoYA8zqAL_gmKuJQ\",\n            \"depots/nQXE6dsrafKE5yZF0rjxEb5nPOas\"\n          ],\n          \"routeOverrides\": {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"endAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxStops\": -5964425477177368,\n            \"drivingSpeed\": \"average\",\n            \"deliverySpeed\": \"average\",\n            \"vehicleType\": \"bike\"\n          }\n        },\n        {\n          \"id\": \"drivers/V_\",\n          \"name\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"displayName\": \"string\",\n          \"active\": false,\n          \"depots\": [\n            \"depots/qBFfdzSfg3zj1sDfM6LjuNGonYYS-yHGuVDu\",\n            \"depots/VC20X\"\n          ],\n          \"routeOverrides\": {\n            \"startTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"endTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"startAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"endAddress\": {\n              \"address\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineOne\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"addressLineTwo\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"latitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"longitude\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"placeTypes\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"maxStops\": 6351902463145243,\n            \"drivingSpeed\": \"slower\",\n            \"deliverySpeed\": \"slower\",\n            \"vehicleType\": \"small_truck\"\n          }\n        }\n      ],\n      \"routes\": [\n        \"routes/BzlTt-9gGBqDITYB-jSU18kU8\",\n        \"routes/ISETIijIaJtkg10G\"\n      ]\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca2f3ee9-27f7-47c7-bfe9-8a894db5d2fc",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eae5892f-3284-46e8-b5b9-e369091ce933",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69e0bbc4-dc8a-4950-af7e-d1b88235ab23",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c5a5cbe-2c0c-4910-a298-ddb62c8032cd",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "title",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsGte",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startsLte",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e1be7a6-3e41-444c-8140-c73ce6fe52ec",
+          "name": "Update an existing plan",
+          "request": {
+            "name": "Update an existing plan",
+            "description": {
+              "content": "Update an existing plan. If the plan `writable` property is false, prefer using the [Live Plans API](#tag/Live-Plans).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a00ef2ff-d974-4bdf-af55-f134a5dfe3f8",
+              "name": "The updated plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"plans/WqQMEWi1mEfdZgj1\",\n  \"title\": \"string\",\n  \"starts\": {\n    \"day\": 9,\n    \"month\": 2,\n    \"year\": -8142574946876161\n  },\n  \"depot\": \"depots/WAFNZbgsJiyhHNXAGGizy5mXiBIgiyGE-DQZ4SO84e576MgV-\",\n  \"distributed\": false,\n  \"writable\": true,\n  \"optimization\": \"creating\",\n  \"drivers\": [\n    {\n      \"id\": \"drivers/EDqr41GR5FcN\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/hdBDjQsCM0-DY3qiEZNoNaR4j\",\n        \"depots/E9NGXP9SFHmp5rO7Jy3qc4xkUF-IqzUEOiNVOYDqUgb_n3Hnr\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": 730783754958053,\n          \"minute\": 798877092411811\n        },\n        \"endTime\": {\n          \"hour\": 890468017644181,\n          \"minute\": 5345466618227339\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -74.21564967303645,\n          \"longitude\": -52.59572824990589,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 55.062535935283336,\n          \"longitude\": -143.05104298404865,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": -5973350281929416,\n        \"drivingSpeed\": \"faster\",\n        \"deliverySpeed\": \"average\",\n        \"vehicleType\": \"car\"\n      }\n    },\n    {\n      \"id\": \"drivers/U7EPj3dRpjWff0o3aetEs4ITkJy1KOG8B8PLU7Pokx8h6ef\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/BcjsWqK2idVDdvru3ZIkurSA_qYr9-tTW\",\n        \"depots/4SJt__wMzJYOTkkv\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": 3616783393724437,\n          \"minute\": 6499062588245833\n        },\n        \"endTime\": {\n          \"hour\": 1716284231087299,\n          \"minute\": 3731218807603151\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 63.73346377209759,\n          \"longitude\": -179.45577923959075,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -59.74986267476386,\n          \"longitude\": -54.06128256717423,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": 2741516781360201,\n        \"drivingSpeed\": \"average\",\n        \"deliverySpeed\": \"slower\",\n        \"vehicleType\": \"small_truck\"\n      }\n    }\n  ],\n  \"routes\": [\n    \"routes/b96\",\n    \"routes/mC67sUaIc8rais2I6WYais0thK08FuC2xmXEH\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b26c933-6d66-4a94-b413-fca0ef76b965",
+              "name": "The request is invalid, or a driver is not active.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6acc23f4-7496-493c-a728-aa381c71c86e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec457127-2e9e-40aa-8b39-8402370bf325",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f35d02f-9c89-43c4-bf34-0654c7f4077c",
+              "name": "The plan, depot, or driver could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e258fc86-2fef-47cf-afc4-0311bd972975",
+              "name": "The plan is not writable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is not writable\",\n  \"code\": \"plan_not_writable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cb8c810-9d42-45f2-af56-052a4ed16856",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"starts\": {\n    \"day\": \"<integer>\",\n    \"month\": \"<integer>\",\n    \"year\": \"<integer>\"\n  },\n  \"drivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5355ecdf-9390-4471-ab13-34c705d9f01f",
+          "name": "Retrieve a plan",
+          "request": {
+            "name": "Retrieve a plan",
+            "description": {
+              "content": "Retrieve a plan",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac79c3fe-e331-4f7d-ba99-cf571c3a127e",
+              "name": "The requested plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"plans/2z55Zzb6417ZpDudvT0s5RZ\",\n  \"title\": \"string\",\n  \"starts\": {\n    \"day\": 8,\n    \"month\": 8,\n    \"year\": -4039238419850486\n  },\n  \"depot\": \"depots/laAHIW4HBArHCH5sgAve7MZLTH\",\n  \"distributed\": true,\n  \"writable\": false,\n  \"optimization\": \"optimized\",\n  \"drivers\": [\n    {\n      \"id\": \"drivers/mK8IrzpfZ2qcbCFvWcDTkGvWGbGVkK10uiTJgQAveh\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/eN07UDbN8bXdz1fdjFp2\",\n        \"depots/6D0NkBfxxEU5u6T-UZ5NL9Tth9Ni_pif\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": -3693848644990606,\n          \"minute\": -5780055066099612\n        },\n        \"endTime\": {\n          \"hour\": 6898722636682741,\n          \"minute\": -7583834722253321\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 28.962627082832867,\n          \"longitude\": 125.62455157923694,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 39.287811781686145,\n          \"longitude\": 50.514099795896016,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": 5179798740275489,\n        \"drivingSpeed\": \"faster\",\n        \"deliverySpeed\": \"average\",\n        \"vehicleType\": \"truck\"\n      }\n    },\n    {\n      \"id\": \"drivers/B_Cb4LoDl_38vdAaKqmIr\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/6LHAa8GbWrLfr9lWaEi-\",\n        \"depots/gUw1QfZxTOSp3PvzFjmXLfzL7ysqnkTVb\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": -4896139627909300,\n          \"minute\": -6230672672769752\n        },\n        \"endTime\": {\n          \"hour\": -5185786155791338,\n          \"minute\": -4165201774166248\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 53.510190164259626,\n          \"longitude\": -102.65438304940356,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 6.142367781513315,\n          \"longitude\": 169.80727764740084,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": -249183549485766,\n        \"drivingSpeed\": \"slower\",\n        \"deliverySpeed\": \"slower\",\n        \"vehicleType\": \"small_truck\"\n      }\n    }\n  ],\n  \"routes\": [\n    \"routes/23wdInhzofAzy\",\n    \"routes/kqV3j2P2L9HhJY5rhTvOg-FKNO4XJLApMrdcR-UWZMX0j\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "214d07e8-b33c-4a44-8bb6-80951f38ada1",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c29417d0-3527-4c67-834c-17abc7a05592",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0037351a-4822-495a-9963-f4bf08fc814b",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c756e0ba-73a4-49e9-b1dc-ab69ded8d2bf",
+              "name": "The provided plan id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90a98c47-6ed7-4624-9187-a56b1720bd04",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73e6e2f1-ac02-4bde-bba4-a27d6e1d82b2",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bd05001-4247-4cc6-80ad-b44aa17edbe7",
+          "name": "Delete a plan",
+          "request": {
+            "name": "Delete a plan",
+            "description": {
+              "content": "Delete a plan and related routes. This action cannot be undone and will delete all the releated routes as well, even if the plan is not in a writable state. As this action is not atomic, it is possible that only partial deletion occurs if the endpoint errors out with a 500. In that case it is recommended to retry the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae789e23-8add-441f-b8c4-ac44d0223ae0",
+              "name": "Plan deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ace29dd0-4e28-49ad-a469-82e5595a6e7c",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9196883c-eb41-47b9-8d93-3860b6d70a8a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4575d99c-6b9c-402e-b0d3-c4c9a4052187",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f20961ed-59dc-4879-88b9-6bb0c42b8999",
+              "name": "The provided plan id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bde17c2c-8b70-4a41-97a9-fd03b6029d20",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0593ee81-310c-4397-a3e1-3ed76379e8a2",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09bdf606-3988-4485-9920-d1f907c3b73c",
+          "name": "Optimize a plan",
+          "request": {
+            "name": "Optimize a plan",
+            "description": {
+              "content": "Optimize a plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                "{{planId}}:optimize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "749d6f7e-bf3c-43b0-8c26-7b0bd2a76df4",
+              "name": "The created plan_optimization operation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"operations/o1Q9w7EDgvxqpOe0GZmu6CasPCQxRX6LTnCU3paFnlp_\",\n  \"type\": \"plan_optimization\",\n  \"done\": true,\n  \"metadata\": {\n    \"canceled\": false,\n    \"startedAt\": 541.7403439506107,\n    \"finishedAt\": 3558.1316177381627,\n    \"startedBy\": \"dispatcher\",\n    \"targetPlanId\": \"plans/RtQNJlB5LjTP5P-VUTeuWreugABFQ\"\n  },\n  \"result\": {\n    \"numOptimizedStops\": 7774.102698428854,\n    \"skippedStops\": [\n      {\n        \"id\": \"plans/vp5POqFG5mLi6AHFlsAnvffxHFLFz6Eyuj5WVwW2M3B4/stops/DGnu8loCJcBllkN7-yShvwjjqMe3_wv6PHecA2GpI\",\n        \"reason\": \"impossible_time_window\"\n      },\n      {\n        \"id\": \"plans/_72B/stops/BjK\",\n        \"reason\": \"impossible_time_window\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c79944ec-dc24-4651-84c0-9cd7c090691f",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49d5bbde-dbd0-401d-84a4-9ad43bfa90a6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e93ca3e-bfa9-46dc-81b8-e4e17eef76a2",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d5b4937-9393-4bc9-881d-566054af0602",
+              "name": "The provided plan id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e99b9521-1eed-4395-98a0-2f62e0256255",
+              "name": "The plan is not writable, an optimization is already in progress, there are no drivers, or there is a problem with the depot.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan already optimized\",\n  \"code\": \"plan_already_optimized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "152bbad7-3af3-4b03-a495-bb52654e7fc8",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f449f05f-150e-47ae-b504-c82eb08092ec",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:optimize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "659f4e29-cf0b-461d-a5b1-4dcabc19eac1",
+          "name": "Distribute a plan",
+          "request": {
+            "name": "Distribute a plan",
+            "description": {
+              "content": "Distribute a plan to its drivers. This will send then their routes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                "{{planId}}:distribute"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ee899fe-cdd2-4cf0-a5ec-24bb29f7f895",
+              "name": "The distributed plan",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"plans/WXIw0-e\",\n  \"title\": \"string\",\n  \"starts\": {\n    \"day\": 4,\n    \"month\": 11,\n    \"year\": 2760462513410369\n  },\n  \"depot\": \"depots/8ggcqgnG49mxYI5zBN8t4Q8sATRnU3z\",\n  \"distributed\": false,\n  \"writable\": false,\n  \"optimization\": \"optimized\",\n  \"drivers\": [\n    {\n      \"id\": \"drivers/Rc85sB36W42rbLCV\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/escHQFcj6rORHHDbE-mG\",\n        \"depots/Dkj-dy2uX\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": -8281938429571559,\n          \"minute\": 6855169614250617\n        },\n        \"endTime\": {\n          \"hour\": 6563613223493111,\n          \"minute\": 5243476915752219\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 75.65546841393987,\n          \"longitude\": -96.39231684935814,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 4.598100082484407,\n          \"longitude\": 134.51195318536566,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": 3295546933173181,\n        \"drivingSpeed\": \"slower\",\n        \"deliverySpeed\": \"average\",\n        \"vehicleType\": \"electric_cargo_bike\"\n      }\n    },\n    {\n      \"id\": \"drivers/L792R-\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/oECVjR7Z4NnJ6Zd0_7B0iLmNan\",\n        \"depots/8rAhHJMhPe8SNyX_GDKqUQ5cFPq1V-Hkv7IJCUP\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": 1980374766086877,\n          \"minute\": -4540477214284996\n        },\n        \"endTime\": {\n          \"hour\": 6141113524953319,\n          \"minute\": -4389406396801204\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 29.65120228099414,\n          \"longitude\": 110.8802497446215,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -17.87072156156232,\n          \"longitude\": -72.5416773896834,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": 3634180158897299,\n        \"drivingSpeed\": \"average\",\n        \"deliverySpeed\": \"slower\",\n        \"vehicleType\": \"car\"\n      }\n    }\n  ],\n  \"routes\": [\n    \"routes/ECZuh7vJUGF\",\n    \"routes/RvbKQcQlCtvzeQLoV2RJZ2urx6aM4b2uup\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cdac91e-6783-49ed-b386-333d92640aaa",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d19b264b-1719-48e0-b553-9915ecf7ab66",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "178caa73-464e-4d2f-b304-f99807898690",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7822a321-909d-4acf-9a10-2e625e1aa08b",
+              "name": "The provided plan id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d46a3e47-49dd-44dd-bab3-7918ba69dde0",
+              "name": "The plan is not yet optimized, is optimizing, was already distributed or was modified whilst processing request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan already distributed\",\n  \"code\": \"plan_already_distributed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abd19aee-096b-4ad6-a0d7-8f19058cd549",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fc3cb1c-e2e8-4799-9a0b-9ea5e74577ee",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    "{{planId}}:distribute"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d9e1017-f63e-48e3-a09c-dc0560ca5e27",
+          "name": "List plan stops",
+          "request": {
+            "name": "List plan stops",
+            "description": {},
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "stops"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The page token, if any."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxPageSize",
+                  "value": "10",
+                  "description": "The max page size."
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo`"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f4df970-a0e2-47d9-8ef6-b7e7fbe1b858",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stops\": [\n    {\n      \"id\": \"plans/Vw0ken_1jMFQoVhhPhozxX37mRd2hMmgVPl6/stops/wuMXdThMag19qc-uH_7sXRoIpARa\",\n      \"address\": {\n        \"address\": \"string\",\n        \"addressLineOne\": \"string\",\n        \"addressLineTwo\": \"string\",\n        \"latitude\": -69.20734042493511,\n        \"longitude\": 143.21923595904838,\n        \"placeId\": \"string\",\n        \"placeTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"barcodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowedDrivers\": [\n        \"drivers/6\",\n        \"drivers/nUhStezymrq\"\n      ],\n      \"estimatedTravelDuration\": 2359.1858719635684,\n      \"estimatedTravelDistance\": 1064.5753970152039,\n      \"notes\": \"string\",\n      \"packageCount\": 7439.506136053662,\n      \"weight\": {\n        \"amount\": 1896.5737383419846,\n        \"unit\": \"metric-ton\"\n      },\n      \"type\": \"end\",\n      \"packageLabel\": \"string\",\n      \"stopPosition\": 1810.1002670549638,\n      \"trackingLink\": \"string\",\n      \"webAppLink\": \"string\",\n      \"orderInfo\": {\n        \"products\": [\n          \"string\",\n          \"string\"\n        ],\n        \"invoiceNumber\": \"string\",\n        \"sellerName\": \"string\",\n        \"sellerOrderId\": \"string\",\n        \"sellerWebsite\": \"string\"\n      },\n      \"placeInVehicle\": {\n        \"x\": \"left\",\n        \"y\": \"front\",\n        \"z\": \"shelf\"\n      },\n      \"recipient\": {\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"externalId\": \"string\"\n      },\n      \"deliveryInfo\": {\n        \"attempted\": false,\n        \"attemptedAt\": 6850.719495472901,\n        \"timeAtStopInfo\": {\n          \"status\": \"available\",\n          \"value\": {\n            \"arrivedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"departedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isEstimated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"attemptedLocation\": {\n          \"latitude\": 736.0771197138316,\n          \"longitude\": 479.46105055328036\n        },\n        \"driverProvidedInternalNotes\": \"string\",\n        \"driverProvidedRecipientNotes\": \"string\",\n        \"photoUrls\": [\n          \"string\",\n          \"string\"\n        ],\n        \"recipientProvidedNotes\": \"string\",\n        \"signatureUrl\": \"string\",\n        \"signeeName\": \"string\",\n        \"succeeded\": true,\n        \"state\": \"failed_no_parking\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": 5518541629766000,\n        \"currency\": \"string\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": true\n      },\n      \"plan\": \"plans/T9kL4z_4\",\n      \"route\": {\n        \"id\": \"routes/jiZ4b\",\n        \"title\": \"string\",\n        \"stopCount\": 6613.233428599753,\n        \"driver\": \"drivers/FI2iim8RFhk-1ApOLXVgAO1k6C4D8HR8l26viQrmUEC\",\n        \"state\": {\n          \"completed\": true,\n          \"completedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"distributed\": false,\n          \"distributedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"notifiedRecipients\": true,\n          \"notifiedRecipientsAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"started\": false,\n          \"startedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"plan\": \"plans/ife-e2eq41_s3eqQrTp1sl28XNd2PG\"\n      },\n      \"eta\": {\n        \"status\": \"available\",\n        \"value\": {\n          \"estimatedArrivalAt\": 6855.994137613775,\n          \"estimatedLatestArrivalAt\": 7066.03002511808,\n          \"estimatedEarliestArrivalAt\": 1761.2025653425821\n        }\n      },\n      \"timing\": {\n        \"estimatedAttemptDuration\": 255.03463182072528,\n        \"earliestAttemptTime\": {\n          \"hour\": -8872734817961717,\n          \"minute\": 2156603745091255\n        },\n        \"latestAttemptTime\": {\n          \"hour\": -7748573454156179,\n          \"minute\": -8745327430660563\n        }\n      },\n      \"customProperties\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"clientId\": \"string\",\n      \"serviceInfo\": {\n        \"status\": \"available\",\n        \"value\": {\n          \"identifier\": \"string\",\n          \"name\": \"string\",\n          \"slaStartsAt\": 7655.614002833955,\n          \"slaDueDate\": {\n            \"day\": 8,\n            \"month\": 6,\n            \"year\": 2040\n          },\n          \"slaDueTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deliveryHorizon\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 5017.057325197998\n          },\n          \"price\": {\n            \"value\": 3459.6307337176067,\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hasPaymentOnDelivery\": true,\n          \"definedAt\": 6370.706597678189\n        }\n      },\n      \"activity\": \"delivery\",\n      \"optimizationOrder\": \"default\"\n    },\n    {\n      \"id\": \"plans/TwQNek/stops/9ii1yQm4oiMCtkmvk4fRTZGirD2grhlVo\",\n      \"address\": {\n        \"address\": \"string\",\n        \"addressLineOne\": \"string\",\n        \"addressLineTwo\": \"string\",\n        \"latitude\": 6.205969396485429,\n        \"longitude\": -121.6707994125785,\n        \"placeId\": \"string\",\n        \"placeTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"barcodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowedDrivers\": [\n        \"drivers/3ucKGKugz-1TS2omLgQwy_\",\n        \"drivers/6n\"\n      ],\n      \"estimatedTravelDuration\": 2487.822340587669,\n      \"estimatedTravelDistance\": 1384.2694057201998,\n      \"notes\": \"string\",\n      \"packageCount\": 5317.0613644756095,\n      \"weight\": {\n        \"amount\": 2619.259893860879,\n        \"unit\": \"metric-ton\"\n      },\n      \"type\": \"end\",\n      \"packageLabel\": \"string\",\n      \"stopPosition\": 9967.027113225293,\n      \"trackingLink\": \"string\",\n      \"webAppLink\": \"string\",\n      \"orderInfo\": {\n        \"products\": [\n          \"string\",\n          \"string\"\n        ],\n        \"invoiceNumber\": \"string\",\n        \"sellerName\": \"string\",\n        \"sellerOrderId\": \"string\",\n        \"sellerWebsite\": \"string\"\n      },\n      \"placeInVehicle\": {\n        \"x\": \"right\",\n        \"y\": \"back\",\n        \"z\": \"floor\"\n      },\n      \"recipient\": {\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"externalId\": \"string\"\n      },\n      \"deliveryInfo\": {\n        \"attempted\": false,\n        \"attemptedAt\": 2924.5511609862174,\n        \"timeAtStopInfo\": {\n          \"status\": \"available\",\n          \"value\": {\n            \"arrivedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"departedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"isEstimated\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"attemptedLocation\": {\n          \"latitude\": 3092.561018832066,\n          \"longitude\": 3098.4127352658375\n        },\n        \"driverProvidedInternalNotes\": \"string\",\n        \"driverProvidedRecipientNotes\": \"string\",\n        \"photoUrls\": [\n          \"string\",\n          \"string\"\n        ],\n        \"recipientProvidedNotes\": \"string\",\n        \"signatureUrl\": \"string\",\n        \"signeeName\": \"string\",\n        \"succeeded\": false,\n        \"state\": \"failed_not_home\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": 2842730451359848,\n        \"currency\": \"string\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": false\n      },\n      \"plan\": \"plans/MIm2wLChHMl7bb0YuoiW\",\n      \"route\": {\n        \"id\": \"routes/_ub\",\n        \"title\": \"string\",\n        \"stopCount\": 3151.057659855956,\n        \"driver\": \"drivers/1GsbV4ns32ZM1a-FhjVPqOwwQjrYV9n6EGtD99K-uZ-\",\n        \"state\": {\n          \"completed\": false,\n          \"completedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"distributed\": true,\n          \"distributedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"notifiedRecipients\": true,\n          \"notifiedRecipientsAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"started\": false,\n          \"startedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"plan\": \"plans/d8ViN9ZvwUicoCcLr2Y53DqTxfVtmhkOewnZ1\"\n      },\n      \"eta\": {\n        \"status\": \"available\",\n        \"value\": {\n          \"estimatedArrivalAt\": 3887.918081108539,\n          \"estimatedLatestArrivalAt\": 7119.528481997025,\n          \"estimatedEarliestArrivalAt\": 6085.327549069845\n        }\n      },\n      \"timing\": {\n        \"estimatedAttemptDuration\": 8945.358709361946,\n        \"earliestAttemptTime\": {\n          \"hour\": 7802634082353411,\n          \"minute\": 3349468575645517\n        },\n        \"latestAttemptTime\": {\n          \"hour\": -6034826539802794,\n          \"minute\": 6260537870291077\n        }\n      },\n      \"customProperties\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"clientId\": \"string\",\n      \"serviceInfo\": {\n        \"status\": \"available\",\n        \"value\": {\n          \"identifier\": \"string\",\n          \"name\": \"string\",\n          \"slaStartsAt\": 312.71067217194195,\n          \"slaDueDate\": {\n            \"day\": 7,\n            \"month\": 6,\n            \"year\": 2090\n          },\n          \"slaDueTime\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"deliveryHorizon\": {\n            \"unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": 4399.491552194966\n          },\n          \"price\": {\n            \"value\": 5637.588180335574,\n            \"currency\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"hasPaymentOnDelivery\": true,\n          \"definedAt\": 1227.1279823233606\n        }\n      },\n      \"activity\": \"delivery\",\n      \"optimizationOrder\": \"default\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b75d9d0-32c9-461a-8902-f2ad0e272b24",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97cc84b9-d2bd-47fe-a885-41f9121f48cb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b811f1c-3101-46f6-aa86-24bf40451b7d",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baa3ade0-d2c8-4eaa-89ff-7463ed3120f2",
+              "name": "The provided plan id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3baefcb-909e-49c4-92b1-e6258e03d325",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61ac92fb-5a19-489e-b318-f6247c73cd6c",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "10"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The plan id",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "planId"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "650a0652-0e97-44d4-a545-020d038b6786",
+    "name": "Spoke Depots Plans API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Plans API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/plans",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token, if any."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The max page size."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of plans. The filter params are passed like this: `?filter[title]=foo` or like this: `?filter.title=foo`"
+              }
+            ]
+          },
+          "docs": "List plans"
+        },
+        {
+          "info": {
+            "name": "Create a new plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new plan"
+        },
+        {
+          "info": {
+            "name": "Retrieve a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "Retrieve a plan"
+        },
+        {
+          "info": {
+            "name": "Update an existing plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing plan. If the plan `writable` property is false, prefer using the [Live Plans API](#tag/Live-Plans)."
+        },
+        {
+          "info": {
+            "name": "Delete a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "Delete a plan and related routes. This action cannot be undone and will delete all the releated routes as well, even if the plan is not in a writable state. As this action is not atomic, it is possible that only partial deletion occurs if the endpoint errors out with a 500. In that case it is recommended to retry the request."
+        },
+        {
+          "info": {
+            "name": "Optimize a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId:optimize",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "Optimize a plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result."
+        },
+        {
+          "info": {
+            "name": "Distribute a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId:distribute",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "Distribute a plan to its drivers. This will send then their routes."
+        },
+        {
+          "info": {
+            "name": "List plan stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token, if any."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The max page size."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo`"
+              },
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "List plan stops"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Unassigned Stops API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Unassigned Stops",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve an unassigned stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/unassignedStops/:unassignedStopId",
+            "params": [
+              {
+                "name": "unassignedStopId",
+                "value": "",
+                "type": "path",
+                "description": "The unassigned stop id"
+              }
+            ]
+          },
+          "docs": "Retrieve an unassigned stop"
+        },
+        {
+          "info": {
+            "name": "Update an existing unassigned stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spoke.com/public/v0.2b/unassignedStops/:unassignedStopId",
+            "params": [
+              {
+                "name": "unassignedStopId",
+                "value": "",
+                "type": "path",
+                "description": "The unassigned stop id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Does not support updating a unassigned stop's location, nor the `circuitClientId`. To do so, delete the unassignedStop and create a new one."
+        },
+        {
+          "info": {
+            "name": "Delete an unassigned stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spoke.com/public/v0.2b/unassignedStops/:unassignedStopId",
+            "params": [
+              {
+                "name": "unassignedStopId",
+                "value": "",
+                "type": "path",
+                "description": "The unassigned stop id"
+              }
+            ]
+          },
+          "docs": "Delete an unassigned stop. This action cannot be undone and will delete all the data associated with the unassigned stop."
+        },
+        {
+          "info": {
+            "name": "List unassigned stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spoke.com/public/v0.2b/unassignedStops",
+            "params": [
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "The page token to continue from."
+              },
+              {
+                "name": "maxPageSize",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of unassigned stops to return per page."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "The filter to apply to the list of unassigned stops."
+              }
+            ]
+          },
+          "docs": "List unassigned stops"
+        },
+        {
+          "info": {
+            "name": "Create a new unassigned stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/unassignedStops",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new unassigned stop with the given data."
+        },
+        {
+          "info": {
+            "name": "Batch import unassigned stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/unassignedStops:import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch import unassigned stops. The request body must contain an array of unassigned stops to import. Note that the `depot` is the same for all unassigned stops in a same request. This is because the depot is used as a biasing location for the unassigned stops, so that the geocoding results are more accurate for a same region."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

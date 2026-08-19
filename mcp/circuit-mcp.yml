@@ -165,3 +165,9 @@ tools:
 - name: searchStops
   description: Stop Search
   source_operation: openapi/circuit-v1-openapi-original.json#searchStops
+deployment:
+  mode: none
+  verified: derived
+  tools: 52
+  checked: '2026-08-12'
+  source: catalog MCP census

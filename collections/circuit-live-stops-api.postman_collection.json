@@ -1,0 +1,2540 @@
+{
+  "item": [
+    {
+      "id": "78477c5b-253b-4aa3-9adc-5ff22a413395",
+      "name": "Live Stops",
+      "description": {
+        "content": "Endpoints to operate on [Stop](/docs/models/stop) resources when the plan is already optimized and therefore not writable.\n\nAll the endpoints return the field `pending`. This field indicates whether the\nchange has been applied to the plan or if it's pending a new optimization and distribution. On `pending = true`,\nyou must use the [re-optimize](#tag/Live-Plans/operation/reoptimizePlan) and [re-distribute](#tag/Live-Plans/operation/redistributePlan)\nendpoints to apply the changes to the plan.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b092d9d8-3e55-4602-a165-edd4be6fd353",
+          "name": "Create a new stop",
+          "request": {
+            "name": "Create a new stop",
+            "description": {
+              "content": "Create a new stop with the given data on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. Prefer using the [batch import endpoint](#tag/Stops/operation/importLiveStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "stops:liveCreate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d80e5e1-9bd0-479d-8565-678ddeabeafb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pending\": false,\n  \"stop\": {\n    \"id\": \"plans/l5ZMApVilVuE1Ydsc6HjeGwEvo8X6FaL/stops/YZ3FR9b7t7Sgwq-gg85jVtS3zmxCRowIUtBfWmpS7\",\n    \"address\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 7.337007403188068,\n      \"longitude\": -172.43623445577413,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"barcodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"driverIdentifier\": \"string\",\n    \"allowedDriversIdentifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"estimatedTravelDuration\": 9660.204130696551,\n    \"estimatedTravelDistance\": 2712.663747719797,\n    \"notes\": \"string\",\n    \"packageCount\": 6896.37207193617,\n    \"weight\": {\n      \"amount\": 4666.543234606343,\n      \"unit\": \"kilogram\"\n    },\n    \"type\": \"stop\",\n    \"packageLabel\": \"string\",\n    \"stopPosition\": 5570.58316658857,\n    \"trackingLink\": \"string\",\n    \"webAppLink\": \"string\",\n    \"orderInfo\": {\n      \"products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sellerName\": \"string\",\n      \"sellerOrderId\": \"string\",\n      \"sellerWebsite\": \"string\"\n    },\n    \"placeInVehicle\": {\n      \"x\": \"left\",\n      \"y\": \"front\",\n      \"z\": \"floor\"\n    },\n    \"recipient\": {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"deliveryInfo\": {\n      \"attempted\": true,\n      \"attemptedAt\": 5432.149125667924,\n      \"arrivedAt\": 9791.104249523374,\n      \"timeAtStopInfo\": {\n        \"arrivedAt\": 3448.7015354884797,\n        \"departedAt\": 570.8554869788951,\n        \"isEstimated\": false\n      },\n      \"timeAtStopInfoNullReason\": {\n        \"reason\": \"subscription_not_supported\",\n        \"message\": \"string\",\n        \"url\": \"string\"\n      },\n      \"attemptedLocation\": {\n        \"latitude\": 4000.4807575984137,\n        \"longitude\": 9812.113805103214\n      },\n      \"driverProvidedInternalNotes\": \"string\",\n      \"driverProvidedRecipientNotes\": \"string\",\n      \"photoUrls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"recipientProvidedNotes\": \"string\",\n      \"signatureUrl\": \"string\",\n      \"signeeName\": \"string\",\n      \"succeeded\": false,\n      \"state\": \"delivered_to_safe_place\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": 328910582313443,\n      \"currency\": \"string\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": false\n    },\n    \"plan\": \"plans/cO96Zrh-9nS\",\n    \"route\": {\n      \"id\": \"routes/Zw35qvBJpayfBVEbPsZBYvpOLUnRJnL\",\n      \"title\": \"string\",\n      \"stopCount\": 5895.054222753697,\n      \"driver\": \"drivers/4xR55cm8VzCtytgB5GHc8A6YVCPWZlod3ar\",\n      \"state\": {\n        \"completed\": true,\n        \"completedAt\": 3801.757719678497,\n        \"distributed\": false,\n        \"distributedAt\": 9314.780583570528,\n        \"notifiedRecipients\": false,\n        \"notifiedRecipientsAt\": 5117.074737408237,\n        \"started\": true,\n        \"startedAt\": 3330.189798615213\n      },\n      \"plan\": \"plans/w-BEohNrXHkhmIgGKS5KDBzNgq8I2gq5FjGDn\"\n    },\n    \"eta\": {\n      \"estimatedArrivalAt\": 2227.1977271533506,\n      \"estimatedLatestArrivalAt\": 6506.886577422631,\n      \"estimatedEarliestArrivalAt\": 4331.801233574411\n    },\n    \"etaNullReason\": {\n      \"reason\": \"subscription_not_supported\",\n      \"message\": \"string\",\n      \"url\": \"string\"\n    },\n    \"timing\": {\n      \"estimatedAttemptDuration\": 4415.864831154475,\n      \"earliestAttemptTime\": {\n        \"hour\": 5206735419394605,\n        \"minute\": 1082487820632561\n      },\n      \"latestAttemptTime\": {\n        \"hour\": 431313892236239,\n        \"minute\": -2606316935620680\n      }\n    },\n    \"customProperties\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"circuitClientId\": \"string\",\n    \"activity\": \"delivery\",\n    \"optimizationOrder\": \"default\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e31b49f7-c7a6-4c97-be42-5c883f4cce30",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d0df6e8-9e4d-435f-b71e-a4ef0ed5fba3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "213dcae1-e02e-4f23-8c73-9797604308f3",
+              "name": "The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ba8f63a-3995-4cb0-8c9d-5ba261bcec77",
+              "name": "The plan or driver was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2b00919-5218-49b8-a6a7-d7c1d1dda044",
+              "name": "The plan's optimization is in progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan optimization in progress\",\n  \"code\": \"plan_optimization_in_progress\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1856d58-0815-421e-8e59-09c4d15ba011",
+              "name": "Failed to create stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Failed to create stop. Some related resources were deleted while the request was being processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e2dce63-2624-47b1-b469-e0237ca837be",
+              "name": "Failed to create stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fd9755f-dff4-4515-89d5-1baddde53798",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a282a82-77fe-4e4d-92f8-00d564f60c3a",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveCreate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3d7f4c3d-65a6-47eb-8dc3-0ffe4ef2895a",
+          "name": "Update an existing stop",
+          "request": {
+            "name": "Update an existing stop",
+            "description": {
+              "content": "Update a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. It does not support updating a stop's location. To do so, delete the stop and create a new one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "stops",
+                "{{stopId}}:liveUpdate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b86ff9c-e9df-47b7-856d-290829739da7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pending\": false,\n  \"stop\": {\n    \"id\": \"plans/l5ZMApVilVuE1Ydsc6HjeGwEvo8X6FaL/stops/YZ3FR9b7t7Sgwq-gg85jVtS3zmxCRowIUtBfWmpS7\",\n    \"address\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 7.337007403188068,\n      \"longitude\": -172.43623445577413,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"barcodes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"driverIdentifier\": \"string\",\n    \"allowedDriversIdentifiers\": [\n      \"string\",\n      \"string\"\n    ],\n    \"estimatedTravelDuration\": 9660.204130696551,\n    \"estimatedTravelDistance\": 2712.663747719797,\n    \"notes\": \"string\",\n    \"packageCount\": 6896.37207193617,\n    \"weight\": {\n      \"amount\": 4666.543234606343,\n      \"unit\": \"kilogram\"\n    },\n    \"type\": \"stop\",\n    \"packageLabel\": \"string\",\n    \"stopPosition\": 5570.58316658857,\n    \"trackingLink\": \"string\",\n    \"webAppLink\": \"string\",\n    \"orderInfo\": {\n      \"products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"sellerName\": \"string\",\n      \"sellerOrderId\": \"string\",\n      \"sellerWebsite\": \"string\"\n    },\n    \"placeInVehicle\": {\n      \"x\": \"left\",\n      \"y\": \"front\",\n      \"z\": \"floor\"\n    },\n    \"recipient\": {\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"externalId\": \"string\"\n    },\n    \"deliveryInfo\": {\n      \"attempted\": true,\n      \"attemptedAt\": 5432.149125667924,\n      \"arrivedAt\": 9791.104249523374,\n      \"timeAtStopInfo\": {\n        \"arrivedAt\": 3448.7015354884797,\n        \"departedAt\": 570.8554869788951,\n        \"isEstimated\": false\n      },\n      \"timeAtStopInfoNullReason\": {\n        \"reason\": \"subscription_not_supported\",\n        \"message\": \"string\",\n        \"url\": \"string\"\n      },\n      \"attemptedLocation\": {\n        \"latitude\": 4000.4807575984137,\n        \"longitude\": 9812.113805103214\n      },\n      \"driverProvidedInternalNotes\": \"string\",\n      \"driverProvidedRecipientNotes\": \"string\",\n      \"photoUrls\": [\n        \"string\",\n        \"string\"\n      ],\n      \"recipientProvidedNotes\": \"string\",\n      \"signatureUrl\": \"string\",\n      \"signeeName\": \"string\",\n      \"succeeded\": false,\n      \"state\": \"delivered_to_safe_place\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": 328910582313443,\n      \"currency\": \"string\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": false\n    },\n    \"plan\": \"plans/cO96Zrh-9nS\",\n    \"route\": {\n      \"id\": \"routes/Zw35qvBJpayfBVEbPsZBYvpOLUnRJnL\",\n      \"title\": \"string\",\n      \"stopCount\": 5895.054222753697,\n      \"driver\": \"drivers/4xR55cm8VzCtytgB5GHc8A6YVCPWZlod3ar\",\n      \"state\": {\n        \"completed\": true,\n        \"completedAt\": 3801.757719678497,\n        \"distributed\": false,\n        \"distributedAt\": 9314.780583570528,\n        \"notifiedRecipients\": false,\n        \"notifiedRecipientsAt\": 5117.074737408237,\n        \"started\": true,\n        \"startedAt\": 3330.189798615213\n      },\n      \"plan\": \"plans/w-BEohNrXHkhmIgGKS5KDBzNgq8I2gq5FjGDn\"\n    },\n    \"eta\": {\n      \"estimatedArrivalAt\": 2227.1977271533506,\n      \"estimatedLatestArrivalAt\": 6506.886577422631,\n      \"estimatedEarliestArrivalAt\": 4331.801233574411\n    },\n    \"etaNullReason\": {\n      \"reason\": \"subscription_not_supported\",\n      \"message\": \"string\",\n      \"url\": \"string\"\n    },\n    \"timing\": {\n      \"estimatedAttemptDuration\": 4415.864831154475,\n      \"earliestAttemptTime\": {\n        \"hour\": 5206735419394605,\n        \"minute\": 1082487820632561\n      },\n      \"latestAttemptTime\": {\n        \"hour\": 431313892236239,\n        \"minute\": -2606316935620680\n      }\n    },\n    \"customProperties\": {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    \"circuitClientId\": \"string\",\n    \"activity\": \"delivery\",\n    \"optimizationOrder\": \"default\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a873c6f5-af5e-4e03-b5ba-31b3cb6e13b4",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6d12b02-c26a-44ac-a078-7d5f88763919",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83489fb1-5c1f-43e9-bae5-026ee3bd8047",
+              "name": "The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "143b067b-2d5e-49d7-8100-04655dded425",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4894c070-826c-4d07-a762-774d799c867d",
+              "name": "The plan's optimization is in progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan optimization in progress\",\n  \"code\": \"plan_optimization_in_progress\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6dcff3f2-991b-4e25-bec9-0b26b2703d31",
+              "name": "The stop is unprocessable.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Stop cannot be edited\",\n  \"code\": \"stop_not_editable\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fb41519-8b8f-4f05-b8d4-44e0a8c692bb",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8625fdaa-1b98-437d-b89e-1a45065e26ce",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveUpdate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"driver\": \"<string>\",\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9dfefeb-894e-49f6-846e-717fb0f13871",
+          "name": "Batch import stops",
+          "request": {
+            "name": "Batch import stops",
+            "description": {
+              "content": "Import stops to live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "stops:liveImport"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfcbfcde-de50-4bc1-bc9c-94543875e12e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": [\n    \"plans/9GRHIJtFACnHSNTySX8r8Ou1Li9xldP60s6tvjQEfq822/stops/uhy8yZF46diCpW8w57WXALuW4ZR72RovI\",\n    \"plans/5VPlRqQtcFuS_e14WPUu-Bwv4tWezp/stops/5fzz4j4OK3k7w2WHDaxMzyzJacS1HraERCFIp2pAE0Ym_v6RLk\"\n  ],\n  \"failed\": [\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"stop\": {\n        \"address\": {\n          \"addressName\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"city\": \"strin\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 22.499481048093372,\n          \"longitude\": 58.46000509787146\n        },\n        \"recipient\": {\n          \"externalId\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"name\": \"string\"\n        }\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"stop\": {\n        \"address\": {\n          \"addressName\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"s\",\n          \"latitude\": -18.469377379916253,\n          \"longitude\": -55.241135273312096\n        },\n        \"recipient\": {\n          \"externalId\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"name\": \"string\"\n        }\n      }\n    }\n  ],\n  \"pending\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa08aa31-2a7d-45b0-a98c-9d41d6e097a5",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "893bb9f6-38b9-49a7-a8cd-ca9c7867e5c2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "646ffd62-6f7d-4e63-b550-adf2ecccabfa",
+              "name": "The plan is no longer accessible or one or more stops contain fields that require upgrading your team subscription/settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "213ae6c8-51f0-4a7c-ac2a-47083748127b",
+              "name": "A plan or a driver was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdd45f25-2ecf-48db-a6eb-7c0447f94bb1",
+              "name": "The plan's optimization is in progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan optimization in progress\",\n  \"code\": \"plan_optimization_in_progress\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77300094-c910-40c6-8052-164e3f4cdee6",
+              "name": "Failed to create stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Failed to create stop. Some related resources were deleted while the request was being processed.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab0d098e-7b7d-49e8-be31-d4ebeabd0d6c",
+              "name": "Failed to create stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6c98edb-94df-4fe1-8986-201bdbed0c71",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c8af42e-92ec-45bb-9a7a-2ab99d43fc81",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops:liveImport"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"address\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"timing\": {\n      \"earliestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"latestAttemptTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"estimatedAttemptDuration\": \"<integer>\"\n    },\n    \"recipient\": {\n      \"externalId\": \"<string>\",\n      \"email\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"orderInfo\": {\n      \"products\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sellerOrderId\": \"<string>\",\n      \"sellerName\": \"<string>\",\n      \"sellerWebsite\": \"<string>\"\n    },\n    \"paymentOnDelivery\": {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\"\n    },\n    \"proofOfAttemptRequirements\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"driver\": \"<string>\",\n    \"allowedDrivers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"activity\": \"<string>\",\n    \"optimizationOrder\": \"<string>\",\n    \"packageCount\": \"<number>\",\n    \"weight\": {\n      \"amount\": \"<number>\",\n      \"unit\": \"<string>\"\n    },\n    \"notes\": \"<string>\",\n    \"circuitClientId\": \"<string>\",\n    \"barcodes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customProperties\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f879941f-d8ae-4ad2-9f82-6a7c469794c9",
+          "name": "Delete a stop",
+          "request": {
+            "name": "Delete a stop",
+            "description": {
+              "content": "Delete a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "plans",
+                ":planId",
+                "stops",
+                "{{stopId}}:liveDelete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "planId",
+                  "description": "(Required) The plan id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95dce9e7-5a42-4790-a165-f95f7bad92b7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pending\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb629bdf-7474-4d13-8a04-9e2c000c78ed",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14800b1b-5935-418e-b1d5-49e345a0fbaa",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0540f0c-e2ed-4706-9004-0f7717adfa02",
+              "name": "Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.\",\n  \"code\": \"plan_inaccessible\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62f5b8c3-189c-408a-be37-318aa0fa6816",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8477f78b-0c85-4745-b02b-0199ce28a716",
+              "name": "The plan's optimization is in progress.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Plan optimization in progress\",\n  \"code\": \"plan_optimization_in_progress\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12168ef8-f4c5-4255-b875-f734bae17c52",
+              "name": "Failed to delete stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Stop cannot be removed because it is already complete\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cb3e64b-89ce-4cf5-bce7-540c3e376d85",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "201d1948-9d5c-43ea-885f-e5099b372a32",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "plans",
+                    ":planId",
+                    "stops",
+                    "{{stopId}}:liveDelete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "planId",
+                      "description": "(Required) The plan id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The stop id",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "stopId"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "23df81f4-7a8a-449d-a895-fe16ed585189",
+    "name": "Spoke Depots Live Stops API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

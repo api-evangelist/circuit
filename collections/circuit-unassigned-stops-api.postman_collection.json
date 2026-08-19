@@ -1,0 +1,2417 @@
+{
+  "item": [
+    {
+      "id": "92c0aa9c-f14a-4d78-b389-0ee615882ca7",
+      "name": "Unassigned Stops",
+      "description": {
+        "content": "Endpoints to operate on [Unassigned Stop](/docs/models/unassignedStop) resources.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed1784a4-9b33-4237-a27e-a27602d1c9b4",
+          "name": "Retrieve an unassigned stop",
+          "request": {
+            "name": "Retrieve an unassigned stop",
+            "description": {
+              "content": "Retrieve an unassigned stop",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unassignedStops",
+                ":unassignedStopId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "unassignedStopId",
+                  "description": "(Required) The unassigned stop id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "854b28c5-fb47-4323-9f84-16a911aef6f2",
+              "name": "The requested unassigned stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unassignedStops/DfPUi0WssrJ6cfnvp9jGc4w16\",\n  \"depot\": \"depots/VFOTfRHIghsl\",\n  \"address\": {\n    \"address\": \"string\",\n    \"addressLineOne\": \"string\",\n    \"addressLineTwo\": \"string\",\n    \"latitude\": 78.08260912689346,\n    \"longitude\": -21.30011461504762,\n    \"placeId\": \"string\",\n    \"placeTypes\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"barcodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedDriversIdentifiers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"notes\": \"string\",\n  \"packageCount\": 6257.142271425799,\n  \"weight\": {\n    \"amount\": 8839.773909919759,\n    \"unit\": \"kilogram\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sellerName\": \"string\",\n    \"sellerOrderId\": \"string\",\n    \"sellerWebsite\": \"string\"\n  },\n  \"recipient\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"externalId\": \"string\"\n  },\n  \"trackingLink\": \"string\",\n  \"timing\": {\n    \"estimatedAttemptDuration\": 1033.5530845057162,\n    \"earliestAttemptTime\": {\n      \"hour\": -7054802272702799,\n      \"minute\": -5495961944821738\n    },\n    \"latestAttemptTime\": {\n      \"hour\": 4154351362818363,\n      \"minute\": -6219315540039538\n    }\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": 4547920704554901,\n    \"currency\": \"string\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": false\n  },\n  \"customProperties\": {\n    \"key_0\": \"string\"\n  },\n  \"circuitClientId\": \"string\",\n  \"activity\": \"delivery\",\n  \"optimizationOrder\": \"default\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97b2c4bf-253a-46c9-a06c-f8c9240f5fdf",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f6b9786-7a62-48b9-a266-9a2ea29d958a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6e2eb99-6017-4b67-aeab-8798314fa94e",
+              "name": "The provided unassigned stop id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unassigned stop not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c983d016-e532-4848-aadc-f87e7e50458d",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "120f4547-097e-41d1-ae9f-e1156328db1a",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87b08a04-f471-4e3a-a2fc-f6ad7a54b4f8",
+          "name": "Delete an unassigned stop",
+          "request": {
+            "name": "Delete an unassigned stop",
+            "description": {
+              "content": "Delete an unassigned stop. This action cannot be undone and will delete all the data associated with the unassigned stop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unassignedStops",
+                ":unassignedStopId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "unassignedStopId",
+                  "description": "(Required) The unassigned stop id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d93558b3-f41b-4b71-9894-858d41439d82",
+              "name": "Unassigned Stop deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "394cf352-3d81-400c-9fac-7123772743e5",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6156c039-d500-4ba3-9a88-1958a53d26d8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0464f6d-19ca-4755-bf07-ba2a789d3863",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37456257-a850-4ffa-b065-22865b53f111",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc9db44f-bc01-4dec-9d02-4f26ed056aa5",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff4bb1a4-5db5-4a70-bfde-6092a99b5bb2",
+          "name": "Update an existing unassigned stop",
+          "request": {
+            "name": "Update an existing unassigned stop",
+            "description": {
+              "content": "Does not support updating a unassigned stop's location, nor the `circuitClientId`. To do so, delete the unassignedStop and create a new one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unassignedStops",
+                ":unassignedStopId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "unassignedStopId",
+                  "description": "(Required) The unassigned stop id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d1a1a1b-be89-480e-bb21-6a52064c7ca9",
+              "name": "The updated unassigned stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unassignedStops/QBwV96iTHb5qjQ7sn6g1jLyWBVjNMeEV1y08\",\n  \"depot\": \"depots/2BZI5disoaEb\",\n  \"address\": {\n    \"address\": \"string\",\n    \"addressLineOne\": \"string\",\n    \"addressLineTwo\": \"string\",\n    \"latitude\": 54.94986621998538,\n    \"longitude\": 106.34282380248476,\n    \"placeId\": \"string\",\n    \"placeTypes\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"barcodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedDriversIdentifiers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"notes\": \"string\",\n  \"packageCount\": 3819.7243303963323,\n  \"weight\": {\n    \"amount\": 4851.637130779236,\n    \"unit\": \"pound\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sellerName\": \"string\",\n    \"sellerOrderId\": \"string\",\n    \"sellerWebsite\": \"string\"\n  },\n  \"recipient\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"externalId\": \"string\"\n  },\n  \"trackingLink\": \"string\",\n  \"timing\": {\n    \"estimatedAttemptDuration\": 1202.679423444365,\n    \"earliestAttemptTime\": {\n      \"hour\": -4735774662006448,\n      \"minute\": 1716093544403233\n    },\n    \"latestAttemptTime\": {\n      \"hour\": -473551897561668,\n      \"minute\": -6556278244191166\n    }\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": 1843230560785165,\n    \"currency\": \"string\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": true\n  },\n  \"customProperties\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\",\n    \"key_3\": \"string\"\n  },\n  \"circuitClientId\": \"string\",\n  \"activity\": \"delivery\",\n  \"optimizationOrder\": \"default\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fab65624-ea3a-4041-addf-6192cd920543",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2cb10e4-fddb-475c-8507-0d8319ba4ee1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3b68df5-e2de-4d87-a3ba-f42d885719b2",
+              "name": "The request contains fields that are not supported by your team subscription/settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"feature_not_in_subscription\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4a449d3-8401-4296-a33e-02febd4a6233",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf464b18-6374-4088-9668-3f97c2db818c",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1c9c99b-dd8d-476a-9706-021eec93357a",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops",
+                    ":unassignedStopId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "unassignedStopId",
+                      "description": "(Required) The unassigned stop id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7716435-486c-4aa3-bb69-6671ae6f8f91",
+          "name": "List unassigned stops",
+          "request": {
+            "name": "List unassigned stops",
+            "description": {},
+            "url": {
+              "path": [
+                "unassignedStops"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The page token to continue from."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxPageSize",
+                  "value": "20",
+                  "description": "The maximum number of unassigned stops to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "externalId",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of unassigned stops."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d394dc2b-1784-4e0f-9dc6-4433eb98bc42",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"unassignedStops\": [\n    {\n      \"id\": \"unassignedStops/k679XaIznxwC7lzk5vVYnWlhMBUdxKa\",\n      \"depot\": \"depots/W1CAdAk8TfPNUH_un8NTl7P0ik7yqmAKRnmojyZfRW5zZ9xvx2\",\n      \"address\": {\n        \"address\": \"string\",\n        \"addressLineOne\": \"string\",\n        \"addressLineTwo\": \"string\",\n        \"latitude\": -74.9477252669101,\n        \"longitude\": 89.74203815197308,\n        \"placeId\": \"string\",\n        \"placeTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"barcodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowedDriversIdentifiers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"notes\": \"string\",\n      \"packageCount\": 3770.9140067102308,\n      \"weight\": {\n        \"amount\": 8987.342781770285,\n        \"unit\": \"kilogram\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sellerName\": \"string\",\n        \"sellerOrderId\": \"string\",\n        \"sellerWebsite\": \"string\"\n      },\n      \"recipient\": {\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"externalId\": \"string\"\n      },\n      \"trackingLink\": \"string\",\n      \"timing\": {\n        \"estimatedAttemptDuration\": 7740.426098851172,\n        \"earliestAttemptTime\": {\n          \"hour\": -1123818151005280,\n          \"minute\": 6311231822027659\n        },\n        \"latestAttemptTime\": {\n          \"hour\": 7814707280462947,\n          \"minute\": -5187703934000488\n        }\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": 987578053590761,\n        \"currency\": \"string\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": false\n      },\n      \"customProperties\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"circuitClientId\": \"string\",\n      \"activity\": \"delivery\",\n      \"optimizationOrder\": \"default\"\n    },\n    {\n      \"id\": \"unassignedStops/y7\",\n      \"depot\": \"depots/BFYEfEIo4geIrW9gvm6Gm\",\n      \"address\": {\n        \"address\": \"string\",\n        \"addressLineOne\": \"string\",\n        \"addressLineTwo\": \"string\",\n        \"latitude\": -86.55920897967437,\n        \"longitude\": -67.43352888032753,\n        \"placeId\": \"string\",\n        \"placeTypes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"barcodes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"allowedDriversIdentifiers\": [\n        \"string\",\n        \"string\"\n      ],\n      \"notes\": \"string\",\n      \"packageCount\": 4655.261038938757,\n      \"weight\": {\n        \"amount\": 2908.967503782127,\n        \"unit\": \"kilogram\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"string\",\n          \"string\"\n        ],\n        \"sellerName\": \"string\",\n        \"sellerOrderId\": \"string\",\n        \"sellerWebsite\": \"string\"\n      },\n      \"recipient\": {\n        \"name\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"externalId\": \"string\"\n      },\n      \"trackingLink\": \"string\",\n      \"timing\": {\n        \"estimatedAttemptDuration\": 7085.425217019273,\n        \"earliestAttemptTime\": {\n          \"hour\": 5947551245080065,\n          \"minute\": -430744625489210\n        },\n        \"latestAttemptTime\": {\n          \"hour\": 4996375331532597,\n          \"minute\": -1437340182820476\n        }\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": 3493092616455587,\n        \"currency\": \"string\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": true\n      },\n      \"customProperties\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"circuitClientId\": \"string\",\n      \"activity\": \"delivery\",\n      \"optimizationOrder\": \"default\"\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b453a68-a61b-4021-85eb-77f2315930df",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f03c52e-7d78-43a3-805b-50d11499a044",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8aab03c2-1d93-4d5b-a4d6-e0bd3ae6ad1e",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxPageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "externalId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87179f1f-1358-4429-b9cd-422d7b6e2d02",
+          "name": "Create a new unassigned stop",
+          "request": {
+            "name": "Create a new unassigned stop",
+            "description": {
+              "content": "Create a new unassigned stop with the given data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unassignedStops"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "055839d3-a1b3-4f90-b6a5-1aec5a629fa0",
+              "name": "The created unassignedStop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"unassignedStops/Pzl1vFOqch8lYp\",\n  \"depot\": \"depots/pu9q966SOnNojgzgG_\",\n  \"address\": {\n    \"address\": \"string\",\n    \"addressLineOne\": \"string\",\n    \"addressLineTwo\": \"string\",\n    \"latitude\": 80.89360539507163,\n    \"longitude\": 137.61340025112497,\n    \"placeId\": \"string\",\n    \"placeTypes\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"barcodes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"allowedDriversIdentifiers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"notes\": \"string\",\n  \"packageCount\": 7882.951182560963,\n  \"weight\": {\n    \"amount\": 5253.342217563339,\n    \"unit\": \"metric-ton\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"string\",\n      \"string\"\n    ],\n    \"sellerName\": \"string\",\n    \"sellerOrderId\": \"string\",\n    \"sellerWebsite\": \"string\"\n  },\n  \"recipient\": {\n    \"name\": \"string\",\n    \"email\": \"string\",\n    \"phone\": \"string\",\n    \"externalId\": \"string\"\n  },\n  \"trackingLink\": \"string\",\n  \"timing\": {\n    \"estimatedAttemptDuration\": 1533.0833013117117,\n    \"earliestAttemptTime\": {\n      \"hour\": 5646045999401483,\n      \"minute\": -511694235183074\n    },\n    \"latestAttemptTime\": {\n      \"hour\": 3201321658311003,\n      \"minute\": -2661612459068704\n    }\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": 6272420845376235,\n    \"currency\": \"string\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": false\n  },\n  \"customProperties\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\"\n  },\n  \"circuitClientId\": \"string\",\n  \"activity\": \"delivery\",\n  \"optimizationOrder\": \"default\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b890613-d95e-4e83-a264-36db1fa8ca4c",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59af3ed2-05e7-4734-ab58-f7d5e10ddc80",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75c11000-e85b-4d12-b0d8-618214775f13",
+              "name": "The request contains fields that are not supported by your team subscription/settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"feature_not_in_subscription\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30f987ea-9a2f-49a6-a051-e79d61f460c2",
+              "name": "The driver or depot could not be found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Driver not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7af90964-11fc-4b55-82b5-72dd5a4a54b2",
+              "name": "Failed to create stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occurred when creating the unassigned stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28f18ea6-5ce9-4c19-91af-f5fa54de9eca",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03f45452-0f49-4942-94d0-06705b51f609",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"address\": {\n    \"addressName\": \"<string>\",\n    \"addressLineOne\": \"<string>\",\n    \"addressLineTwo\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"country\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"depot\": \"<string>\",\n  \"timing\": {\n    \"earliestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"latestAttemptTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"estimatedAttemptDuration\": \"<integer>\"\n  },\n  \"recipient\": {\n    \"externalId\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"name\": \"<string>\"\n  },\n  \"orderInfo\": {\n    \"products\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"sellerOrderId\": \"<string>\",\n    \"sellerName\": \"<string>\",\n    \"sellerWebsite\": \"<string>\"\n  },\n  \"paymentOnDelivery\": {\n    \"amount\": \"<integer>\",\n    \"currency\": \"<string>\"\n  },\n  \"proofOfAttemptRequirements\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"allowedDrivers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"activity\": \"<string>\",\n  \"optimizationOrder\": \"<string>\",\n  \"packageCount\": \"<number>\",\n  \"weight\": {\n    \"amount\": \"<number>\",\n    \"unit\": \"<string>\"\n  },\n  \"notes\": \"<string>\",\n  \"circuitClientId\": \"<string>\",\n  \"barcodes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customProperties\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8748e61-5a92-4c77-a181-0fe62d1f5607",
+          "name": "Batch import unassigned stops",
+          "request": {
+            "name": "Batch import unassigned stops",
+            "description": {
+              "content": "Batch import unassigned stops. The request body must contain an array of unassigned stops to import. Note that the `depot` is the same for all unassigned stops in a same request. This is because the depot is used as a biasing location for the unassigned stops, so that the geocoding results are more accurate for a same region.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unassignedStops:import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b335ade7-bd20-40c1-a87a-a126807738b0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": [\n    \"unassignedStops/ZAltm6xCq6XKPTMV1wy2CMEiMiAOOVj5PmZ1j9JKaIQKt\",\n    \"unassignedStops/8lzIq9d0hLlj5GjucEwP\"\n  ],\n  \"failed\": [\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"unassignedStop\": {\n        \"address\": {\n          \"addressName\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 24.020042979699923,\n          \"longitude\": 124.53008309266681\n        },\n        \"recipient\": {\n          \"externalId\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"name\": \"string\"\n        }\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"unassignedStop\": {\n        \"address\": {\n          \"addressName\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": -14.8468404188434,\n          \"longitude\": -126.18200187485098\n        },\n        \"recipient\": {\n          \"externalId\": \"string\",\n          \"email\": \"string\",\n          \"phone\": \"string\",\n          \"name\": \"string\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b13027c-15b2-4f27-9588-5ff2a6ccb1ea",
+              "name": "The request has errors. Either syntactic or semantic",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56023709-f248-4aa4-90a6-ca310cbed630",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2a90ec9-de9c-4f5f-9a3d-4bc31b13d4d4",
+              "name": "The request contains fields that are not supported by your team subscription/settings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"feature_not_in_subscription\",\n  \"url\": \"https://dispatch.spoke.com/paywall\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7963ad41-3cf8-47ab-bdae-e5b20881df1d",
+              "name": "A depot or a driver was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07decd58-db2d-4b7a-8635-1e9292dcc03f",
+              "name": "Failed to create stop",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occurred when creating the unassigned stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1501b5c-2fc8-4a09-a075-4cd4b28a9671",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bbbce58-b873-41d0-bddd-4132cbe1692e",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unassignedStops:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"unassignedStops\": [\n    {\n      \"address\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"timing\": {\n        \"earliestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"latestAttemptTime\": {\n          \"hour\": \"<integer>\",\n          \"minute\": \"<integer>\"\n        },\n        \"estimatedAttemptDuration\": \"<integer>\"\n      },\n      \"recipient\": {\n        \"externalId\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"name\": \"<string>\"\n      },\n      \"orderInfo\": {\n        \"products\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"sellerOrderId\": \"<string>\",\n        \"sellerName\": \"<string>\",\n        \"sellerWebsite\": \"<string>\"\n      },\n      \"paymentOnDelivery\": {\n        \"amount\": \"<integer>\",\n        \"currency\": \"<string>\"\n      },\n      \"proofOfAttemptRequirements\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"allowedDrivers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"activity\": \"<string>\",\n      \"optimizationOrder\": \"<string>\",\n      \"packageCount\": \"<number>\",\n      \"weight\": {\n        \"amount\": \"<number>\",\n        \"unit\": \"<string>\"\n      },\n      \"notes\": \"<string>\",\n      \"circuitClientId\": \"<string>\",\n      \"barcodes\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"customProperties\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"depot\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e0532ec8-c3eb-473b-a4b0-20c0fd604646",
+    "name": "Spoke Depots Unassigned Stops API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Live Plans API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Re-optimize a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId:reoptimize",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Re-optimize a plan. This endpoint should be used only after updating a live plan. Returns the created operation, which can be polled for the result. Use the returned `id` with the [operations](#tag/Operations) endpoints to poll for the result."
+        },
+        {
+          "info": {
+            "name": "Re-distribute a plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId:redistribute",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "Re-distribute a plan to its drivers. This endpoint should be used only after updating a live plan. This will apply the re-optimization changes and send the drivers their routes."
+        },
+        {
+          "info": {
+            "name": "Save the plan changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId:save",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ]
+          },
+          "docs": "Save the plan changes after re-optimization without distributing it. This endpoint is optional since re-distribute already saves the changes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

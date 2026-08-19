@@ -1,0 +1,2206 @@
+{
+  "item": [
+    {
+      "id": "2a240600-4ab2-450b-8ca9-b80564f419ff",
+      "name": "Drivers",
+      "description": {
+        "content": "Endpoints to operate on [Drivers](/docs/models/driver) resources.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46efada1-6fb5-421c-afb8-c2af6ee2017b",
+          "name": "List Drivers",
+          "request": {
+            "name": "List Drivers",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxPageSize",
+                  "value": "50",
+                  "description": "The maximum number of drivers to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "The page token to continue from."
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<string>",
+                  "description": "The filter to apply to the list of drivers. The filter param is passed like this: `?filter[active]=true` or like this: `?filter.active=true`"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0f91590-77c4-4d3c-9d70-361dacd7d1b3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxPageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"drivers\": [\n    {\n      \"id\": \"drivers/4WE03UMi0-IXy-GI09nY\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": true,\n      \"depots\": [\n        \"depots/bm5zLSKBbHOgukG3yj--EFSq_uIvkc_uWDtKO2bayAwcXW\",\n        \"depots/nPQN2-IDXQ68Iygzc51yErnSYL71AKK-D6JMMSe\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": 649095863506695,\n          \"minute\": -3093399891171328\n        },\n        \"endTime\": {\n          \"hour\": 3225215810751215,\n          \"minute\": 7101820720729849\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 33.204461473242134,\n          \"longitude\": -62.132462110379166,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -35.08202792889509,\n          \"longitude\": -32.79673291046953,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": 229352789271547,\n        \"drivingSpeed\": \"average\",\n        \"deliverySpeed\": \"slower\",\n        \"vehicleType\": \"small_truck\"\n      }\n    },\n    {\n      \"id\": \"drivers/8f1woryn25DYjc4tfPDHadvwS_6mCmBhr2IhLJP\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"displayName\": \"string\",\n      \"active\": false,\n      \"depots\": [\n        \"depots/CIhqvWf8sBRqOIMTAMJlHc17rjOpjX4RujQbwCELQSzNmsqE0\",\n        \"depots/TPNRI2rzIi\"\n      ],\n      \"routeOverrides\": {\n        \"startTime\": {\n          \"hour\": -3597804777860974,\n          \"minute\": -1162867715059420\n        },\n        \"endTime\": {\n          \"hour\": -2239639868443610,\n          \"minute\": 1556844256189101\n        },\n        \"startAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": 34.16828121210004,\n          \"longitude\": 163.63727447464265,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"endAddress\": {\n          \"address\": \"string\",\n          \"addressLineOne\": \"string\",\n          \"addressLineTwo\": \"string\",\n          \"latitude\": -10.144178031465216,\n          \"longitude\": 136.20992191241544,\n          \"placeId\": \"string\",\n          \"placeTypes\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"maxStops\": -612910117354602,\n        \"drivingSpeed\": \"average\",\n        \"deliverySpeed\": \"slower\",\n        \"vehicleType\": \"car\"\n      }\n    }\n  ],\n  \"nextPageToken\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b45492fb-85da-4999-93a9-7d9d6fc0ce97",
+              "name": "Query parameters are invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxPageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e790ba6-dde4-4f3b-9995-632a0515e9c9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxPageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0261f8de-3ea2-4f71-9b62-ce05e2d24abf",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxPageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bfe4cf1-121b-4724-a5da-903e93c1d4e7",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxPageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ced97036-a551-4d95-b181-7f2047069721",
+          "name": "Create a new driver",
+          "request": {
+            "name": "Create a new driver",
+            "description": {
+              "content": "Create a driver with the given data in your team. Prefer using the [batch import endpoint](#operation/importDrivers) for creating multiple drivers at once as it is more efficient, faster.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drivers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7a70ac90-fa8b-428d-bc05-9b2d4585e6b5",
+              "name": "The created driver",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"drivers/13qbJc7AeA\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone\": \"string\",\n  \"displayName\": \"string\",\n  \"active\": false,\n  \"depots\": [\n    \"depots/9r0yrwdqAv10UNa1\",\n    \"depots/sVlBMBDz\"\n  ],\n  \"routeOverrides\": {\n    \"startTime\": {\n      \"hour\": 6381220959287331,\n      \"minute\": 1273846825039671\n    },\n    \"endTime\": {\n      \"hour\": 2431561736370189,\n      \"minute\": -8077949797945253\n    },\n    \"startAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": -63.692213081030516,\n      \"longitude\": 39.710704227551105,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"endAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": -80.79614049684353,\n      \"longitude\": -168.19980908899112,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"maxStops\": -3931682201936984,\n    \"drivingSpeed\": \"faster\",\n    \"deliverySpeed\": \"faster\",\n    \"vehicleType\": \"scooter\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bc33a19-fb46-4dad-9094-d76c1ae87842",
+              "name": "Failed to validate the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a069a5f-e4a2-457d-8c5f-897288bd0456",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "203172fb-fb60-4be9-93d1-6fc650b29836",
+              "name": "Failed to create driver.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occured when creating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd268bd3-d21b-4cc6-9012-0bc62c21d266",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94b8c170-040b-429e-b917-08849398526e",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b814ddd9-6c76-44ad-8a4f-e015394ce499",
+          "name": "Retrieve a driver",
+          "request": {
+            "name": "Retrieve a driver",
+            "description": {},
+            "url": {
+              "path": [
+                "drivers",
+                ":driverId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "driverId",
+                  "description": "(Required) The driver id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c1f1a59-e8b1-4ce6-84af-96489684c0f9",
+              "name": "The requested driver",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"drivers/34YxXdAiD5CHQL6yH63cS1YmrGacCOWRRnwbHjA9EYqVagO6_\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone\": \"string\",\n  \"displayName\": \"string\",\n  \"active\": true,\n  \"depots\": [\n    \"depots/6Zjc6y2\",\n    \"depots/cEI69GCFUH8HmRV-v7v4hOM8tW-wU0mj62QLndk_GtAe\"\n  ],\n  \"routeOverrides\": {\n    \"startTime\": {\n      \"hour\": 6410910686909653,\n      \"minute\": -2013666297494496\n    },\n    \"endTime\": {\n      \"hour\": -5022848196252940,\n      \"minute\": 1745651503663911\n    },\n    \"startAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 43.26472700094615,\n      \"longitude\": 16.9666594278371,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"endAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 78.3341249027726,\n      \"longitude\": 18.088132947278808,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"maxStops\": 2006933056158113,\n    \"drivingSpeed\": \"slower\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"truck\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "622b238d-7bab-4a4f-ae86-be9d95717129",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da9be402-58fe-4cae-8b80-b9ea6ac61040",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f09eba9a-c961-4cb4-8fb8-8d5219164412",
+              "name": "The provided driver id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Driver not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30fdd9be-506e-4ba9-8aee-fc2bc49980f8",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c629670c-abaa-4939-969f-f8ae68ae8d2e",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "683ac645-42ea-4edf-ac7e-90ce35f74d04",
+          "name": "Remove a driver",
+          "request": {
+            "name": "Remove a driver",
+            "description": {
+              "content": "Removes a driver from your team. If the driver also has dashboard access, the driver will only have their \"driver\" role revoked; thus not being listed among the team drivers, but will keep their dashboard access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drivers",
+                ":driverId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "driverId",
+                  "description": "(Required) The driver id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3aa498ee-a422-45de-9355-f381c04a39d4",
+              "name": "Driver removed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6c1f5485-a28f-4809-b0f0-c54b65ed6665",
+              "name": "ID format is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "023cffc8-ef65-49b4-a1b6-1e55b59a66a3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ad98fbd-b8d2-4418-923e-dabf746c365c",
+              "name": "The provided driver id does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Driver not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5e7344f-85b6-44e7-a64a-88d3edf63597",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f90189f7-98e5-46e6-86ce-3711ab860d87",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae1a7240-6236-41ec-a561-125cd9861b18",
+          "name": "Update a driver",
+          "request": {
+            "name": "Update a driver",
+            "description": {
+              "content": "Updates a driver from your team. The member must have the \"driver\" role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drivers",
+                ":driverId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "driverId",
+                  "description": "(Required) The driver id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a668392-5bb4-4a86-94fe-860b7c4de43c",
+              "name": "The updated driver",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"drivers/fctVFc5y4btTySZ0T6ASfKewKUnIwA3foqNuMABGVx_1\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"phone\": \"string\",\n  \"displayName\": \"string\",\n  \"active\": true,\n  \"depots\": [\n    \"depots/sm_BJoxYslNkbyHyvrgvw6c9GxhRxDx0UULLsrs0rm5DnB28\",\n    \"depots/xUE3caR7Dr86sB4vvG6e8QNf1I-YtMkyqV3elzAdKdh\"\n  ],\n  \"routeOverrides\": {\n    \"startTime\": {\n      \"hour\": -4685115932640856,\n      \"minute\": -5129780959360256\n    },\n    \"endTime\": {\n      \"hour\": 2214160706976787,\n      \"minute\": 8002100524955083\n    },\n    \"startAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 60.01877763344328,\n      \"longitude\": -51.41133297947067,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"endAddress\": {\n      \"address\": \"string\",\n      \"addressLineOne\": \"string\",\n      \"addressLineTwo\": \"string\",\n      \"latitude\": 47.57148581990677,\n      \"longitude\": -30.843594547605676,\n      \"placeId\": \"string\",\n      \"placeTypes\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"maxStops\": -3806371051411186,\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"electric_cargo_bike\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60acc0c5-fc80-42fc-b7fc-d453c868b3d9",
+              "name": "Failed to validate the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7714b98-280d-413a-8ede-06ad6cb98789",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f7eed92-d3f7-4082-a375-18113b81d1d6",
+              "name": "Failed to update driver",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occured when updating the driver, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c0bc042-bea2-415d-8b3a-9c19cbff515e",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "996c5ecb-621b-4c1b-9e3d-d43ea447291d",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers",
+                    ":driverId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "driverId",
+                      "description": "(Required) The driver id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"depots\": [\n    \"<string>\"\n  ],\n  \"routeOverrides\": {\n    \"startAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"endAddress\": {\n      \"addressName\": \"<string>\",\n      \"addressLineOne\": \"<string>\",\n      \"addressLineTwo\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"zip\": \"<string>\",\n      \"country\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"startTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"endTime\": {\n      \"hour\": \"<integer>\",\n      \"minute\": \"<integer>\"\n    },\n    \"maxStops\": \"<integer>\",\n    \"drivingSpeed\": \"average\",\n    \"deliverySpeed\": \"average\",\n    \"vehicleType\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1764582-4e5a-45bd-937c-670ef481c2d9",
+          "name": "Batch import drivers",
+          "request": {
+            "name": "Batch import drivers",
+            "description": {
+              "content": "Creates multiple drivers in your team. The request body must contain an array of drivers to import.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "drivers:import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "846add9d-7c48-4a5a-8fa1-117e9e62a770",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": [\n    \"drivers/1sVvcs4sWwiewhWjP1wiNab7uwVv_CovJlyBnwevwViIl4\",\n    \"drivers/gXmph5Lcz_-_VpUn7E4q\"\n  ],\n  \"failed\": [\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"driver\": {\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"email\": \"DdZvoA@wPzvoR.NtW626f.a6vzaSEL.LCLUc.i.SVUvLdF0xu.fb.gk5.ozuIHD1.SNjMaR4.uoC39.LfyYm\",\n        \"phone\": \"string\",\n        \"depots\": [\n          \"depots/EuNQavAMsiJOl\"\n        ],\n        \"routeOverrides\": {\n          \"startAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"st\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": 41.4662948439024,\n            \"longitude\": -106.13058558485301\n          },\n          \"endAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": 77.40903345159631,\n            \"longitude\": 35.55976081453423\n          },\n          \"startTime\": {\n            \"hour\": 5843772008699723,\n            \"minute\": 35825460623895\n          },\n          \"endTime\": {\n            \"hour\": -1170624656314546,\n            \"minute\": 1706812423140623\n          },\n          \"maxStops\": 2921977720758456,\n          \"drivingSpeed\": \"average\",\n          \"deliverySpeed\": \"average\",\n          \"vehicleType\": \"truck\"\n        }\n      }\n    },\n    {\n      \"error\": {\n        \"message\": \"string\"\n      },\n      \"driver\": {\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"email\": \"HEXX5oio2x@XrTD30rOG.MQDj8d.MG4wf7A1.mQQIeI\",\n        \"phone\": \"string\",\n        \"depots\": [\n          \"depots/nR4u6f-vBO_FqCZbeWqw57LOFPnK0n\"\n        ],\n        \"routeOverrides\": {\n          \"startAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"st\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": -87.38857838008174,\n            \"longitude\": 169.71383938199835\n          },\n          \"endAddress\": {\n            \"addressName\": \"string\",\n            \"addressLineOne\": \"string\",\n            \"addressLineTwo\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country\": \"string\",\n            \"latitude\": 82.25695930483383,\n            \"longitude\": 166.25065101953987\n          },\n          \"startTime\": {\n            \"hour\": -4922141234480628,\n            \"minute\": 642950383642405\n          },\n          \"endTime\": {\n            \"hour\": -5474195735849010,\n            \"minute\": -1837294779764314\n          },\n          \"maxStops\": 6815370371443570,\n          \"drivingSpeed\": \"average\",\n          \"deliverySpeed\": \"average\",\n          \"vehicleType\": \"car\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "196c7d83-2c20-4a90-b084-78821ad34af2",
+              "name": "Failed to validate the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2678df46-de37-44d4-ada4-29e3252bfd02",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e743eccc-c526-4a65-809a-39e4658de18f",
+              "name": "Failed to import drivers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"An error occured when importing drivers, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "863acb21-c74b-4eba-84fa-a0367b311c02",
+              "name": "An internal server error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74203e40-da76-4c76-aa0b-62f989434161",
+              "name": "The default error model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "drivers:import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"name\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"depots\": [\n      \"<string>\"\n    ],\n    \"routeOverrides\": {\n      \"startAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"endAddress\": {\n        \"addressName\": \"<string>\",\n        \"addressLineOne\": \"<string>\",\n        \"addressLineTwo\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country\": \"<string>\",\n        \"latitude\": \"<number>\",\n        \"longitude\": \"<number>\"\n      },\n      \"startTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"endTime\": {\n        \"hour\": \"<integer>\",\n        \"minute\": \"<integer>\"\n      },\n      \"maxStops\": \"<integer>\",\n      \"drivingSpeed\": \"average\",\n      \"deliverySpeed\": \"average\",\n      \"vehicleType\": \"<string>\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\",\n  \"param\": \"string\",\n  \"url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spoke.com/public/v0.2b",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "452030c8-63f2-49c8-8edb-f237c200f1f6",
+    "name": "Spoke Depots Drivers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n",
+      "type": "text/plain"
+    }
+  }
+}

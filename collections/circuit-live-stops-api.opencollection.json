@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spoke Depots Live Stops API",
+    "version": "v0.2b"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Stops",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops:liveCreate",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new stop with the given data on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. Prefer using the [batch import endpoint](#tag/Stops/operation/importLiveStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results."
+        },
+        {
+          "info": {
+            "name": "Update an existing stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops/:stopId:liveUpdate",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              },
+              {
+                "name": "stopId",
+                "value": "",
+                "type": "path",
+                "description": "The stop id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded. It does not support updating a stop's location. To do so, delete the stop and create a new one."
+        },
+        {
+          "info": {
+            "name": "Batch import stops",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops:liveImport",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Import stops to live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded."
+        },
+        {
+          "info": {
+            "name": "Delete a stop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spoke.com/public/v0.2b/plans/:planId/stops/:stopId:liveDelete",
+            "params": [
+              {
+                "name": "planId",
+                "value": "",
+                "type": "path",
+                "description": "The plan id"
+              },
+              {
+                "name": "stopId",
+                "value": "",
+                "type": "path",
+                "description": "The stop id"
+              }
+            ]
+          },
+          "docs": "Delete a stop on live plans. When the plan is not writable, this endpoint starts an editing session and the action can be applied through a new optimization, or be discarded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
