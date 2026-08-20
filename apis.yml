@@ -43,6 +43,17 @@ tags:
 - Last Mile
 - Route Optimization
 - Dispatch
+- Couriers
+- Fleet
+- Proof of Delivery
+- Field Service
+tags_raw:
+- Company
+- Delivery
+- Logistics
+- Last Mile
+- Route Optimization
+- Dispatch
 - Courier
 - Fleet
 - Proof of Delivery
@@ -135,7 +146,8 @@ apis:
   description: Endpoints to operate on [Operations](/docs/models/operation) resources.
   humanURL: https://developer.dispatch.spoke.com/
   baseURL: https://api.spoke.com/public/v1
-  tags:
+  tags: []
+  tags_raw:
   - Operations
   properties:
   - type: OpenAPI
