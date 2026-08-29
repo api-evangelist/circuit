@@ -1,0 +1,54 @@
+slug: circuit
+provider: Circuit
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Transportation & Logistics
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 4
+edges:
+- tag: Live Plans
+  spec_file: circuit-live-plans-api-openapi.yml
+  capability_id: BC-2420.10
+  capability_id_l1: BC-2420
+  capability_name: Dispatch Management
+  confidence: 0.75
+  evidence: POST /plans/{planId}:reoptimize  reoptimizePlan  Re-optimize a plan; POST /plans/{planId}:redistribute  redistributePlan  Re-distribute
+    a plan
+  reason: Re-optimising and re-distributing a live delivery plan across drivers (planSchema, driverSchema,
+    routeIdSchema) is assignment of stops/routes to drivers in flight — Dispatch Management.
+- tag: Live Stops
+  spec_file: circuit-live-stops-api-openapi.yml
+  capability_id: BC-2420.40
+  capability_id_l1: BC-2420
+  capability_name: Last-Mile Delivery Operations Management
+  confidence: 0.7
+  evidence: POST /plans/{planId}/stops:liveCreate  createLiveStop  Create a new stop; POST /plans/{planId}/stops/{stopId}:liveUpdate  updateLiveStop
+  reason: Adding and amending delivery stops on an active route plan in a last-mile courier platform is
+    final-leg delivery execution and routing. Slight ambiguity with dispatch, hence 0.7.
+- tag: Plans
+  spec_file: circuit-plans-api-openapi.yml
+  capability_id: BC-2420.10
+  capability_id_l1: BC-2420
+  capability_name: Dispatch Management
+  confidence: 0.7
+  evidence: POST /plans/{planId}:optimize  optimizePlan  Optimize a plan; POST /plans/{planId}:distribute  distributePlan  Distribute
+    a plan
+  reason: A plan groups stops, drivers and routes; optimising and distributing it assigns work to drivers
+    for the day's deliveries — Dispatch Management. Could also be read as route planning, hence 0.7.
+- tag: Stops
+  spec_file: circuit-stops-api-openapi.yml
+  capability_id: BC-2420.40
+  capability_id_l1: BC-2420
+  capability_name: Last-Mile Delivery Operations Management
+  confidence: 0.7
+  evidence: POST /plans/{planId}/stops  createStop  Create a new stop; POST /plans/{planId}/stops:import  importStops  Batch
+    import stops
+  reason: Stops are the delivery addresses on a plan/route in a last-mile delivery platform; managing
+    them is last-mile delivery routing and execution.
