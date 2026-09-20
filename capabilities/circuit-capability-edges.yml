@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 4
+edge_count: 6
 edges:
 - tag: Live Plans
   spec_file: circuit-live-plans-api-openapi.yml
@@ -23,6 +23,27 @@ edges:
     a plan
   reason: Re-optimising and re-distributing a live delivery plan across drivers (planSchema, driverSchema,
     routeIdSchema) is assignment of stops/routes to drivers in flight — Dispatch Management.
+- tag: Routes
+  spec_file: circuit-routes-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.75
+  evidence: GET /routes/{routeId}/stops  listRouteStops  List route stops
+  reason: Routes with driver and stop schemas represent driver delivery routes in a last-mile delivery
+    platform — transport/logistics execution.
+  recovered_from: vertical-automotive-mobility-edges.json
+- tag: Depots
+  spec_file: circuit-depots-api-openapi.yml
+  capability_id: BC-520.50
+  capability_id_l1: BC-520
+  capability_name: Logistics Operations Management
+  confidence: 0.7
+  evidence: POST /depots  createDepot; POST /depots/{depotId}:setMain  'Set the main depot for the team'
+    on 'last-mile delivery route-optimization software'
+  reason: Depot master records underpinning last-mile route planning and dispatch — logistics network/operations
+    configuration.
+  recovered_from: vertical-automotive-mobility-edges.json
 - tag: Live Stops
   spec_file: circuit-live-stops-api-openapi.yml
   capability_id: BC-2420.40
