@@ -1,17 +1,7 @@
 {
   "provider": "circuit",
   "sources": [
-    "circuit-depots-api-openapi.yml",
-    "circuit-drivers-api-openapi.yml",
-    "circuit-live-plans-api-openapi.yml",
-    "circuit-live-stops-api-openapi.yml",
-    "circuit-members-api-openapi.yml",
-    "circuit-operations-api-openapi.yml",
-    "circuit-plans-api-openapi.yml",
-    "circuit-routes-api-openapi.yml",
-    "circuit-stops-api-openapi.yml",
-    "circuit-team-api-openapi.yml",
-    "circuit-unassigned-stops-api-openapi.yml"
+    "_original/circuit-v1-openapi-original.json"
   ],
   "outputs": [
     "circuit-depots-api-openapi.yml",
@@ -29,6 +19,24 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "circuit-v1-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/circuit-v0.2b-openapi-original.json: archived document superseded by a larger archived document",
+    "circuit-depots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-drivers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-live-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-live-stops-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-members-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-operations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-plans-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-routes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-stops-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-team-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "circuit-unassigned-stops-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,29 +1,27 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Spoke Depots Stops API
-  description: "This is the documentation of the Spoke Public API HTTP endpoints. The Spoke\nPublic API is a way for you to interact with Spoke products programmatically.\n\n# Introduction\n\nThe API has a set of HTTP methods to operate on Spoke resources for a specific\nteam.\n\nCurrently, Spoke offers no programming SDKs for interacting with the Public\nAPI, but you can implement your own interface by calling the methods documented\non this page.\n\n# Using the API\n\nThis section describes how the Spoke API should be used, if you wish to see\nexample implementations take a look at the [API Usage\nExamples](/docs/api-examples) page.\n\n## Address\n\nThe base API address for this version of the API to be used before every\nendpoint listed here is: `https://api.spoke.com/public/v0.2b`\n\nNotice the `https://` prefix, Spoke API will **not** accept plain HTTP\nrequests.\n\n## Authentication\n\nTo use Spoke Public API endpoints you will first need to generate an API key\nfor authenticating with our servers.\n\nTo do this you need to go to your Spoke Dispatch settings page > Integrations\n\\> API, and generate a new key there.\n\nOnce you have the API key you can use it in the `Authorization` header\neither using the Basic scheme, or as a Bearer token.\n\n### Basic Auth\n\n[Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) is the primary authentication scheme used\nby Spoke's API.\n\nBasic authentication typically uses a base64 encoded `username:password`\npair, but since we only require an API key we instead structure the payload as `[yourApiKey]:[empty]`. This\nvalue is then base64 encoded as usual.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -u yourApiKey:\n```\n\nIf you did everything correctly you should see a list of your team's plans in response\nto this request.\n\nThe `-u` flag adds a header to the request in the following format:\n\n```http\nAuthorization: Basic eW91ckFwaUtleToK\n```\n\nNote that curl automatically base64 encoded the data. Other clients will do the same e.g. if using Postman you would\nconfigure the request's Authorization option instead of adding a header directly.\n\n### Bearer Token\n\nAlternatively you can pass the API key as a Bearer token without any special encoding.\ni.e. `Authorization: Bearer [yourApiKey]`.\n\nExample with `curl`:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans\" -H \"Authorization: Bearer yourApiKey\"\n```\n\n## On resource types\n\nEvery response from the Spoke Public API will be as JSON Objects, and every\nrequest that has a body also needs to be in that type, and the header\n`Content-type: application/json` needs to present, so the server knows that the\nbody you are sending is valid JSON. Spoke will reject requests without that\nheader, so be sure to use it.\n\n## On resource IDs\n\nEvery resource in the Spoke Public API has a unique ID. This ID is generated\nby Spoke and is unique for every resource per collection.\n\nEvery resource representation returned by the API will show the ID in the\nfollowing format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId\"\n}\n```\n\nAnd if the resource is on a sub-collection, it will be in the following format:\n\n```json\n{\n  \"id\": \"collectionName/resourceId/subcollectionName/subResourceId\"\n}\n```\n\nFor example, a stop with ID `stop1` under a plan with ID `plan1` will have the\nfollowing representation on its serialized ID field:\n\n```json\n{\n  \"id\": \"plans/plan1/stops/stop1\"\n}\n```\n\nThis means that if you wish to directly retrieve this stop by using a GET\nendpoint you can simply use this ID as follows:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/`serializedId`\" -u yourApiKey:\n```\n\nFor the example above this would be:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans/plan1/stops/stop1\" -u yourApiKey:\n```\n\n## On List endpoints\n\nWhen using list endpoints, you have the ability to combine various query options\nto locate the desired results. Some endpoints even offer specific filter options\nto aid in this search.\n\nAll the list endpoints employ pagination. This means that a single request might\nonly return a part of the entire set of resources you're aiming to retrieve. To\nmove through the subsequent pages, the Spoke API provides a `nextPageToken`\nfield in the response of every list endpoint query.\n\nIt's crucial to understand that when a `nextPageToken` is returned, it indicates\nthat more data is available. For every subsequent request, this token should be\nadded as the `pageToken` query parameter. And, importantly, **all the original\nquery parameters** used in the first request must also be included.\n\nHere's a step-by-step example to elucidate this:\n\n1. Suppose you initiate a request to list your plans:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01\" -u yourApiKey:\n```\n\n2. The Spoke API might return a response like:\n\n```json\n{\n  // other attributes\n  \"nextPageToken\": \"I53Jr5Eu2qK9omh0iA8q\"\n}\n```\n\n3. To retrieve the next page of data, use the returned `nextPageToken` as the\n   `pageToken` query parameter, and ensure all initial query parameters remain\n   the same:\n\n```bash\ncurl \"https://api.spoke.com/public/v0.2b/plans?filter.startsGte=2023-05-01&pageToken=I53Jr5Eu2qK9omh0iA8q\" -u yourApiKey:\n```\n\n4. Repeat step 3 for all subsequent pages, updating the `pageToken` parameter\n   with the latest `nextPageToken` value returned until `nextPageToken` is\n   `null` in the response.\n\nSpoke also accepts limiting the maximum number of results per page by using\nthe `maxPageSize` query parameter, but notice that each individual endpoint has\na maximum value you can set this to.\n\n## On Update endpoints (HTTP PATCH verb)\n\nUpdate methods differ from the other methods in the API in the sense that\nmissing values in the JSON representation will **not** act upon the\nrepresentation of the resource.\n\nExplaining this by example: Suppose you have a Plan with the ID `plan1` in your\nplans' collection, and you wanted to merely update its title to `My API Plan`\nwithout changing other information, such as assigned drivers or the start date.\nTo do this you would issue the following request:\n\n```bash\ncurl -X PATCH http://localhost:5005/public/v0.2b/plans/plan1 -H 'Content-type: application/json' -d '{\"title\": \"My API Plan\"}' -u yourApiKey:\n```\n\nNotice how we don't pass any other information in the JSON, only the title. This\nensures that the `PATCH` request will only operate on the provided parameters\nand keep the other parameters as-is.\n\nIt is important to also notice that when updating an array the whole array will\nbe replaced, Spoke API does not support partial updates on arrays.\n\n## On Rate-Limiting\n\nAll the endpoints in the Spoke Public API are rate-limited, which means we\nwill reject requests that come in too fast.\n\nTo know if your request was rate-limited, check if the response has the HTTP\nstatus code 429.\n\nEach endpoint has a different rate limit, and Spoke can change this rate\nlimit at any moment.\n\nThe rate limits are as follows:\n\n- **Rate Limits for Write Endpoints**: All write endpoints have a limit of 5\n  requests per second, which includes Creation (POST), Update (PATCH), and\n  Deletion (DELETE) operations for all models.\n  - An exception to this rule is the Driver Creation endpoint, which is limited to\n    1 request per second. Thus, we recommend using the Batch Import Drivers\n    when adding multiple drivers.\n- **Rate Limits for Read Endpoints**: All read endpoints, including list\n  endpoints, are limited to 10 requests per second.\n- **Rate Limits for Batch Import**:\n  - The _Batch Import_ endpoints for Stops and Unassigned Stops models are\n    limited to 100 requests per _10 minutes_ (with a maximum rate of 30 per _minute_).\n    However, these endpoints can handle the import of up to 1,000 stops per minute.\n    The Creation, Update, and Deletion endpoints for these models still maintain\n    a rate limit of 5 requests per second.\n  - The _Batch Import_ endpoint for Drivers is limited to 2 requests per\n    _minute_. This allows for the import of up to 100 drivers per minute.\n- **Rate Limits for Optimization Endpoints**: The Plan _optimization_ and\n  _re-optimization_ endpoints are limited to 100 requests per _10 minutes_\n  (with a maximum rate of 30 per _minute_), due to the long running nature of these operations.\n\nSpoke API will occasionally support bursts of requests, but they cannot be\nsustained and will be rejected if they last too long.\n\nIf Spoke rejects your request because it exceeds the rate limit, you must\nwait before retrying it. We suggest you use an [exponential\nbackoff](https://en.wikipedia.org/wiki/Exponential_backoff) approach for this.\n\nWe also recommend, besides the exponential backoff algorithm, that you add a\nrandom delay to each attempt to prevent a [thundering herd\nproblem](https://en.wikipedia.org/wiki/Thundering_herd_problem).\n\nIf the client keeps retrying rate-limited requests while being rejected with a\n429 at a high rate, Spoke will keep rejecting the requests until you turn\ndown the request rate.\n\nSpoke will also limit requests if it keeps receiving them at a high frequency\nat or close to the requests limit for an extended period, so while we support\nan occasional burst of requests, if this is sustained for a long period, we\nwill rate-limit the client making them.\n\nWhile we feel these rate-limits will work for the vast majority of use cases we\nunderstand every team is different. So please reach out to us and describe your\nuse case if these limits are not enough for you, and we will evaluate\nincreasing them for your team.\n\n## On the models\n\nAfter this section you will find all the Spoke Public API endpoints available.\n\nEvery representation of resources that these endpoints create and return are\ndocumented in the [Models](/docs/category/models) page of the docs.\n"
-  version: v0.2b
+  title: Spoke Stops API
+  description: This is the documentation of the Spoke Public API HTTP endpoints.
+  version: v1
 servers:
-- url: https://api.spoke.com/public/v0.2b
+- url: https://api.spoke.com/public/v1
 security:
 - BasicAuth: []
 tags:
 - name: Stops
-  description: 'Endpoints to operate on [Stop](/docs/models/stop) resources.
+  description: 'Endpoints to operate on Stop resources.
 
 
-    For any [Plans](/docs/models/plan) created before 2023-04-01 the stop
+    For any Plans created before 2023-04-01 the stop
 
     collections and all related operations will not be available.
 
 
     For any operations here you will need a Plan ID beforehand. You can retrieve an
 
-    existing Plan by [listing your Plans](#tag/Plans/operation/listPlans) or you can
+    existing Plan by listing your Plans or you can
 
-    [create a new one](#tag/Plans/operation/createPlan).
-
-    '
+    create a new one.'
 paths:
   /plans/{planId}/stops:
     post:
@@ -31,11 +29,12 @@ paths:
       summary: Create a new stop
       tags:
       - Stops
-      description: Create a new stop with the given data. Prefer using the [batch import endpoint](#tag/Stops/operation/importStops) if you want to create multiple stops at once as it is more efficient and will produce better geocoding results. If the plan is not writable, this will fail, prefer using the [Live Create Stop API](#tag/Live-Stops/operation/createLiveStop) instead.
+      description: Create a new stop with the given data. Prefer using the batch import endpoint if you want to create multiple stops at once as it is more efficient and will produce better geocoding results. If the plan is not writable, this will fail, prefer using the Live Create Stop API instead.
       requestBody:
         content:
           application/json:
             schema:
+              description: The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be.
               type: object
               properties:
                 address:
@@ -209,6 +208,13 @@ paths:
                           type: string
                           minLength: 1
                           maxLength: 255
+                      invoiceNumber:
+                        description: Invoice number
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                          maxLength: 255
+                        - type: 'null'
                       sellerOrderId:
                         description: Seller order ID
                         anyOf:
@@ -297,16 +303,8 @@ paths:
                         - type: 'null'
                     additionalProperties: false
                   - type: 'null'
-                driver:
-                  description: 'Deprecated. Prefer using the `allowedDrivers` field instead.
-
-                    Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.'
-                  anyOf:
-                  - type: string
-                    pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-                  - type: 'null'
                 allowedDrivers:
-                  description: Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already.
+                  description: Driver IDs that are allowed to be assigned to this stop. These drivers must be configured as part of the plan to be valid.
                   anyOf:
                   - maxItems: 100
                     type: array
@@ -368,7 +366,7 @@ paths:
                     minLength: 1
                     maxLength: 2000
                   - type: 'null'
-                circuitClientId:
+                clientId:
                   description: Client ID of the retailer in Spoke Connect
                   anyOf:
                   - type: string
@@ -399,10 +397,33 @@ paths:
                         maxLength: 255
                       - type: 'null'
                   - type: 'null'
+                serviceInfo:
+                  anyOf:
+                  - description: Service offering data for this stop. Combines the service identifier and SLA start time. On update, set the whole object to `null` to clear all service info.
+                    type: object
+                    properties:
+                      identifier:
+                        anyOf:
+                        - description: The identifier of a service offering to assign to this stop. Must match the identifier of a current, non-deleted service offering defined on your team. On update, set it to `null` to remove an assigned service; on create, omit it to leave the stop without a service.
+                          type: string
+                          minLength: 1
+                          maxLength: 32
+                          pattern: ^[a-zA-Z0-9]+$
+                        - type: 'null'
+                      slaStartsAt:
+                        anyOf:
+                        - description: The SLA start time for this stop, in seconds since Unix epoch. Allows backdating when the actual order time is known. Can be provided with or without a service identifier.
+                          type: integer
+                          exclusiveMinimum: 0
+                          maximum: 9007199254740991
+                        - type: 'null'
+                    additionalProperties: false
+                  - type: 'null'
               required:
               - address
               additionalProperties: false
         required: true
+        description: The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be.
       parameters:
       - schema:
           type: string
@@ -420,27 +441,97 @@ paths:
                 $ref: '#/components/schemas/stopSchema'
                 description: The created stop
         '400':
-          description: The request has errors. Either syntactic or semantic
+          description: The request has errors (syntactic or semantic), or the named service is not eligible for the stop (operating area, depot, or activity).
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                  code:
-                    type: string
-                    description: The error code.
-                  param:
-                    type: string
-                    description: The parameter that caused the error.
-                  url:
-                    type: string
-                    description: The URL with more information about the error.
-                required:
-                - message
-                description: The request has errors. Either syntactic or semantic
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  description: Failed to validate the request
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - operating_area_violation
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The assigned service does not operate in the stop’s area
+                  title: Service does not operate in the stop’s area
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - operating_area_missing_coordinates
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The service has an operating area but the stop or depot lacks coordinates
+                  title: Operating area cannot be evaluated without coordinates
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - service_not_available_at_depot
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The assigned service is not offered at the stop’s depot
+                  title: Service is not available at the stop’s depot
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - service_activity_not_supported
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The assigned service offering does not support the stop’s activity
+                  title: Service offering does not support the activity
+                description: The request has errors (syntactic or semantic), or the named service is not eligible for the stop (operating area, depot, or activity).
         '401':
           description: Unauthorized
           content:
@@ -567,6 +658,24 @@ paths:
                 required:
                 - message
                 description: Failed to create stop
+        '412':
+          description: Drivers must be part of the plan to be referenced by stops
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                    - Driver is not linked to plan
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                required:
+                - message
+                description: Drivers must be part of the plan to be referenced by stops
+                title: Driver is not linked to plan
         '422':
           description: Failed to create stop
           content:
@@ -627,863 +736,13 @@ paths:
                 required:
                 - message
                 description: The default error model
-    get:
-      operationId: listStops
-      summary: List stops
-      tags:
-      - Stops
-      parameters:
-      - schema:
-          type: string
-          minLength: 1
-          maxLength: 255
-        in: query
-        name: pageToken
-        required: false
-        description: The page token, if any.
-      - schema:
-          default: 10
-          type: number
-          minimum: 1
-          maximum: 10
-        in: query
-        name: maxPageSize
-        required: false
-        description: The max page size.
-      - schema:
-          type: object
-          properties:
-            externalId:
-              description: Filter by the `recipient.externalId` field, exact match
-              type: string
-              minLength: 1
-              maxLength: 255
-          additionalProperties: false
-        in: query
-        name: filter
-        required: false
-        description: 'The filter to apply to the list of stops. The filter params are passed like this: `?filter[externalId]=foo` or like this: `?filter.externalId=foo`'
-      - schema:
-          type: string
-          pattern: ^[a-zA-Z0-9---_]{1,50}$
-        in: path
-        name: planId
-        required: true
-        description: The plan id
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  stops:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/stopSchema'
-                    description: The stops list.
-                  nextPageToken:
-                    anyOf:
-                    - type: string
-                    - type: 'null'
-                    description: The next page token.
-                required:
-                - stops
-                - nextPageToken
-                definitions:
-                  stopSchema:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                        pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
-                        description: The id of the stop, in the format `plans/<id>/stops/<id>`.
-                      address:
-                        type: object
-                        properties:
-                          address:
-                            type: string
-                            description: The address of the stop.
-                          addressLineOne:
-                            type: string
-                            description: The first line of the address.
-                          addressLineTwo:
-                            type: string
-                            description: The second line of the address.
-                          latitude:
-                            anyOf:
-                            - type: number
-                              minimum: -90
-                              maximum: 90
-                            - type: 'null'
-                            description: The latitude of the address in decimal degrees.
-                          longitude:
-                            anyOf:
-                            - type: number
-                              minimum: -180
-                              maximum: 180
-                            - type: 'null'
-                            description: The longitude of the address in decimal degrees.
-                          placeId:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: The identifier of the place corresponding to this stop on Google Places
-                          placeTypes:
-                            type: array
-                            items:
-                              type: string
-                            description: Array of strings that is provided by the Google AutoCompleteAPI
-                        required:
-                        - address
-                        - addressLineOne
-                        - addressLineTwo
-                        - latitude
-                        - longitude
-                        - placeId
-                        - placeTypes
-                        additionalProperties: false
-                        description: The address of the stop.
-                      barcodes:
-                        type: array
-                        items:
-                          type: string
-                        description: List of Barcode IDs associated with the stop.
-                      driverIdentifier:
-                        anyOf:
-                        - type: string
-                        - type: 'null'
-                        description: The driver identifier. This field is deprecated, prefer using `allowedDriversIdentifiers`.
-                      allowedDriversIdentifiers:
-                        type: array
-                        items:
-                          type: string
-                        description: The allowed drivers that can be assigned to this stop, replaces the `driverIdentifier` field.
-                      estimatedTravelDuration:
-                        anyOf:
-                        - type: number
-                        - type: 'null'
-                        description: Estimated time that the driver will take to arrive at this stop from the previous stop in seconds.
-                      estimatedTravelDistance:
-                        anyOf:
-                        - type: number
-                        - type: 'null'
-                        description: The distance in meters between the previous stop and this stop.
-                      notes:
-                        anyOf:
-                        - type: string
-                        - type: 'null'
-                        description: Notes for the stop.
-                      packageCount:
-                        anyOf:
-                        - type: number
-                        - type: 'null'
-                        description: The number of packages.
-                      weight:
-                        anyOf:
-                        - type: object
-                          properties:
-                            amount:
-                              type: number
-                              minimum: 0
-                              description: The weight amount for this stop.
-                            unit:
-                              type: string
-                              enum:
-                              - kilogram
-                              - pound
-                              - metric-ton
-                              description: The weight unit in which the amount is specified (defined at team's capacity unit).
-                          required:
-                          - amount
-                          - unit
-                          additionalProperties: false
-                          description: Weight information for the stop.
-                        - type: 'null'
-                      type:
-                        type: string
-                        enum:
-                        - start
-                        - stop
-                        - end
-                        description: The type of the stop. `start` is the first stop of the route, `stop` is a stop in the middle of the route, and `end` is the last stop of the route.
-                      packageLabel:
-                        anyOf:
-                        - type: string
-                        - type: 'null'
-                        description: The label of the package.
-                      stopPosition:
-                        anyOf:
-                        - type: number
-                        - type: 'null'
-                        description: The position of the stop in the route.
-                      trackingLink:
-                        anyOf:
-                        - type: string
-                        - type: 'null'
-                        description: The recipient tracking link.
-                      webAppLink:
-                        type: string
-                        description: The web app link.
-                      orderInfo:
-                        type: object
-                        properties:
-                          products:
-                            type: array
-                            items:
-                              type: string
-                            description: The products of the stop.
-                          sellerName:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: Name of the seller where the order is from.
-                          sellerOrderId:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: Id of the seller where the order is from.
-                          sellerWebsite:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: Website of the seller where the order is from.
-                        required:
-                        - products
-                        - sellerName
-                        - sellerOrderId
-                        - sellerWebsite
-                        additionalProperties: false
-                        description: The order information of the stop.
-                      placeInVehicle:
-                        anyOf:
-                        - type: object
-                          properties:
-                            x:
-                              anyOf:
-                              - type: string
-                                enum:
-                                - left
-                                - right
-                              - type: 'null'
-                              description: The x position of the package.
-                            y:
-                              anyOf:
-                              - type: string
-                                enum:
-                                - front
-                                - back
-                                - middle
-                              - type: 'null'
-                              description: The y position of the package.
-                            z:
-                              anyOf:
-                              - type: string
-                                enum:
-                                - floor
-                                - shelf
-                              - type: 'null'
-                              description: The z position of the package.
-                          required:
-                          - x
-                          - y
-                          - z
-                          additionalProperties: false
-                          description: The position of the package in the vehicle.
-                        - type: 'null'
-                      recipient:
-                        type: object
-                        properties:
-                          name:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: The name of the recipient.
-                          email:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: The email of the recipient.
-                          phone:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: The phone of the recipient.
-                          externalId:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                            description: The external id of the recipient.
-                        required:
-                        - name
-                        - email
-                        - phone
-                        - externalId
-                        additionalProperties: false
-                        description: The recipient of the stop.
-                      activity:
-                        default: delivery
-                        type: string
-                        enum:
-                        - delivery
-                        - pickup
-                      deliveryInfo:
-                        anyOf:
-                        - type: object
-                          properties:
-                            attempted:
-                              type: boolean
-                              description: Whether the stop was attempted.
-                            attemptedAt:
-                              anyOf:
-                              - type: number
-                              - type: 'null'
-                              description: When the stop was attempted in seconds since epoch.
-                            arrivedAt:
-                              anyOf:
-                              - type: number
-                              - type: 'null'
-                              description: When the driver arrived at the stop in seconds since epoch. This field is deprecated, prefer `timeAtStopInfo.arrivedAt`.
-                            timeAtStopInfo:
-                              anyOf:
-                              - type: object
-                                properties:
-                                  arrivedAt:
-                                    anyOf:
-                                    - type: number
-                                    - type: 'null'
-                                    description: When the driver arrived at the stop in seconds since epoch.
-                                  departedAt:
-                                    anyOf:
-                                    - type: number
-                                    - type: 'null'
-                                    description: When the driver departed from the stop in seconds since epoch.
-                                  isEstimated:
-                                    anyOf:
-                                    - type: boolean
-                                    - type: 'null'
-                                    description: Whether the time at stop was estimated rather than directly measured.
-                                required:
-                                - arrivedAt
-                                - departedAt
-                                - isEstimated
-                              - type: 'null'
-                              description: Grouped time-at-stop data.
-                            timeAtStopInfoNullReason:
-                              anyOf:
-                              - type: object
-                                properties:
-                                  reason:
-                                    type: string
-                                    enum:
-                                    - subscription_not_supported
-                                  message:
-                                    type: string
-                                  url:
-                                    anyOf:
-                                    - type: string
-                                    - type: 'null'
-                                required:
-                                - reason
-                                - message
-                                - url
-                              - type: 'null'
-                              description: Reason why time-at-stop data was not provided.
-                            attemptedLocation:
-                              anyOf:
-                              - type: object
-                                properties:
-                                  latitude:
-                                    type: number
-                                    description: The latitude of the location.
-                                  longitude:
-                                    type: number
-                                    description: The longitude of the location.
-                                required:
-                                - latitude
-                                - longitude
-                                additionalProperties: false
-                                description: A location.
-                              - type: 'null'
-                              description: Where the stop was attempted.
-                            driverProvidedInternalNotes:
-                              anyOf:
-                              - type: string
-                              - type: 'null'
-                              description: Internal notes provided by the driver.
-                            driverProvidedRecipientNotes:
-                              anyOf:
-                              - type: string
-                              - type: 'null'
-                              description: Recipient notes provided by the driver.
-                            photoUrls:
-                              type: array
-                              items:
-                                type: string
-                              description: URLs of proof of delivery photos.
-                            recipientProvidedNotes:
-                              anyOf:
-                              - type: string
-                              - type: 'null'
-                              description: Notes from recipient
-                            signatureUrl:
-                              anyOf:
-                              - type: string
-                              - type: 'null'
-                              description: URL of the signature.
-                            signeeName:
-                              anyOf:
-                              - type: string
-                              - type: 'null'
-                              description: Name of the signee.
-                            succeeded:
-                              type: boolean
-                              description: Whether the stop was succeeded.
-                            state:
-                              type: string
-                              enum:
-                              - delivered_to_recipient
-                              - delivered_to_third_party
-                              - delivered_to_mailbox
-                              - delivered_to_safe_place
-                              - delivered_to_pickup_point
-                              - delivered_other
-                              - picked_up_from_customer
-                              - picked_up_unmanned
-                              - picked_up_from_locker
-                              - picked_up_other
-                              - failed_not_home
-                              - failed_cant_find_address
-                              - failed_no_parking
-                              - failed_no_time
-                              - failed_package_not_available
-                              - failed_other
-                              - failed_missing_required_proof
-                              - failed_payment_not_received
-                              - unattempted
-                              description: The state of the delivery.
-                          required:
-                          - attempted
-                          - attemptedAt
-                          - arrivedAt
-                          - timeAtStopInfo
-                          - timeAtStopInfoNullReason
-                          - attemptedLocation
-                          - driverProvidedInternalNotes
-                          - driverProvidedRecipientNotes
-                          - photoUrls
-                          - recipientProvidedNotes
-                          - signatureUrl
-                          - signeeName
-                          - succeeded
-                          - state
-                          additionalProperties: false
-                          description: The delivery information of the stop.
-                        - type: 'null'
-                      paymentOnDelivery:
-                        anyOf:
-                        - type: object
-                          properties:
-                            amount:
-                              anyOf:
-                              - type: integer
-                                minimum: 0
-                                maximum: 9007199254740991
-                              - type: 'null'
-                              description: The amount *in minor units* (e.g. cents) to be collected upon delivery.
-                            currency:
-                              type: string
-                              description: The payment's currency in ISO 4217 standard.
-                          required:
-                          - amount
-                          - currency
-                          additionalProperties: false
-                          description: The payment due upon delivery also known as "Cash on Delivery".
-                        - type: 'null'
-                      proofOfAttemptRequirements:
-                        type: object
-                        properties:
-                          enabled:
-                            anyOf:
-                            - type: boolean
-                            - type: 'null'
-                            description: Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery
-                        required:
-                        - enabled
-                        additionalProperties: false
-                        description: The proof of attempt requirements of the stop.
-                      plan:
-                        type: string
-                        pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
-                        description: The id of the plan, in the format `plans/<id>`.
-                      route:
-                        anyOf:
-                        - type: object
-                          properties:
-                            id:
-                              type: string
-                              pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-                              description: The id of the route, in the format `routes/<id>`.
-                            title:
-                              type: string
-                              description: The title of the route.
-                            stopCount:
-                              type: number
-                              description: The number of stops in the route.
-                            driver:
-                              anyOf:
-                              - type: string
-                                pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-                              - type: 'null'
-                              description: The id of the driver.
-                            state:
-                              anyOf:
-                              - type: object
-                                properties:
-                                  completed:
-                                    type: boolean
-                                    description: Whether the route is completed.
-                                  completedAt:
-                                    anyOf:
-                                    - type: number
-                                    - type: 'null'
-                                    description: The timestamp the route was completed at.
-                                  distributed:
-                                    type: boolean
-                                    description: Whether the route is distributed.
-                                  distributedAt:
-                                    anyOf:
-                                    - type: number
-                                    - type: 'null'
-                                    description: The timestamp the route was distributed at.
-                                  notifiedRecipients:
-                                    type: boolean
-                                    description: Whether the recipients were notified.
-                                  notifiedRecipientsAt:
-                                    anyOf:
-                                    - type: number
-                                    - type: 'null'
-                                    description: The timestamp the recipients were notified at.
-                                  started:
-                                    type: boolean
-                                    description: Whether the route is started.
-                                  startedAt:
-                                    anyOf:
-                                    - type: number
-                                    - type: 'null'
-                                    description: The timestamp the route was started at.
-                                required:
-                                - completed
-                                - completedAt
-                                - distributed
-                                - distributedAt
-                                - notifiedRecipients
-                                - notifiedRecipientsAt
-                                - started
-                                - startedAt
-                                additionalProperties: false
-                                description: The state of a route.
-                              - type: 'null'
-                              description: The state of the route.
-                            plan:
-                              anyOf:
-                              - type: string
-                                pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
-                              - type: 'null'
-                              description: The id of the related plan.
-                          required:
-                          - id
-                          - title
-                          - stopCount
-                          - driver
-                          - state
-                          - plan
-                          additionalProperties: false
-                          description: A route.
-                        - type: 'null'
-                        description: The route of the stop, if any.
-                      eta:
-                        anyOf:
-                        - type: object
-                          properties:
-                            estimatedArrivalAt:
-                              type: number
-                              description: The estimated time in seconds since epoch.
-                            estimatedLatestArrivalAt:
-                              type: number
-                              description: The latest estimated time in seconds since epoch.
-                            estimatedEarliestArrivalAt:
-                              type: number
-                              description: The earliest estimated time in seconds since epoch.
-                          required:
-                          - estimatedArrivalAt
-                          - estimatedLatestArrivalAt
-                          - estimatedEarliestArrivalAt
-                          additionalProperties: false
-                          description: The estimated time of arrival data of the stop.
-                        - type: 'null'
-                      etaNullReason:
-                        anyOf:
-                        - type: object
-                          properties:
-                            reason:
-                              type: string
-                              enum:
-                              - not_optimized
-                              - subscription_not_supported
-                            message:
-                              type: string
-                            url:
-                              anyOf:
-                              - type: string
-                              - type: 'null'
-                          required:
-                          - reason
-                          - message
-                          - url
-                          additionalProperties: false
-                          description: The reason why the ETA data is null, if it is.
-                        - type: 'null'
-                      timing:
-                        type: object
-                        properties:
-                          estimatedAttemptDuration:
-                            anyOf:
-                            - type: number
-                            - type: 'null'
-                            description: Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds.
-                          earliestAttemptTime:
-                            anyOf:
-                            - type: object
-                              properties:
-                                hour:
-                                  type: integer
-                                  minimum: -9007199254740991
-                                  maximum: 9007199254740991
-                                  description: Hour of the day
-                                minute:
-                                  type: integer
-                                  minimum: -9007199254740991
-                                  maximum: 9007199254740991
-                                  description: Minute of the hour
-                              required:
-                              - hour
-                              - minute
-                              additionalProperties: false
-                              description: Time of day in hours and minutes. Uses a 24 hour clock.
-                            - type: 'null'
-                            description: The earliest time that the driver should arrive at the stop
-                          latestAttemptTime:
-                            anyOf:
-                            - type: object
-                              properties:
-                                hour:
-                                  type: integer
-                                  minimum: -9007199254740991
-                                  maximum: 9007199254740991
-                                  description: Hour of the day
-                                minute:
-                                  type: integer
-                                  minimum: -9007199254740991
-                                  maximum: 9007199254740991
-                                  description: Minute of the hour
-                              required:
-                              - hour
-                              - minute
-                              additionalProperties: false
-                              description: Time of day in hours and minutes. Uses a 24 hour clock.
-                            - type: 'null'
-                            description: The latest time that the driver should arrive at the stop.
-                        required:
-                        - estimatedAttemptDuration
-                        - earliestAttemptTime
-                        - latestAttemptTime
-                        additionalProperties: false
-                        description: The timing data of the stop.
-                      optimizationOrder:
-                        default: default
-                        type: string
-                        enum:
-                        - first
-                        - last
-                        - default
-                      customProperties:
-                        anyOf:
-                        - type: object
-                          propertyNames:
-                            type: string
-                          additionalProperties:
-                            anyOf:
-                            - type: string
-                            - type: 'null'
-                        - type: 'null'
-                        description: Custom properties of the stop, can be used to store additional information.
-                      circuitClientId:
-                        anyOf:
-                        - type: string
-                        - type: 'null'
-                        description: The associated Client ID of the Spoke Connect
-                    required:
-                    - id
-                    - address
-                    - barcodes
-                    - driverIdentifier
-                    - allowedDriversIdentifiers
-                    - estimatedTravelDuration
-                    - estimatedTravelDistance
-                    - notes
-                    - packageCount
-                    - weight
-                    - type
-                    - packageLabel
-                    - stopPosition
-                    - trackingLink
-                    - webAppLink
-                    - orderInfo
-                    - placeInVehicle
-                    - recipient
-                    - deliveryInfo
-                    - paymentOnDelivery
-                    - proofOfAttemptRequirements
-                    - plan
-                    - route
-                    - eta
-                    - etaNullReason
-                    - timing
-                    - customProperties
-                    - circuitClientId
-                    additionalProperties: false
-                    description: A stop of a plan, can be related to a route.
-                description: Success
-        '400':
-          description: Query parameters are invalid
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                  code:
-                    type: string
-                    description: The error code.
-                  param:
-                    type: string
-                    description: The parameter that caused the error.
-                  url:
-                    type: string
-                    description: The URL with more information about the error.
-                required:
-                - message
-                description: Query parameters are invalid
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                  url:
-                    type: string
-                    description: The URL with more information about the error.
-                required:
-                - message
-                description: Unauthorized
-        '403':
-          description: Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    enum:
-                    - Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.
-                  code:
-                    type: string
-                    enum:
-                    - plan_inaccessible
-                  url:
-                    type: string
-                    enum:
-                    - https://dispatch.spoke.com/paywall
-                required:
-                - message
-                - code
-                - url
-                description: Plan is no longer accessible due to data access restrictions. Upgrade to a plan that supports a longer delivery history period to access it.
-        '404':
-          description: The provided plan id does not exist
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    enum:
-                    - Plan not found
-                required:
-                - message
-                description: The provided plan id does not exist
-                title: Plan not found
-        '500':
-          description: An internal server error occurred
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                  code:
-                    type: string
-                    description: The error code.
-                  param:
-                    type: string
-                    description: The parameter that caused the error.
-                  url:
-                    type: string
-                    description: The URL with more information about the error.
-                required:
-                - message
-                description: An internal server error occurred
-        default:
-          description: The default error model
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                  code:
-                    type: string
-                    description: The error code.
-                  param:
-                    type: string
-                    description: The parameter that caused the error.
-                  url:
-                    type: string
-                    description: The URL with more information about the error.
-                required:
-                - message
-                description: The default error model
   /plans/{planId}/stops:import:
     post:
       operationId: importStops
       summary: Batch import stops
       tags:
       - Stops
-      description: Batch import stops. The request body must contain an array of stops to import. If the plan is not writable, the request will fail, prefer using the [Import Live Stops API](#tag/Live-Stops/operation/importLiveStops) instead.
+      description: Batch import stops. The request body must contain an array of stops to import. If the plan is not writable, the request will fail, prefer using the Import Live Stops API instead.
       requestBody:
         content:
           application/json:
@@ -1493,6 +752,7 @@ paths:
               maxItems: 100
               type: array
               items:
+                description: The request body for creating a stop. The only required field is address, you need to provide at least one of the fields in it. The latitude and longitude fields will override any of the other fields if they are set(and they need to be both set if any of them are). The more fields you provide the more accurate the geocoding will be.
                 type: object
                 properties:
                   address:
@@ -1666,6 +926,13 @@ paths:
                             type: string
                             minLength: 1
                             maxLength: 255
+                        invoiceNumber:
+                          description: Invoice number
+                          anyOf:
+                          - type: string
+                            minLength: 1
+                            maxLength: 255
+                          - type: 'null'
                         sellerOrderId:
                           description: Seller order ID
                           anyOf:
@@ -1754,16 +1021,8 @@ paths:
                           - type: 'null'
                       additionalProperties: false
                     - type: 'null'
-                  driver:
-                    description: 'Deprecated. Prefer using the `allowedDrivers` field instead.
-
-                      Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.'
-                    anyOf:
-                    - type: string
-                      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-                    - type: 'null'
                   allowedDrivers:
-                    description: Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already.
+                    description: Driver IDs that are allowed to be assigned to this stop. These drivers must be configured as part of the plan to be valid.
                     anyOf:
                     - maxItems: 100
                       type: array
@@ -1825,7 +1084,7 @@ paths:
                       minLength: 1
                       maxLength: 2000
                     - type: 'null'
-                  circuitClientId:
+                  clientId:
                     description: Client ID of the retailer in Spoke Connect
                     anyOf:
                     - type: string
@@ -1855,6 +1114,28 @@ paths:
                           minLength: 1
                           maxLength: 255
                         - type: 'null'
+                    - type: 'null'
+                  serviceInfo:
+                    anyOf:
+                    - description: Service offering data for this stop. Combines the service identifier and SLA start time. On update, set the whole object to `null` to clear all service info.
+                      type: object
+                      properties:
+                        identifier:
+                          anyOf:
+                          - description: The identifier of a service offering to assign to this stop. Must match the identifier of a current, non-deleted service offering defined on your team. On update, set it to `null` to remove an assigned service; on create, omit it to leave the stop without a service.
+                            type: string
+                            minLength: 1
+                            maxLength: 32
+                            pattern: ^[a-zA-Z0-9]+$
+                          - type: 'null'
+                        slaStartsAt:
+                          anyOf:
+                          - description: The SLA start time for this stop, in seconds since Unix epoch. Allows backdating when the actual order time is known. Can be provided with or without a service identifier.
+                            type: integer
+                            exclusiveMinimum: 0
+                            maximum: 9007199254740991
+                          - type: 'null'
+                      additionalProperties: false
                     - type: 'null'
                 required:
                 - address
@@ -2177,6 +1458,24 @@ paths:
                 required:
                 - message
                 description: Failed to create stop
+        '412':
+          description: Drivers must be part of the plan to be referenced by stops
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                    - Driver is not linked to plan
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                required:
+                - message
+                description: Drivers must be part of the plan to be referenced by stops
+                title: Driver is not linked to plan
         '422':
           description: Failed to create stop
           content:
@@ -2243,11 +1542,12 @@ paths:
       summary: Update an existing stop
       tags:
       - Stops
-      description: Does not support updating a stop's location, nor the `circuitClientId`. To do so, delete the stop and create a new one. If the plan is not writable, the request will fail, prefer using the [Update Live Stops API](#tag/Live-Stops/operation/updateLiveStop) instead.
+      description: Does not support updating a stop's location, nor the `clientId`. To do so, delete the stop and create a new one. If the plan is not writable, the request will fail, prefer using the Update Live Stops API instead.
       requestBody:
         content:
           application/json:
             schema:
+              description: The request body for updating a stop. All the values present in the request will update the stop value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated.
               type: object
               properties:
                 recipient:
@@ -2298,6 +1598,13 @@ paths:
                           type: string
                           minLength: 1
                           maxLength: 255
+                      invoiceNumber:
+                        description: Invoice number
+                        anyOf:
+                        - type: string
+                          minLength: 1
+                          maxLength: 255
+                        - type: 'null'
                       sellerOrderId:
                         description: Seller order ID
                         anyOf:
@@ -2386,16 +1693,8 @@ paths:
                         - type: 'null'
                     additionalProperties: false
                   - type: 'null'
-                driver:
-                  description: 'Deprecated. Prefer using the `allowedDrivers` field instead.
-
-                    Driver ID that should be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `allowedDrivers` field.'
-                  anyOf:
-                  - type: string
-                    pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-                  - type: 'null'
                 allowedDrivers:
-                  description: Driver IDs that are allowed to be assigned to this stop. If not provided, the stop will be assigned to any available driver during optimization. This field is mutually exclusive with the `driver` field. When the stop is first created, all the drivers in this list will be added to the plan as well. If the stop is updated, no changes will be made to the plan, so if you want to add a driver to the plan, you must also add them to the plan separately, if they are not already.
+                  description: Driver IDs that are allowed to be assigned to this stop. These drivers must be configured as part of the plan to be valid.
                   anyOf:
                   - maxItems: 100
                     type: array
@@ -2481,6 +1780,28 @@ paths:
                         maxLength: 255
                       - type: 'null'
                   - type: 'null'
+                serviceInfo:
+                  anyOf:
+                  - description: Service offering data for this stop. Combines the service identifier and SLA start time. On update, set the whole object to `null` to clear all service info.
+                    type: object
+                    properties:
+                      identifier:
+                        anyOf:
+                        - description: The identifier of a service offering to assign to this stop. Must match the identifier of a current, non-deleted service offering defined on your team. On update, set it to `null` to remove an assigned service; on create, omit it to leave the stop without a service.
+                          type: string
+                          minLength: 1
+                          maxLength: 32
+                          pattern: ^[a-zA-Z0-9]+$
+                        - type: 'null'
+                      slaStartsAt:
+                        anyOf:
+                        - description: The SLA start time for this stop, in seconds since Unix epoch. Allows backdating when the actual order time is known. Can be provided with or without a service identifier.
+                          type: integer
+                          exclusiveMinimum: 0
+                          maximum: 9007199254740991
+                        - type: 'null'
+                    additionalProperties: false
+                  - type: 'null'
                 timing:
                   anyOf:
                   - type: object
@@ -2537,6 +1858,7 @@ paths:
                     additionalProperties: false
                   - type: 'null'
               additionalProperties: false
+        description: The request body for updating a stop. All the values present in the request will update the stop value, if you wish to update only certain fields, only set them and do not set the others. Any fields not set will not be updated.
       parameters:
       - schema:
           type: string
@@ -2561,28 +1883,117 @@ paths:
                 $ref: '#/components/schemas/stopSchema'
                 description: The updated stop
         '400':
-          description: The request has errors. Either syntactic or semantic
+          description: The request has errors (syntactic or semantic), or the service is not eligible for the stop (activity, operating area, or depot availability).
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                  code:
-                    type: string
-                    description: The error code.
-                  param:
-                    type: string
-                    description: The parameter that caused the error.
-                  url:
-                    type: string
-                    description: The URL with more information about the error.
-                required:
-                - message
-                description: The request has errors. Either syntactic or semantic
-                title: The request is invalid
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      description: The error code.
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                    url:
+                      type: string
+                      description: The URL with more information about the error.
+                  required:
+                  - message
+                  description: ID format is invalid
+                  title: The request is invalid
+                  x-response-description: ID format is invalid
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - service_activity_not_supported
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The assigned service offering does not support the stop’s activity
+                  title: Service offering does not support the activity
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      enum:
+                      - Cannot clear slaStartsAt on a stop with an assigned service.
+                    code:
+                      type: string
+                      enum:
+                      - sla_start_not_clearable
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The SLA start time cannot be cleared while a service is assigned
+                  title: SLA start time is not clearable on an assigned service
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - operating_area_violation
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The assigned service does not operate in the stop’s area
+                  title: Service does not operate in the stop’s area
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - operating_area_missing_coordinates
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The service has an operating area but the stop or depot lacks coordinates
+                  title: Operating area cannot be evaluated without coordinates
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - service_not_available_at_depot
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: The assigned service is not offered at the stop’s depot
+                  title: Service is not available at the stop’s depot
+                description: The request has errors (syntactic or semantic), or the service is not eligible for the stop (activity, operating area, or depot availability).
         '401':
           description: Unauthorized
           content:
@@ -2663,18 +2074,37 @@ paths:
                   description: Vehicle capacity mode is disabled in the team's settings
                 description: The plan is no longer accessible or the stop contains fields that require upgrading your team subscription/settings.
         '404':
-          description: Not Found
+          description: The plan, stop, or referenced service offering could not be found.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    description: The error message.
-                required:
-                - message
-                description: Not Found
+                oneOf:
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                  required:
+                  - message
+                  description: Not Found
+                - type: object
+                  properties:
+                    message:
+                      type: string
+                      description: The error message.
+                    code:
+                      type: string
+                      enum:
+                      - service_offering_not_found
+                    param:
+                      type: string
+                      description: The parameter that caused the error.
+                  required:
+                  - message
+                  - code
+                  description: No current service offering matches the provided identifier
+                  title: Service offering not found
+                description: The plan, stop, or referenced service offering could not be found.
         '409':
           description: The plan is not writable.
           content:
@@ -2695,6 +2125,40 @@ paths:
                 - code
                 description: The plan is not writable.
                 title: Plan is not writable
+        '412':
+          description: Drivers must be part of the plan to be referenced by stops
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    enum:
+                    - Driver is not linked to plan
+                  param:
+                    type: string
+                    description: The parameter that caused the error.
+                required:
+                - message
+                description: Drivers must be part of the plan to be referenced by stops
+                title: Driver is not linked to plan
+        '422':
+          description: Failed to create stop
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    anyOf:
+                    - type: string
+                      enum:
+                      - An error occurred when creating the stop, but the error is not due to a validation error, instead it is another conflict, check if the provided data is semantically valid.
+                    - type: string
+                required:
+                - message
+                description: Failed to create stop
         '500':
           description: An internal server error occurred
           content:
@@ -2744,7 +2208,6 @@ paths:
       summary: Retrieve a stop
       tags:
       - Stops
-      description: Retrieve a stop
       parameters:
       - schema:
           type: string
@@ -2893,7 +2356,7 @@ paths:
       summary: Delete a stop
       tags:
       - Stops
-      description: Delete a stop. This action cannot be undone and will delete all the data associated with the stop. If the plan is not writable, this will fail, prefer using the [Live Delete Stop API](#tag/Live-Stops/operation/deleteLiveStop) instead.
+      description: Delete a stop. This action cannot be undone and will delete all the data associated with the stop. If the plan is not writable, this will fail, prefer using the Live Delete Stop API instead.
       parameters:
       - schema:
           type: string
@@ -3058,7 +2521,110 @@ paths:
       summary: Stop Search
       tags:
       - Stops
-      description: "See the [Stops Search docs](/api/v1#section/Using-the-API/Stop-Search-API) for more information on formatting the filter string.\n  The following fields are filterable:\n  - `planId` - The ID of the plan stop is linked to in PlanId format (e.g. `plans/{planId}`)\n  - `routeId` - The ID of the route stop is linked to in RouteId format (e.g. `routes/{routeId}`)\n  - `type` - The type of the stop (e.g. `start`, `stop`, `end`)\n  - `activity` - The activity performed at the stop (`delivery` or `pickup`)\n  - `notes` - Notes associated with the stop\n  - `orderInfo.sellerOrderId` - The order ID from the seller\n  - `orderInfo.invoiceNumber` - The invoice number of the order\n  - `orderInfo.sellerWebsite` - The website URL of the seller\n  - `address.address` - The full address of the stop\n  - `address.addressLineOne` - The first line of the stop address\n  - `address.addressLineTwo` - The second line of the stop address\n  - `address.latitude` - The latitude of the stop address in decimal degrees\n  - `address.longitude` - The longitude of the stop address in decimal degrees\n  - `address.placeId` - The Google Places identifier for the address\n  - `address.countryCode` - The ISO country code for the address\n  - `createdAt` - The timestamp when the stop was created (ISO 8601)\n  - `arrivalAt` - The timestamp of the (estimated) arrival at the stop (ISO 8601)\n  - `packageCount` - The number of packages to be delivered or picked up\n  - `estimatedTravelDuration` - The estimated travel time to this stop from the previous one, in seconds\n  - `estimatedTravelDistance` - The estimated travel distance to this stop from the previous one, in meters\n  - `timing.estimatedAttemptDuration` - The estimated time spent at the stop to perform the activity, in seconds\n  - `recipient.name` - The name of the recipient at the stop\n  - `recipient.email` - The email address of the recipient\n  - `recipient.phone` - The phone number of the recipient\n  - `recipient.externalId` - An external identifier for the recipient\n  - `deliveryInfo.state` - The current state of the delivery (e.g. `delivered_to_recipient`, `failed_not_home`)\n  - `deliveryInfo.attempted` - Whether a delivery attempt has been made\n  - `deliveryInfo.succeeded` - Whether the delivery was successful\n  - `deliveryInfo.recipientProvidedNotes` - Notes provided by the recipient for the driver\n  - `deliveryInfo.driverProvidedInternalNotes` - Internal notes provided by the driver\n  - `deliveryInfo.driverProvidedRecipientNotes` - Notes for the recipient provided by the driver\n  - `deliveryInfo.signeeName` - The name of the person who signed for the delivery\n  - `deliveryInfo.attemptedAt` - The timestamp when the delivery was attempted (ISO 8601)\n  - `orderInfo.products` - The list of products included in the order\n  - `orderInfo.sellerName` - The name of the seller\n  - `paymentOnDelivery.amount` - The amount to be collected on delivery, in original units\n  - `barcodes` - The list of barcodes associated with the stop\n  - `packageLabel` - The label applied to the package(s)\n  - `customProperties.*` - A custom property of the stop. Replace `*` with the custom property ID.\n\n  The following fields are sortable:\n  - `address.latitude`\n  - `address.longitude`\n  - `createdAt`\n  - `arrivalAt`\n  - `packageCount`\n  - `estimatedTravelDuration`\n  - `estimatedTravelDistance`\n  - `timing.estimatedAttemptDuration`\n  - `deliveryInfo.attemptedAt`\n  - `paymentOnDelivery.amount`\n"
+      description: 'See the Stops Search docs for more information on formatting the filter string.
+
+        The following fields are filterable:
+
+        - `planId` - The ID of the plan stop is linked to in PlanId format (e.g. `plans/{planId}`)
+
+        - `routeId` - The ID of the route stop is linked to in RouteId format (e.g. `routes/{routeId}`)
+
+        - `type` - The type of the stop (e.g. `start`, `stop`, `end`)
+
+        - `activity` - The activity performed at the stop (`delivery` or `pickup`)
+
+        - `notes` - Notes associated with the stop
+
+        - `orderInfo.sellerOrderId` - The order ID from the seller
+
+        - `orderInfo.invoiceNumber` - The invoice number of the order
+
+        - `orderInfo.sellerWebsite` - The website URL of the seller
+
+        - `address.address` - The full address of the stop
+
+        - `address.addressLineOne` - The first line of the stop address
+
+        - `address.addressLineTwo` - The second line of the stop address
+
+        - `address.latitude` - The latitude of the stop address in decimal degrees
+
+        - `address.longitude` - The longitude of the stop address in decimal degrees
+
+        - `address.placeId` - The Google Places identifier for the address
+
+        - `address.countryCode` - The ISO country code for the address
+
+        - `createdAt` - The timestamp when the stop was created (ISO 8601)
+
+        - `arrivalAt` - The timestamp of the (estimated) arrival at the stop (ISO 8601)
+
+        - `packageCount` - The number of packages to be delivered or picked up
+
+        - `estimatedTravelDuration` - The estimated travel time to this stop from the previous one, in seconds
+
+        - `estimatedTravelDistance` - The estimated travel distance to this stop from the previous one, in meters
+
+        - `timing.estimatedAttemptDuration` - The estimated time spent at the stop to perform the activity, in seconds
+
+        - `recipient.name` - The name of the recipient at the stop
+
+        - `recipient.email` - The email address of the recipient
+
+        - `recipient.phone` - The phone number of the recipient
+
+        - `recipient.externalId` - An external identifier for the recipient
+
+        - `deliveryInfo.state` - The current state of the delivery (e.g. `delivered_to_recipient`, `failed_not_home`)
+
+        - `deliveryInfo.attempted` - Whether a delivery attempt has been made
+
+        - `deliveryInfo.succeeded` - Whether the delivery was successful
+
+        - `deliveryInfo.recipientProvidedNotes` - Notes provided by the recipient for the driver
+
+        - `deliveryInfo.driverProvidedInternalNotes` - Internal notes provided by the driver
+
+        - `deliveryInfo.driverProvidedRecipientNotes` - Notes for the recipient provided by the driver
+
+        - `deliveryInfo.signeeName` - The name of the person who signed for the delivery
+
+        - `deliveryInfo.attemptedAt` - The timestamp when the delivery was attempted (ISO 8601)
+
+        - `orderInfo.products` - The list of products included in the order
+
+        - `orderInfo.sellerName` - The name of the seller
+
+        - `paymentOnDelivery.amount` - The amount to be collected on delivery, in original units
+
+        - `barcodes` - The list of barcodes associated with the stop
+
+        - `packageLabel` - The label applied to the package(s)
+
+        - `customProperties.*` - A custom property of the stop. Replace `*` with the custom property ID.
+
+
+        The following fields are sortable:
+
+        - `address.latitude`
+
+        - `address.longitude`
+
+        - `createdAt`
+
+        - `arrivalAt`
+
+        - `packageCount`
+
+        - `estimatedTravelDuration`
+
+        - `estimatedTravelDistance`
+
+        - `timing.estimatedAttemptDuration`
+
+        - `deliveryInfo.attemptedAt`
+
+        - `paymentOnDelivery.amount`'
       parameters:
       - schema:
           type: string
@@ -3128,7 +2694,7 @@ paths:
                             - stop
                           stop:
                             allOf:
-                            - $ref: '#/components/schemas/stopSchema_2'
+                            - $ref: '#/components/schemas/stopSchema'
                             description: The stop.
                         required:
                         - type
@@ -4499,365 +4065,10 @@ paths:
                 description: The default error model
 components:
   schemas:
-    unassignedStopSchema:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/unassignedStopIdSchema'
-          description: The id of the unassigned stop, in the format `unassignedStops/<id>`.
-        depot:
-          type: string
-          pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
-          description: The depot that this unassigned stop belongs to.
-        address:
-          type: object
-          properties:
-            address:
-              type: string
-              description: The address of the stop.
-            addressLineOne:
-              type: string
-              description: The first line of the address.
-            addressLineTwo:
-              type: string
-              description: The second line of the address.
-            latitude:
-              anyOf:
-              - type: number
-                minimum: -90
-                maximum: 90
-              - type: 'null'
-              description: The latitude of the address in decimal degrees.
-            longitude:
-              anyOf:
-              - type: number
-                minimum: -180
-                maximum: 180
-              - type: 'null'
-              description: The longitude of the address in decimal degrees.
-            placeId:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The identifier of the place corresponding to this stop on Google Places
-            placeTypes:
-              type: array
-              items:
-                type: string
-              description: Array of strings that is provided by the Google AutoCompleteAPI
-          required:
-          - address
-          - addressLineOne
-          - addressLineTwo
-          - latitude
-          - longitude
-          - placeId
-          - placeTypes
-          additionalProperties: false
-          description: The address of the stop.
-        barcodes:
-          type: array
-          items:
-            type: string
-          description: List of Barcode IDs associated with the stop.
-        allowedDrivers:
-          type: array
-          items:
-            type: string
-            pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-          description: The driver IDs that can be assigned to this stop.
-        notes:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Notes for the stop.
-        packageCount:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: The number of packages.
-        weight:
-          anyOf:
-          - type: object
-            properties:
-              amount:
-                type: number
-                minimum: 0
-                description: The weight amount for this stop.
-              unit:
-                type: string
-                enum:
-                - kilogram
-                - pound
-                - metric-ton
-                description: The weight unit in which the amount is specified (defined at team's capacity unit).
-            required:
-            - amount
-            - unit
-            additionalProperties: false
-            description: Weight information for the stop.
-          - type: 'null'
-        orderInfo:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                type: string
-              description: The products of the stop.
-            invoiceNumber:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Invoice number associated with the order.
-            sellerName:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Name of the seller where the order is from.
-            sellerOrderId:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Id of the seller where the order is from.
-            sellerWebsite:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Website of the seller where the order is from.
-          required:
-          - products
-          - invoiceNumber
-          - sellerName
-          - sellerOrderId
-          - sellerWebsite
-          additionalProperties: false
-          description: The order information of the stop.
-        recipient:
-          type: object
-          properties:
-            name:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The name of the recipient.
-            email:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The email of the recipient.
-            phone:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The phone of the recipient.
-            externalId:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The external id of the recipient.
-          required:
-          - name
-          - email
-          - phone
-          - externalId
-          additionalProperties: false
-          description: The recipient of the stop.
-        activity:
-          default: delivery
-          type: string
-          enum:
-          - delivery
-          - pickup
-        trackingLink:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The recipient tracking link.
-        timing:
-          type: object
-          properties:
-            estimatedAttemptDuration:
-              anyOf:
-              - type: number
-              - type: 'null'
-              description: Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds.
-            earliestAttemptTime:
-              anyOf:
-              - $ref: '#/components/schemas/timeOfDaySchema'
-              - type: 'null'
-              description: The earliest time that the driver should arrive at the stop
-            latestAttemptTime:
-              anyOf:
-              - $ref: '#/components/schemas/timeOfDaySchema'
-              - type: 'null'
-              description: The latest time that the driver should arrive at the stop.
-          required:
-          - estimatedAttemptDuration
-          - earliestAttemptTime
-          - latestAttemptTime
-          additionalProperties: false
-          description: The timing data of the stop.
-        optimizationOrder:
-          default: default
-          type: string
-          enum:
-          - first
-          - last
-          - default
-        paymentOnDelivery:
-          anyOf:
-          - type: object
-            properties:
-              amount:
-                anyOf:
-                - type: integer
-                  minimum: 0
-                  maximum: 9007199254740991
-                - type: 'null'
-                description: The amount *in minor units* (e.g. cents) to be collected upon delivery.
-              currency:
-                type: string
-                description: The payment's currency in ISO 4217 standard.
-            required:
-            - amount
-            - currency
-            additionalProperties: false
-            description: The payment due upon delivery also known as "Cash on Delivery".
-          - type: 'null'
-        proofOfAttemptRequirements:
-          type: object
-          properties:
-            enabled:
-              anyOf:
-              - type: boolean
-              - type: 'null'
-              description: Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery
-          required:
-          - enabled
-          additionalProperties: false
-          description: The proof of attempt requirements of the stop.
-        customProperties:
-          anyOf:
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              anyOf:
-              - type: string
-              - type: 'null'
-          - type: 'null'
-          description: Custom properties of the stop, can be used to store additional information.
-        clientId:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The associated Client ID of the Spoke Connect
-      required:
-      - id
-      - depot
-      - address
-      - barcodes
-      - allowedDrivers
-      - notes
-      - packageCount
-      - weight
-      - orderInfo
-      - recipient
-      - trackingLink
-      - timing
-      - paymentOnDelivery
-      - proofOfAttemptRequirements
-      - customProperties
-      - clientId
-      additionalProperties: false
-      description: An unassigned stop.
-    routeSchema:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/routeIdSchema'
-          description: The id of the route, in the format `routes/<id>`.
-        title:
-          type: string
-          description: The title of the route.
-        stopCount:
-          type: number
-          description: The number of stops in the route.
-        driver:
-          anyOf:
-          - $ref: '#/components/schemas/driverIdSchema'
-          - type: 'null'
-          description: The id of the driver.
-        state:
-          anyOf:
-          - type: object
-            properties:
-              completed:
-                type: boolean
-                description: Whether the route is completed.
-              completedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the route was completed at.
-              distributed:
-                type: boolean
-                description: Whether the route is distributed.
-              distributedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the route was distributed at.
-              notifiedRecipients:
-                type: boolean
-                description: Whether the recipients were notified.
-              notifiedRecipientsAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the recipients were notified at.
-              started:
-                type: boolean
-                description: Whether the route is started.
-              startedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the route was started at.
-            required:
-            - completed
-            - completedAt
-            - distributed
-            - distributedAt
-            - notifiedRecipients
-            - notifiedRecipientsAt
-            - started
-            - startedAt
-            additionalProperties: false
-            description: The state of a route.
-          - type: 'null'
-          description: The state of the route.
-        plan:
-          anyOf:
-          - $ref: '#/components/schemas/planIdSchema'
-          - type: 'null'
-          description: The id of the related plan.
-      required:
-      - id
-      - title
-      - stopCount
-      - driver
-      - state
-      - plan
-      additionalProperties: false
-      description: A route.
-    stopIdSchema:
+    planIdSchema:
       type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
-    stopSchema_2:
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
+    stopSchema:
       type: object
       properties:
         id:
@@ -5622,16 +4833,44 @@ components:
       - serviceInfo
       additionalProperties: false
       description: A stop of a plan, can be related to a route.
+    unassignedStopIdSchema:
+      type: string
+      pattern: ^unassignedStops\/[a-zA-Z0-9---_]{1,50}$
     routeIdSchema:
       type: string
       pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-    stopSchema:
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
+    unassignedStopSchema:
       type: object
       properties:
         id:
           allOf:
-          - $ref: '#/components/schemas/stopIdSchema'
-          description: The id of the stop, in the format `plans/<id>/stops/<id>`.
+          - $ref: '#/components/schemas/unassignedStopIdSchema'
+          description: The id of the unassigned stop, in the format `unassignedStops/<id>`.
+        depot:
+          type: string
+          pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+          description: The depot that this unassigned stop belongs to.
         address:
           type: object
           properties:
@@ -5683,26 +4922,12 @@ components:
           items:
             type: string
           description: List of Barcode IDs associated with the stop.
-        driverIdentifier:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The driver identifier. This field is deprecated, prefer using `allowedDriversIdentifiers`.
-        allowedDriversIdentifiers:
+        allowedDrivers:
           type: array
           items:
             type: string
-          description: The allowed drivers that can be assigned to this stop, replaces the `driverIdentifier` field.
-        estimatedTravelDuration:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: Estimated time that the driver will take to arrive at this stop from the previous stop in seconds.
-        estimatedTravelDistance:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: The distance in meters between the previous stop and this stop.
+            pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+          description: The driver IDs that can be assigned to this stop.
         notes:
           anyOf:
           - type: string
@@ -5734,31 +4959,6 @@ components:
             additionalProperties: false
             description: Weight information for the stop.
           - type: 'null'
-        type:
-          type: string
-          enum:
-          - start
-          - stop
-          - end
-          description: The type of the stop. `start` is the first stop of the route, `stop` is a stop in the middle of the route, and `end` is the last stop of the route.
-        packageLabel:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The label of the package.
-        stopPosition:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: The position of the stop in the route.
-        trackingLink:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The recipient tracking link.
-        webAppLink:
-          type: string
-          description: The web app link.
         orderInfo:
           type: object
           properties:
@@ -5767,6 +4967,11 @@ components:
               items:
                 type: string
               description: The products of the stop.
+            invoiceNumber:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: Invoice number associated with the order.
             sellerName:
               anyOf:
               - type: string
@@ -5784,47 +4989,12 @@ components:
               description: Website of the seller where the order is from.
           required:
           - products
+          - invoiceNumber
           - sellerName
           - sellerOrderId
           - sellerWebsite
           additionalProperties: false
           description: The order information of the stop.
-        placeInVehicle:
-          anyOf:
-          - type: object
-            properties:
-              x:
-                anyOf:
-                - type: string
-                  enum:
-                  - left
-                  - right
-                - type: 'null'
-                description: The x position of the package.
-              y:
-                anyOf:
-                - type: string
-                  enum:
-                  - front
-                  - back
-                  - middle
-                - type: 'null'
-                description: The y position of the package.
-              z:
-                anyOf:
-                - type: string
-                  enum:
-                  - floor
-                  - shelf
-                - type: 'null'
-                description: The z position of the package.
-            required:
-            - x
-            - y
-            - z
-            additionalProperties: false
-            description: The position of the package in the vehicle.
-          - type: 'null'
         recipient:
           type: object
           properties:
@@ -5861,159 +5031,42 @@ components:
           enum:
           - delivery
           - pickup
-        deliveryInfo:
+        trackingLink:
           anyOf:
-          - type: object
-            properties:
-              attempted:
-                type: boolean
-                description: Whether the stop was attempted.
-              attemptedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: When the stop was attempted in seconds since epoch.
-              arrivedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: When the driver arrived at the stop in seconds since epoch. This field is deprecated, prefer `timeAtStopInfo.arrivedAt`.
-              timeAtStopInfo:
-                anyOf:
-                - type: object
-                  properties:
-                    arrivedAt:
-                      anyOf:
-                      - type: number
-                      - type: 'null'
-                      description: When the driver arrived at the stop in seconds since epoch.
-                    departedAt:
-                      anyOf:
-                      - type: number
-                      - type: 'null'
-                      description: When the driver departed from the stop in seconds since epoch.
-                    isEstimated:
-                      anyOf:
-                      - type: boolean
-                      - type: 'null'
-                      description: Whether the time at stop was estimated rather than directly measured.
-                  required:
-                  - arrivedAt
-                  - departedAt
-                  - isEstimated
-                - type: 'null'
-                description: Grouped time-at-stop data.
-              timeAtStopInfoNullReason:
-                anyOf:
-                - type: object
-                  properties:
-                    reason:
-                      type: string
-                      enum:
-                      - subscription_not_supported
-                    message:
-                      type: string
-                    url:
-                      anyOf:
-                      - type: string
-                      - type: 'null'
-                  required:
-                  - reason
-                  - message
-                  - url
-                - type: 'null'
-                description: Reason why time-at-stop data was not provided.
-              attemptedLocation:
-                anyOf:
-                - type: object
-                  properties:
-                    latitude:
-                      type: number
-                      description: The latitude of the location.
-                    longitude:
-                      type: number
-                      description: The longitude of the location.
-                  required:
-                  - latitude
-                  - longitude
-                  additionalProperties: false
-                  description: A location.
-                - type: 'null'
-                description: Where the stop was attempted.
-              driverProvidedInternalNotes:
-                anyOf:
-                - type: string
-                - type: 'null'
-                description: Internal notes provided by the driver.
-              driverProvidedRecipientNotes:
-                anyOf:
-                - type: string
-                - type: 'null'
-                description: Recipient notes provided by the driver.
-              photoUrls:
-                type: array
-                items:
-                  type: string
-                description: URLs of proof of delivery photos.
-              recipientProvidedNotes:
-                anyOf:
-                - type: string
-                - type: 'null'
-                description: Notes from recipient
-              signatureUrl:
-                anyOf:
-                - type: string
-                - type: 'null'
-                description: URL of the signature.
-              signeeName:
-                anyOf:
-                - type: string
-                - type: 'null'
-                description: Name of the signee.
-              succeeded:
-                type: boolean
-                description: Whether the stop was succeeded.
-              state:
-                type: string
-                enum:
-                - delivered_to_recipient
-                - delivered_to_third_party
-                - delivered_to_mailbox
-                - delivered_to_safe_place
-                - delivered_to_pickup_point
-                - delivered_other
-                - picked_up_from_customer
-                - picked_up_unmanned
-                - picked_up_from_locker
-                - picked_up_other
-                - failed_not_home
-                - failed_cant_find_address
-                - failed_no_parking
-                - failed_no_time
-                - failed_package_not_available
-                - failed_other
-                - failed_missing_required_proof
-                - failed_payment_not_received
-                - unattempted
-                description: The state of the delivery.
-            required:
-            - attempted
-            - attemptedAt
-            - arrivedAt
-            - timeAtStopInfo
-            - timeAtStopInfoNullReason
-            - attemptedLocation
-            - driverProvidedInternalNotes
-            - driverProvidedRecipientNotes
-            - photoUrls
-            - recipientProvidedNotes
-            - signatureUrl
-            - signeeName
-            - succeeded
-            - state
-            additionalProperties: false
-            description: The delivery information of the stop.
+          - type: string
           - type: 'null'
+          description: The recipient tracking link.
+        timing:
+          type: object
+          properties:
+            estimatedAttemptDuration:
+              anyOf:
+              - type: number
+              - type: 'null'
+              description: Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds.
+            earliestAttemptTime:
+              anyOf:
+              - $ref: '#/components/schemas/timeOfDaySchema'
+              - type: 'null'
+              description: The earliest time that the driver should arrive at the stop
+            latestAttemptTime:
+              anyOf:
+              - $ref: '#/components/schemas/timeOfDaySchema'
+              - type: 'null'
+              description: The latest time that the driver should arrive at the stop.
+          required:
+          - estimatedAttemptDuration
+          - earliestAttemptTime
+          - latestAttemptTime
+          additionalProperties: false
+          description: The timing data of the stop.
+        optimizationOrder:
+          default: default
+          type: string
+          enum:
+          - first
+          - last
+          - default
         paymentOnDelivery:
           anyOf:
           - type: object
@@ -6046,88 +5099,6 @@ components:
           - enabled
           additionalProperties: false
           description: The proof of attempt requirements of the stop.
-        plan:
-          allOf:
-          - $ref: '#/components/schemas/planIdSchema'
-          description: The id of the plan, in the format `plans/<id>`.
-        route:
-          anyOf:
-          - $ref: '#/components/schemas/routeSchema'
-          - type: 'null'
-          description: The route of the stop, if any.
-        eta:
-          anyOf:
-          - type: object
-            properties:
-              estimatedArrivalAt:
-                type: number
-                description: The estimated time in seconds since epoch.
-              estimatedLatestArrivalAt:
-                type: number
-                description: The latest estimated time in seconds since epoch.
-              estimatedEarliestArrivalAt:
-                type: number
-                description: The earliest estimated time in seconds since epoch.
-            required:
-            - estimatedArrivalAt
-            - estimatedLatestArrivalAt
-            - estimatedEarliestArrivalAt
-            additionalProperties: false
-            description: The estimated time of arrival data of the stop.
-          - type: 'null'
-        etaNullReason:
-          anyOf:
-          - type: object
-            properties:
-              reason:
-                type: string
-                enum:
-                - not_optimized
-                - subscription_not_supported
-              message:
-                type: string
-              url:
-                anyOf:
-                - type: string
-                - type: 'null'
-            required:
-            - reason
-            - message
-            - url
-            additionalProperties: false
-            description: The reason why the ETA data is null, if it is.
-          - type: 'null'
-        timing:
-          type: object
-          properties:
-            estimatedAttemptDuration:
-              anyOf:
-              - type: number
-              - type: 'null'
-              description: Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds.
-            earliestAttemptTime:
-              anyOf:
-              - $ref: '#/components/schemas/timeOfDaySchema'
-              - type: 'null'
-              description: The earliest time that the driver should arrive at the stop
-            latestAttemptTime:
-              anyOf:
-              - $ref: '#/components/schemas/timeOfDaySchema'
-              - type: 'null'
-              description: The latest time that the driver should arrive at the stop.
-          required:
-          - estimatedAttemptDuration
-          - earliestAttemptTime
-          - latestAttemptTime
-          additionalProperties: false
-          description: The timing data of the stop.
-        optimizationOrder:
-          default: default
-          type: string
-          enum:
-          - first
-          - last
-          - default
         customProperties:
           anyOf:
           - type: object
@@ -6139,69 +5110,114 @@ components:
               - type: 'null'
           - type: 'null'
           description: Custom properties of the stop, can be used to store additional information.
-        circuitClientId:
+        clientId:
           anyOf:
           - type: string
           - type: 'null'
           description: The associated Client ID of the Spoke Connect
       required:
       - id
+      - depot
       - address
       - barcodes
-      - driverIdentifier
-      - allowedDriversIdentifiers
-      - estimatedTravelDuration
-      - estimatedTravelDistance
+      - allowedDrivers
       - notes
       - packageCount
       - weight
-      - type
-      - packageLabel
-      - stopPosition
-      - trackingLink
-      - webAppLink
       - orderInfo
-      - placeInVehicle
       - recipient
-      - deliveryInfo
+      - trackingLink
+      - timing
       - paymentOnDelivery
       - proofOfAttemptRequirements
-      - plan
-      - route
-      - eta
-      - etaNullReason
-      - timing
       - customProperties
-      - circuitClientId
+      - clientId
       additionalProperties: false
-      description: A stop of a plan, can be related to a route.
-    timeOfDaySchema:
+      description: An unassigned stop.
+    stopIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    routeSchema:
       type: object
       properties:
-        hour:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Hour of the day
-        minute:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Minute of the hour
+        id:
+          allOf:
+          - $ref: '#/components/schemas/routeIdSchema'
+          description: The id of the route, in the format `routes/<id>`.
+        title:
+          type: string
+          description: The title of the route.
+        stopCount:
+          type: number
+          description: The number of stops in the route.
+        driver:
+          anyOf:
+          - $ref: '#/components/schemas/driverIdSchema'
+          - type: 'null'
+          description: The id of the driver.
+        state:
+          anyOf:
+          - type: object
+            properties:
+              completed:
+                type: boolean
+                description: Whether the route is completed.
+              completedAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the route was completed at.
+              distributed:
+                type: boolean
+                description: Whether the route is distributed.
+              distributedAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the route was distributed at.
+              notifiedRecipients:
+                type: boolean
+                description: Whether the recipients were notified.
+              notifiedRecipientsAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the recipients were notified at.
+              started:
+                type: boolean
+                description: Whether the route is started.
+              startedAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the route was started at.
+            required:
+            - completed
+            - completedAt
+            - distributed
+            - distributedAt
+            - notifiedRecipients
+            - notifiedRecipientsAt
+            - started
+            - startedAt
+            additionalProperties: false
+            description: The state of a route.
+          - type: 'null'
+          description: The state of the route.
+        plan:
+          anyOf:
+          - $ref: '#/components/schemas/planIdSchema'
+          - type: 'null'
+          description: The id of the related plan.
       required:
-      - hour
-      - minute
+      - id
+      - title
+      - stopCount
+      - driver
+      - state
+      - plan
       additionalProperties: false
-      description: Time of day in hours and minutes. Uses a 24 hour clock.
-    planIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-    unassignedStopIdSchema:
-      type: string
-      pattern: ^unassignedStops\/[a-zA-Z0-9---_]{1,50}$
+      description: A route.
   securitySchemes:
     BasicAuth:
       type: http
