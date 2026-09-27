@@ -2092,6 +2092,27 @@ components:
     driverIdSchema:
       type: string
       pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+    depotIdSchema:
+      type: string
+      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
     driverSchema:
       type: object
       properties:
@@ -2292,27 +2313,6 @@ components:
       - routeOverrides
       additionalProperties: false
       description: A driver.
-    timeOfDaySchema:
-      type: object
-      properties:
-        hour:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Hour of the day
-        minute:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Minute of the hour
-      required:
-      - hour
-      - minute
-      additionalProperties: false
-      description: Time of day in hours and minutes. Uses a 24 hour clock.
-    depotIdSchema:
-      type: string
-      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
   securitySchemes:
     BasicAuth:
       type: http

@@ -3985,9 +3985,6 @@ paths:
                 description: The default error model
 components:
   schemas:
-    planIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     stopSchema:
       type: object
       properties:
@@ -4753,33 +4750,15 @@ components:
       - serviceInfo
       additionalProperties: false
       description: A stop of a plan, can be related to a route.
-    routeIdSchema:
-      type: string
-      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-    timeOfDaySchema:
-      type: object
-      properties:
-        hour:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Hour of the day
-        minute:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Minute of the hour
-      required:
-      - hour
-      - minute
-      additionalProperties: false
-      description: Time of day in hours and minutes. Uses a 24 hour clock.
     stopIdSchema:
       type: string
       pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+    planIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     routeSchema:
       type: object
       properties:
@@ -4861,6 +4840,27 @@ components:
       - plan
       additionalProperties: false
       description: A route.
+    routeIdSchema:
+      type: string
+      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
   securitySchemes:
     BasicAuth:
       type: http

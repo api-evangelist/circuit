@@ -694,15 +694,150 @@ paths:
                 description: The default error model
 components:
   schemas:
-    planIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
-    operationIdSchema:
-      type: string
-      pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
+    operationSchema:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/operationIdSchema'
+          description: The id of the operation, in the format `operations/<id>`.
+        type:
+          type: string
+          enum:
+          - plan_optimization
+        done:
+          type: boolean
+          description: Whether the operation is done.
+        metadata:
+          type: object
+          properties:
+            canceled:
+              type: boolean
+              description: Whether the operation was canceled.
+            startedAt:
+              type: number
+              description: The time the operation started at, in seconds since epoch.
+            finishedAt:
+              anyOf:
+              - type: number
+              - type: 'null'
+              description: The time the operation finished at, in seconds since epoch.
+            startedBy:
+              anyOf:
+              - type: string
+                enum:
+                - dispatcher
+              - type: string
+                enum:
+                - api
+              - type: string
+              description: The entity that started the operation.
+            targetPlanId:
+              allOf:
+              - $ref: '#/components/schemas/planIdSchema'
+              description: The id of the plan, in the format `plans/<id>`.
+          required:
+          - canceled
+          - startedAt
+          - finishedAt
+          - startedBy
+          - targetPlanId
+          description: Metadata related to a plan optimization operation.
+        result:
+          anyOf:
+          - anyOf:
+            - type: object
+              properties:
+                numOptimizedStops:
+                  type: number
+                  description: The number of stops that were considered for optimization.
+                skippedStops:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        allOf:
+                        - $ref: '#/components/schemas/stopIdSchema'
+                        description: The id of the stop, in the format `plans/<id>/stops/<id>`.
+                      reason:
+                        anyOf:
+                        - type: string
+                          enum:
+                          - impossible_time_window
+                        - type: string
+                          enum:
+                          - impossible_navigation
+                        - type: string
+                          enum:
+                          - impossible_number_of_stops
+                        - type: string
+                          enum:
+                          - impossible_order_of_stops
+                        - type: string
+                        description: The reason the stop was skipped.
+                    required:
+                    - id
+                    - reason
+                  description: The stops that were skipped, if any.
+              required:
+              - numOptimizedStops
+              - skippedStops
+            - type: object
+              properties:
+                code:
+                  type: string
+                  description: A code that identifies the error
+                message:
+                  type: string
+                  description: A human-readable message that describes the error. This message is not intended to be parsed by machines.
+              required:
+              - code
+              - message
+          - type: 'null'
+          description: The result of the plan optimization operation, or an error.
+      required:
+      - id
+      - type
+      - done
+      - metadata
+      - result
+    dateSchema:
+      type: object
+      properties:
+        day:
+          type: integer
+          minimum: 1
+          maximum: 31
+          description: The day of the date.
+        month:
+          type: integer
+          minimum: 1
+          maximum: 12
+          description: The month of the date.
+        year:
+          type: integer
+          minimum: 2000
+          maximum: 2100
+          description: The year of the date.
+      required:
+      - day
+      - month
+      - year
+      additionalProperties: false
+      description: A date.
     depotIdSchema:
       type: string
       pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+    stopIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+    planIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     planSchema:
       type: object
       properties:
@@ -977,147 +1112,12 @@ components:
       - routeOverrides
       additionalProperties: false
       description: A plan.
+    operationIdSchema:
+      type: string
+      pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
     routeIdSchema:
       type: string
       pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-    operationSchema:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/operationIdSchema'
-          description: The id of the operation, in the format `operations/<id>`.
-        type:
-          type: string
-          enum:
-          - plan_optimization
-        done:
-          type: boolean
-          description: Whether the operation is done.
-        metadata:
-          type: object
-          properties:
-            canceled:
-              type: boolean
-              description: Whether the operation was canceled.
-            startedAt:
-              type: number
-              description: The time the operation started at, in seconds since epoch.
-            finishedAt:
-              anyOf:
-              - type: number
-              - type: 'null'
-              description: The time the operation finished at, in seconds since epoch.
-            startedBy:
-              anyOf:
-              - type: string
-                enum:
-                - dispatcher
-              - type: string
-                enum:
-                - api
-              - type: string
-              description: The entity that started the operation.
-            targetPlanId:
-              allOf:
-              - $ref: '#/components/schemas/planIdSchema'
-              description: The id of the plan, in the format `plans/<id>`.
-          required:
-          - canceled
-          - startedAt
-          - finishedAt
-          - startedBy
-          - targetPlanId
-          description: Metadata related to a plan optimization operation.
-        result:
-          anyOf:
-          - anyOf:
-            - type: object
-              properties:
-                numOptimizedStops:
-                  type: number
-                  description: The number of stops that were considered for optimization.
-                skippedStops:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        allOf:
-                        - $ref: '#/components/schemas/stopIdSchema'
-                        description: The id of the stop, in the format `plans/<id>/stops/<id>`.
-                      reason:
-                        anyOf:
-                        - type: string
-                          enum:
-                          - impossible_time_window
-                        - type: string
-                          enum:
-                          - impossible_navigation
-                        - type: string
-                          enum:
-                          - impossible_number_of_stops
-                        - type: string
-                          enum:
-                          - impossible_order_of_stops
-                        - type: string
-                        description: The reason the stop was skipped.
-                    required:
-                    - id
-                    - reason
-                  description: The stops that were skipped, if any.
-              required:
-              - numOptimizedStops
-              - skippedStops
-            - type: object
-              properties:
-                code:
-                  type: string
-                  description: A code that identifies the error
-                message:
-                  type: string
-                  description: A human-readable message that describes the error. This message is not intended to be parsed by machines.
-              required:
-              - code
-              - message
-          - type: 'null'
-          description: The result of the plan optimization operation, or an error.
-      required:
-      - id
-      - type
-      - done
-      - metadata
-      - result
-    stopIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
-    dateSchema:
-      type: object
-      properties:
-        day:
-          type: integer
-          minimum: 1
-          maximum: 31
-          description: The day of the date.
-        month:
-          type: integer
-          minimum: 1
-          maximum: 12
-          description: The month of the date.
-        year:
-          type: integer
-          minimum: 2000
-          maximum: 2100
-          description: The year of the date.
-      required:
-      - day
-      - month
-      - year
-      additionalProperties: false
-      description: A date.
   securitySchemes:
     BasicAuth:
       type: http

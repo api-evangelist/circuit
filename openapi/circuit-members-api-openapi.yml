@@ -804,6 +804,18 @@ paths:
                 description: The default error model
 components:
   schemas:
+    roleSchema:
+      type: array
+      items:
+        type: string
+        enum:
+        - owner
+        - admin
+        - depot-manager
+        - dispatcher
+        - read-only
+        - driver
+      description: The role(s) given to the member.
     driverIdSchema:
       type: string
       pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
@@ -865,18 +877,6 @@ components:
       - roles
       additionalProperties: false
       description: A dashboard member.
-    roleSchema:
-      type: array
-      items:
-        type: string
-        enum:
-        - owner
-        - admin
-        - depot-manager
-        - dispatcher
-        - read-only
-        - driver
-      description: The role(s) given to the member.
   securitySchemes:
     BasicAuth:
       type: http

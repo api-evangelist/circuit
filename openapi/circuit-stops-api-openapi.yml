@@ -4065,9 +4065,283 @@ paths:
                 description: The default error model
 components:
   schemas:
-    planIdSchema:
+    unassignedStopSchema:
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/unassignedStopIdSchema'
+          description: The id of the unassigned stop, in the format `unassignedStops/<id>`.
+        depot:
+          type: string
+          pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+          description: The depot that this unassigned stop belongs to.
+        address:
+          type: object
+          properties:
+            address:
+              type: string
+              description: The address of the stop.
+            addressLineOne:
+              type: string
+              description: The first line of the address.
+            addressLineTwo:
+              type: string
+              description: The second line of the address.
+            latitude:
+              anyOf:
+              - type: number
+                minimum: -90
+                maximum: 90
+              - type: 'null'
+              description: The latitude of the address in decimal degrees.
+            longitude:
+              anyOf:
+              - type: number
+                minimum: -180
+                maximum: 180
+              - type: 'null'
+              description: The longitude of the address in decimal degrees.
+            placeId:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: The identifier of the place corresponding to this stop on Google Places
+            placeTypes:
+              type: array
+              items:
+                type: string
+              description: Array of strings that is provided by the Google AutoCompleteAPI
+          required:
+          - address
+          - addressLineOne
+          - addressLineTwo
+          - latitude
+          - longitude
+          - placeId
+          - placeTypes
+          additionalProperties: false
+          description: The address of the stop.
+        barcodes:
+          type: array
+          items:
+            type: string
+          description: List of Barcode IDs associated with the stop.
+        allowedDrivers:
+          type: array
+          items:
+            type: string
+            pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+          description: The driver IDs that can be assigned to this stop.
+        notes:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: Notes for the stop.
+        packageCount:
+          anyOf:
+          - type: number
+          - type: 'null'
+          description: The number of packages.
+        weight:
+          anyOf:
+          - type: object
+            properties:
+              amount:
+                type: number
+                minimum: 0
+                description: The weight amount for this stop.
+              unit:
+                type: string
+                enum:
+                - kilogram
+                - pound
+                - metric-ton
+                description: The weight unit in which the amount is specified (defined at team's capacity unit).
+            required:
+            - amount
+            - unit
+            additionalProperties: false
+            description: Weight information for the stop.
+          - type: 'null'
+        orderInfo:
+          type: object
+          properties:
+            products:
+              type: array
+              items:
+                type: string
+              description: The products of the stop.
+            invoiceNumber:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: Invoice number associated with the order.
+            sellerName:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: Name of the seller where the order is from.
+            sellerOrderId:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: Id of the seller where the order is from.
+            sellerWebsite:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: Website of the seller where the order is from.
+          required:
+          - products
+          - invoiceNumber
+          - sellerName
+          - sellerOrderId
+          - sellerWebsite
+          additionalProperties: false
+          description: The order information of the stop.
+        recipient:
+          type: object
+          properties:
+            name:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: The name of the recipient.
+            email:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: The email of the recipient.
+            phone:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: The phone of the recipient.
+            externalId:
+              anyOf:
+              - type: string
+              - type: 'null'
+              description: The external id of the recipient.
+          required:
+          - name
+          - email
+          - phone
+          - externalId
+          additionalProperties: false
+          description: The recipient of the stop.
+        activity:
+          default: delivery
+          type: string
+          enum:
+          - delivery
+          - pickup
+        trackingLink:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The recipient tracking link.
+        timing:
+          type: object
+          properties:
+            estimatedAttemptDuration:
+              anyOf:
+              - type: number
+              - type: 'null'
+              description: Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds.
+            earliestAttemptTime:
+              anyOf:
+              - $ref: '#/components/schemas/timeOfDaySchema'
+              - type: 'null'
+              description: The earliest time that the driver should arrive at the stop
+            latestAttemptTime:
+              anyOf:
+              - $ref: '#/components/schemas/timeOfDaySchema'
+              - type: 'null'
+              description: The latest time that the driver should arrive at the stop.
+          required:
+          - estimatedAttemptDuration
+          - earliestAttemptTime
+          - latestAttemptTime
+          additionalProperties: false
+          description: The timing data of the stop.
+        optimizationOrder:
+          default: default
+          type: string
+          enum:
+          - first
+          - last
+          - default
+        paymentOnDelivery:
+          anyOf:
+          - type: object
+            properties:
+              amount:
+                anyOf:
+                - type: integer
+                  minimum: 0
+                  maximum: 9007199254740991
+                - type: 'null'
+                description: The amount *in minor units* (e.g. cents) to be collected upon delivery.
+              currency:
+                type: string
+                description: The payment's currency in ISO 4217 standard.
+            required:
+            - amount
+            - currency
+            additionalProperties: false
+            description: The payment due upon delivery also known as "Cash on Delivery".
+          - type: 'null'
+        proofOfAttemptRequirements:
+          type: object
+          properties:
+            enabled:
+              anyOf:
+              - type: boolean
+              - type: 'null'
+              description: Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery
+          required:
+          - enabled
+          additionalProperties: false
+          description: The proof of attempt requirements of the stop.
+        customProperties:
+          anyOf:
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              anyOf:
+              - type: string
+              - type: 'null'
+          - type: 'null'
+          description: Custom properties of the stop, can be used to store additional information.
+        clientId:
+          anyOf:
+          - type: string
+          - type: 'null'
+          description: The associated Client ID of the Spoke Connect
+      required:
+      - id
+      - depot
+      - address
+      - barcodes
+      - allowedDrivers
+      - notes
+      - packageCount
+      - weight
+      - orderInfo
+      - recipient
+      - trackingLink
+      - timing
+      - paymentOnDelivery
+      - proofOfAttemptRequirements
+      - customProperties
+      - clientId
+      additionalProperties: false
+      description: An unassigned stop.
+    unassignedStopIdSchema:
       type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
+      pattern: ^unassignedStops\/[a-zA-Z0-9---_]{1,50}$
     stopSchema:
       type: object
       properties:
@@ -4833,310 +5107,15 @@ components:
       - serviceInfo
       additionalProperties: false
       description: A stop of a plan, can be related to a route.
-    unassignedStopIdSchema:
-      type: string
-      pattern: ^unassignedStops\/[a-zA-Z0-9---_]{1,50}$
-    routeIdSchema:
-      type: string
-      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-    timeOfDaySchema:
-      type: object
-      properties:
-        hour:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Hour of the day
-        minute:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Minute of the hour
-      required:
-      - hour
-      - minute
-      additionalProperties: false
-      description: Time of day in hours and minutes. Uses a 24 hour clock.
-    unassignedStopSchema:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/unassignedStopIdSchema'
-          description: The id of the unassigned stop, in the format `unassignedStops/<id>`.
-        depot:
-          type: string
-          pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
-          description: The depot that this unassigned stop belongs to.
-        address:
-          type: object
-          properties:
-            address:
-              type: string
-              description: The address of the stop.
-            addressLineOne:
-              type: string
-              description: The first line of the address.
-            addressLineTwo:
-              type: string
-              description: The second line of the address.
-            latitude:
-              anyOf:
-              - type: number
-                minimum: -90
-                maximum: 90
-              - type: 'null'
-              description: The latitude of the address in decimal degrees.
-            longitude:
-              anyOf:
-              - type: number
-                minimum: -180
-                maximum: 180
-              - type: 'null'
-              description: The longitude of the address in decimal degrees.
-            placeId:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The identifier of the place corresponding to this stop on Google Places
-            placeTypes:
-              type: array
-              items:
-                type: string
-              description: Array of strings that is provided by the Google AutoCompleteAPI
-          required:
-          - address
-          - addressLineOne
-          - addressLineTwo
-          - latitude
-          - longitude
-          - placeId
-          - placeTypes
-          additionalProperties: false
-          description: The address of the stop.
-        barcodes:
-          type: array
-          items:
-            type: string
-          description: List of Barcode IDs associated with the stop.
-        allowedDrivers:
-          type: array
-          items:
-            type: string
-            pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-          description: The driver IDs that can be assigned to this stop.
-        notes:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: Notes for the stop.
-        packageCount:
-          anyOf:
-          - type: number
-          - type: 'null'
-          description: The number of packages.
-        weight:
-          anyOf:
-          - type: object
-            properties:
-              amount:
-                type: number
-                minimum: 0
-                description: The weight amount for this stop.
-              unit:
-                type: string
-                enum:
-                - kilogram
-                - pound
-                - metric-ton
-                description: The weight unit in which the amount is specified (defined at team's capacity unit).
-            required:
-            - amount
-            - unit
-            additionalProperties: false
-            description: Weight information for the stop.
-          - type: 'null'
-        orderInfo:
-          type: object
-          properties:
-            products:
-              type: array
-              items:
-                type: string
-              description: The products of the stop.
-            invoiceNumber:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Invoice number associated with the order.
-            sellerName:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Name of the seller where the order is from.
-            sellerOrderId:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Id of the seller where the order is from.
-            sellerWebsite:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: Website of the seller where the order is from.
-          required:
-          - products
-          - invoiceNumber
-          - sellerName
-          - sellerOrderId
-          - sellerWebsite
-          additionalProperties: false
-          description: The order information of the stop.
-        recipient:
-          type: object
-          properties:
-            name:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The name of the recipient.
-            email:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The email of the recipient.
-            phone:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The phone of the recipient.
-            externalId:
-              anyOf:
-              - type: string
-              - type: 'null'
-              description: The external id of the recipient.
-          required:
-          - name
-          - email
-          - phone
-          - externalId
-          additionalProperties: false
-          description: The recipient of the stop.
-        activity:
-          default: delivery
-          type: string
-          enum:
-          - delivery
-          - pickup
-        trackingLink:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The recipient tracking link.
-        timing:
-          type: object
-          properties:
-            estimatedAttemptDuration:
-              anyOf:
-              - type: number
-              - type: 'null'
-              description: Time that the driver estimates to spend on the stop to do his job (deliver a parcel, visit a client, etc) in seconds.
-            earliestAttemptTime:
-              anyOf:
-              - $ref: '#/components/schemas/timeOfDaySchema'
-              - type: 'null'
-              description: The earliest time that the driver should arrive at the stop
-            latestAttemptTime:
-              anyOf:
-              - $ref: '#/components/schemas/timeOfDaySchema'
-              - type: 'null'
-              description: The latest time that the driver should arrive at the stop.
-          required:
-          - estimatedAttemptDuration
-          - earliestAttemptTime
-          - latestAttemptTime
-          additionalProperties: false
-          description: The timing data of the stop.
-        optimizationOrder:
-          default: default
-          type: string
-          enum:
-          - first
-          - last
-          - default
-        paymentOnDelivery:
-          anyOf:
-          - type: object
-            properties:
-              amount:
-                anyOf:
-                - type: integer
-                  minimum: 0
-                  maximum: 9007199254740991
-                - type: 'null'
-                description: The amount *in minor units* (e.g. cents) to be collected upon delivery.
-              currency:
-                type: string
-                description: The payment's currency in ISO 4217 standard.
-            required:
-            - amount
-            - currency
-            additionalProperties: false
-            description: The payment due upon delivery also known as "Cash on Delivery".
-          - type: 'null'
-        proofOfAttemptRequirements:
-          type: object
-          properties:
-            enabled:
-              anyOf:
-              - type: boolean
-              - type: 'null'
-              description: Whether the proof of attempt is enabled.This only works if the team subscription has access to proof of delivery
-          required:
-          - enabled
-          additionalProperties: false
-          description: The proof of attempt requirements of the stop.
-        customProperties:
-          anyOf:
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              anyOf:
-              - type: string
-              - type: 'null'
-          - type: 'null'
-          description: Custom properties of the stop, can be used to store additional information.
-        clientId:
-          anyOf:
-          - type: string
-          - type: 'null'
-          description: The associated Client ID of the Spoke Connect
-      required:
-      - id
-      - depot
-      - address
-      - barcodes
-      - allowedDrivers
-      - notes
-      - packageCount
-      - weight
-      - orderInfo
-      - recipient
-      - trackingLink
-      - timing
-      - paymentOnDelivery
-      - proofOfAttemptRequirements
-      - customProperties
-      - clientId
-      additionalProperties: false
-      description: An unassigned stop.
     stopIdSchema:
       type: string
       pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+    planIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     routeSchema:
       type: object
       properties:
@@ -5218,6 +5197,27 @@ components:
       - plan
       additionalProperties: false
       description: A route.
+    routeIdSchema:
+      type: string
+      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
   securitySchemes:
     BasicAuth:
       type: http
