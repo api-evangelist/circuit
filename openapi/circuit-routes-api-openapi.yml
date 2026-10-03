@@ -1442,6 +1442,15 @@ paths:
                 description: The default error model
 components:
   schemas:
+    stopIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    planIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
     stopSchema:
       type: object
       properties:
@@ -2207,15 +2216,6 @@ components:
       - serviceInfo
       additionalProperties: false
       description: A stop of a plan, can be related to a route.
-    stopIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-    planIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     routeSchema:
       type: object
       properties:

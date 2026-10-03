@@ -581,15 +581,15 @@ components:
       - done
       - metadata
       - result
+    stopIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
     planIdSchema:
       type: string
       pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     operationIdSchema:
       type: string
       pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
-    stopIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
   securitySchemes:
     BasicAuth:
       type: http

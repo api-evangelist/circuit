@@ -694,6 +694,39 @@ paths:
                 description: The default error model
 components:
   schemas:
+    dateSchema:
+      type: object
+      properties:
+        day:
+          type: integer
+          minimum: 1
+          maximum: 31
+          description: The day of the date.
+        month:
+          type: integer
+          minimum: 1
+          maximum: 12
+          description: The month of the date.
+        year:
+          type: integer
+          minimum: 2000
+          maximum: 2100
+          description: The year of the date.
+      required:
+      - day
+      - month
+      - year
+      additionalProperties: false
+      description: A date.
+    stopIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    planIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
     operationSchema:
       type: object
       properties:
@@ -802,42 +835,6 @@ components:
       - done
       - metadata
       - result
-    dateSchema:
-      type: object
-      properties:
-        day:
-          type: integer
-          minimum: 1
-          maximum: 31
-          description: The day of the date.
-        month:
-          type: integer
-          minimum: 1
-          maximum: 12
-          description: The month of the date.
-        year:
-          type: integer
-          minimum: 2000
-          maximum: 2100
-          description: The year of the date.
-      required:
-      - day
-      - month
-      - year
-      additionalProperties: false
-      description: A date.
-    depotIdSchema:
-      type: string
-      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
-    stopIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
-    planIdSchema:
-      type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
     planSchema:
       type: object
       properties:
@@ -1112,12 +1109,15 @@ components:
       - routeOverrides
       additionalProperties: false
       description: A plan.
-    operationIdSchema:
-      type: string
-      pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
     routeIdSchema:
       type: string
       pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
+    depotIdSchema:
+      type: string
+      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+    operationIdSchema:
+      type: string
+      pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
   securitySchemes:
     BasicAuth:
       type: http

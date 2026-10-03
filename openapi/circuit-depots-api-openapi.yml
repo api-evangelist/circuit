@@ -1960,9 +1960,6 @@ paths:
                 description: The default error model
 components:
   schemas:
-    depotIdSchema:
-      type: string
-      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
     depotSchema:
       type: object
       properties:
@@ -2157,6 +2154,9 @@ components:
       - routeOverrides
       additionalProperties: false
       description: A depot.
+    depotIdSchema:
+      type: string
+      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
   securitySchemes:
     BasicAuth:
       type: http

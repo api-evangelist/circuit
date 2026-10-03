@@ -2089,12 +2089,12 @@ paths:
                 description: The default error model
 components:
   schemas:
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
     depotIdSchema:
       type: string
       pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
     timeOfDaySchema:
       type: object
       properties:
