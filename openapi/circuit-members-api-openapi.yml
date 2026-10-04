@@ -804,6 +804,12 @@ paths:
                 description: The default error model
 components:
   schemas:
+    memberIdSchema:
+      type: string
+      pattern: ^members\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
     memberSchema:
       type: object
       properties:
@@ -871,12 +877,6 @@ components:
         - read-only
         - driver
       description: The role(s) given to the member.
-    memberIdSchema:
-      type: string
-      pattern: ^members\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
   securitySchemes:
     BasicAuth:
       type: http

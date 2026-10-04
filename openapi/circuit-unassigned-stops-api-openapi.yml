@@ -2390,9 +2390,6 @@ paths:
                 description: The default error model
 components:
   schemas:
-    unassignedStopIdSchema:
-      type: string
-      pattern: ^unassignedStops\/[a-zA-Z0-9---_]{1,50}$
     timeOfDaySchema:
       type: object
       properties:
@@ -2685,6 +2682,9 @@ components:
       - clientId
       additionalProperties: false
       description: An unassigned stop.
+    unassignedStopIdSchema:
+      type: string
+      pattern: ^unassignedStops\/[a-zA-Z0-9---_]{1,50}$
   securitySchemes:
     BasicAuth:
       type: http

@@ -1445,6 +1445,27 @@ components:
     stopIdSchema:
       type: string
       pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
+    routeIdSchema:
+      type: string
+      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
     planIdSchema:
       type: string
       pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
@@ -2297,27 +2318,6 @@ components:
       - plan
       additionalProperties: false
       description: A route.
-    routeIdSchema:
-      type: string
-      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-    timeOfDaySchema:
-      type: object
-      properties:
-        hour:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Hour of the day
-        minute:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Minute of the hour
-      required:
-      - hour
-      - minute
-      additionalProperties: false
-      description: Time of day in hours and minutes. Uses a 24 hour clock.
   securitySchemes:
     BasicAuth:
       type: http

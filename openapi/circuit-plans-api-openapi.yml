@@ -3285,39 +3285,30 @@ paths:
                 description: The default error model
 components:
   schemas:
-    dateSchema:
-      type: object
-      properties:
-        day:
-          type: integer
-          minimum: 1
-          maximum: 31
-          description: The day of the date.
-        month:
-          type: integer
-          minimum: 1
-          maximum: 12
-          description: The month of the date.
-        year:
-          type: integer
-          minimum: 2000
-          maximum: 2100
-          description: The year of the date.
-      required:
-      - day
-      - month
-      - year
-      additionalProperties: false
-      description: A date.
     stopIdSchema:
       type: string
       pattern: ^plans\/[a-zA-Z0-9---_]{1,50}\/stops\/[a-zA-Z0-9---_]{1,50}$
-    planIdSchema:
+    timeOfDaySchema:
+      type: object
+      properties:
+        hour:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Hour of the day
+        minute:
+          type: integer
+          minimum: -9007199254740991
+          maximum: 9007199254740991
+          description: Minute of the hour
+      required:
+      - hour
+      - minute
+      additionalProperties: false
+      description: Time of day in hours and minutes. Uses a 24 hour clock.
+    depotIdSchema:
       type: string
-      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
-    driverIdSchema:
-      type: string
-      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
+      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
     operationSchema:
       type: object
       properties:
@@ -3426,6 +3417,18 @@ components:
       - done
       - metadata
       - result
+    routeIdSchema:
+      type: string
+      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
+    planIdSchema:
+      type: string
+      pattern: ^plans\/[a-zA-Z0-9---_]{1,50}$
+    operationIdSchema:
+      type: string
+      pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
+    driverIdSchema:
+      type: string
+      pattern: ^drivers\/[a-zA-Z0-9---_]{1,50}$
     stopSchema:
       type: object
       properties:
@@ -4191,87 +4194,6 @@ components:
       - serviceInfo
       additionalProperties: false
       description: A stop of a plan, can be related to a route.
-    routeSchema:
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/routeIdSchema'
-          description: The id of the route, in the format `routes/<id>`.
-        title:
-          type: string
-          description: The title of the route.
-        stopCount:
-          type: number
-          description: The number of stops in the route.
-        driver:
-          anyOf:
-          - $ref: '#/components/schemas/driverIdSchema'
-          - type: 'null'
-          description: The id of the driver.
-        state:
-          anyOf:
-          - type: object
-            properties:
-              completed:
-                type: boolean
-                description: Whether the route is completed.
-              completedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the route was completed at.
-              distributed:
-                type: boolean
-                description: Whether the route is distributed.
-              distributedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the route was distributed at.
-              notifiedRecipients:
-                type: boolean
-                description: Whether the recipients were notified.
-              notifiedRecipientsAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the recipients were notified at.
-              started:
-                type: boolean
-                description: Whether the route is started.
-              startedAt:
-                anyOf:
-                - type: number
-                - type: 'null'
-                description: The timestamp the route was started at.
-            required:
-            - completed
-            - completedAt
-            - distributed
-            - distributedAt
-            - notifiedRecipients
-            - notifiedRecipientsAt
-            - started
-            - startedAt
-            additionalProperties: false
-            description: The state of a route.
-          - type: 'null'
-          description: The state of the route.
-        plan:
-          anyOf:
-          - $ref: '#/components/schemas/planIdSchema'
-          - type: 'null'
-          description: The id of the related plan.
-      required:
-      - id
-      - title
-      - stopCount
-      - driver
-      - state
-      - plan
-      additionalProperties: false
-      description: A route.
     planSchema:
       type: object
       properties:
@@ -4546,33 +4468,111 @@ components:
       - routeOverrides
       additionalProperties: false
       description: A plan.
-    routeIdSchema:
-      type: string
-      pattern: ^routes\/[a-zA-Z0-9---_]{1,50}$
-    depotIdSchema:
-      type: string
-      pattern: ^depots\/[a-zA-Z0-9---_]{1,50}$
-    operationIdSchema:
-      type: string
-      pattern: ^operations\/[a-zA-Z0-9---_]{1,50}$
-    timeOfDaySchema:
+    routeSchema:
       type: object
       properties:
-        hour:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Hour of the day
-        minute:
-          type: integer
-          minimum: -9007199254740991
-          maximum: 9007199254740991
-          description: Minute of the hour
+        id:
+          allOf:
+          - $ref: '#/components/schemas/routeIdSchema'
+          description: The id of the route, in the format `routes/<id>`.
+        title:
+          type: string
+          description: The title of the route.
+        stopCount:
+          type: number
+          description: The number of stops in the route.
+        driver:
+          anyOf:
+          - $ref: '#/components/schemas/driverIdSchema'
+          - type: 'null'
+          description: The id of the driver.
+        state:
+          anyOf:
+          - type: object
+            properties:
+              completed:
+                type: boolean
+                description: Whether the route is completed.
+              completedAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the route was completed at.
+              distributed:
+                type: boolean
+                description: Whether the route is distributed.
+              distributedAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the route was distributed at.
+              notifiedRecipients:
+                type: boolean
+                description: Whether the recipients were notified.
+              notifiedRecipientsAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the recipients were notified at.
+              started:
+                type: boolean
+                description: Whether the route is started.
+              startedAt:
+                anyOf:
+                - type: number
+                - type: 'null'
+                description: The timestamp the route was started at.
+            required:
+            - completed
+            - completedAt
+            - distributed
+            - distributedAt
+            - notifiedRecipients
+            - notifiedRecipientsAt
+            - started
+            - startedAt
+            additionalProperties: false
+            description: The state of a route.
+          - type: 'null'
+          description: The state of the route.
+        plan:
+          anyOf:
+          - $ref: '#/components/schemas/planIdSchema'
+          - type: 'null'
+          description: The id of the related plan.
       required:
-      - hour
-      - minute
+      - id
+      - title
+      - stopCount
+      - driver
+      - state
+      - plan
       additionalProperties: false
-      description: Time of day in hours and minutes. Uses a 24 hour clock.
+      description: A route.
+    dateSchema:
+      type: object
+      properties:
+        day:
+          type: integer
+          minimum: 1
+          maximum: 31
+          description: The day of the date.
+        month:
+          type: integer
+          minimum: 1
+          maximum: 12
+          description: The month of the date.
+        year:
+          type: integer
+          minimum: 2000
+          maximum: 2100
+          description: The year of the date.
+      required:
+      - day
+      - month
+      - year
+      additionalProperties: false
+      description: A date.
   securitySchemes:
     BasicAuth:
       type: http
